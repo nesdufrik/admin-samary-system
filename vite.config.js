@@ -13,7 +13,7 @@ export default defineConfig({
         mkcert(),
         vue(),
         Components({
-            resolvers: [BootstrapVue3Resolver],
+            resolvers: [BootstrapVue3Resolver()],
         }),
     ],
     history: {

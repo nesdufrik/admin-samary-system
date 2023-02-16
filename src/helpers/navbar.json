@@ -1,0 +1,18 @@
+[
+    {
+        "empleado": [
+            {
+                "name": "Dashboard",
+                "link": "/pos/dashboard",
+                "icon": "dashboard"
+            }
+        ],
+        "usuario": [
+            {
+                "name": "Inicio",
+                "link": "/admin",
+                "icon": "home"
+            }
+        ]
+    }
+]

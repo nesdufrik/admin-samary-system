@@ -1,5 +1,5 @@
 <template>
-    <RouterView />
+    <div>Dashboard de POS</div>
 </template>
 
 <script setup></script>
