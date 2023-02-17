@@ -1,4 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import pinia from '../stores'
+import { useAuthStore } from '../stores/authStore'
+
 import Login from '../pages/Login.vue'
 import HomePOS from '../pages/pos/HomePOS.vue'
 import HomeAdmin from '../pages/admin/HomeAdmin.vue'
@@ -43,12 +47,12 @@ const routes = [
                 component: () => import('../pages/admin/Dashboard.vue'),
             },
             {
-                path: '/admin/empresa',
+                path: '/admin/empresa/:id',
                 name: 'Empresa',
                 component: () => import('../pages/admin/Empresa.vue'),
             },
             {
-                path: '/admin/sucursal',
+                path: '/admin/sucursal/:id',
                 name: 'Sucursal',
             },
         ],
@@ -60,20 +64,42 @@ const router = createRouter({
     routes,
 })
 
-router.beforeEach((to, from, next) => {
-    redirectTo(to, from, next)
-    handleTitle(to, from, next)
-})
+router.beforeEach(async (to, from, next) => {
+    // Cambio de titulo en el documento
+    if (to.meta.title) {
+        document.title = to.meta.title
+    }
 
-//handlers
-function redirectTo(to, from, next) {
-    if (to.path === '/admin') next({ path: '/admin/dashboard' })
-    if (to.path === '/pos') next({ path: '/pos/dashboard' })
-}
+    // Redireccionamiento de rutas especificas
+    if (to.path === '/admin') {
+        next({ path: '/admin/dashboard' })
+        return
+    }
+    if (to.path === '/pos') {
+        next({ path: '/pos/dashboard' })
+        return
+    }
 
-function handleTitle(to, from, next) {
-    if (to.meta.title) document.title = to.meta.title
+    // Verificar si la ruta requiere autenticación
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        const token = localStorage.getItem('token')
+        const store = useAuthStore(pinia)
+
+        if (!token) {
+            next('/')
+            return
+        }
+        if (!store.islogIn) {
+            const verify = await store.verifyJwt()
+            if (!verify.success) {
+                next('/')
+                return
+            }
+            store.islogIn = true
+        }
+    }
+
     next()
-}
+})
 
 export default router

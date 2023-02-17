@@ -3,7 +3,7 @@
         class="navbar navbar-expand-lg bd-navbar sticky-top bg-dark navbar-dark"
     >
         <nav
-            class="container-xxl bd-gutter flex-wrap flex-lg-nowrap"
+            class="container-fluid bd-gutter flex-wrap flex-lg-nowrap"
             aria-label="Main navigation"
         >
             <div class="d-lg-none" style="width: 1.5rem">
@@ -56,7 +56,7 @@
                         class="offcanvas-title text-white"
                         id="bdNavbarOffcanvasLabel"
                     >
-                        El Morro
+                        Samary
                     </h5>
                     <button
                         type="button"
