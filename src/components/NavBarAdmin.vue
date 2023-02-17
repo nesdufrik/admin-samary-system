@@ -72,7 +72,7 @@
 
                     <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                         <li
-                            class="nav-item col-6 col-lg-auto"
+                            class="nav-item col-6 col-lg-auto text-center"
                             v-for="elem in elementos"
                         >
                             <RouterLink
@@ -83,7 +83,7 @@
                                     {{ elem.icon }}
                                 </span>
                                 <br />
-                                {{ elem.name }}
+                                {{ elem.title }}
                             </RouterLink>
                         </li>
                     </ul>
@@ -91,22 +91,22 @@
                     <div
                         class="d-flex flex-row flex-wrap align-items-center py-2 px-5 px-lg-5"
                     >
-                        <div class="flex-shrink-0 dropdown">
+                        <div class="flex-shrink-0 dropdown text-center">
                             <a
                                 href="#"
-                                class="d-block link-light text-decoration-none dropdown-toggle"
+                                class="d-block link-light text-decoration-none dropdown-toggle mb-lg-0 mb-2"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
                                 <img
-                                    src="https://github.com/mdo.png"
-                                    alt="mdo"
-                                    width="48"
-                                    height="48"
+                                    src="../assets/avatares/man.png"
+                                    alt="avatar"
+                                    width="55"
+                                    height="55"
                                     class="rounded-circle"
                                 />
                             </a>
-                            <span class="d-lg-none text-white">{{ name }}</span>
+                            <span class="d-lg-none text-muted">{{ name }}</span>
                             <ul
                                 class="dropdown-menu text-small shadow dropdown-menu-lg-end"
                             >
@@ -141,6 +141,7 @@ import { ref } from 'vue'
 import navbar from '../helpers/navbar.json'
 
 const elementos = ref(navbar[0].usuario)
+const name = ref(localStorage.getItem('name'))
 </script>
 
 <style lang="scss" scoped></style>

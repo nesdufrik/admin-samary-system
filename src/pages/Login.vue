@@ -1,5 +1,5 @@
 <template>
-    <div class="container vh-100 d-flex">
+    <div class="container vh-100 d-flex text-center">
         <main class="form-signin w-100 m-auto">
             <form @submit.prevent="login">
                 <img class="mb-4" src="../assets/login.png" alt="logo" />
@@ -52,7 +52,7 @@
                     ></span>
                     Iniciando...
                 </button>
-                <p class="mt-5 mb-3 text-muted">© 2022</p>
+                <p class="mt-5 mb-3 text-muted fst-italic">FrikTek© 2023</p>
             </form>
         </main>
     </div>
@@ -65,10 +65,6 @@ const { logInForm, logInData, loading, login } = useAuth()
 </script>
 
 <style scoped>
-body {
-    background-color: #f5f5f5;
-}
-
 .form-signin {
     max-width: 330px;
     padding: 15px;

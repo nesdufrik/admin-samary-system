@@ -2,14 +2,14 @@
     {
         "empleado": [
             {
-                "name": "Dashboard",
+                "title": "Dashboard",
                 "link": "/pos/dashboard",
                 "icon": "dashboard"
             }
         ],
         "usuario": [
             {
-                "name": "Inicio",
+                "title": "Inicio",
                 "link": "/admin",
                 "icon": "home"
             }

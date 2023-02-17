@@ -23,7 +23,7 @@ const routes = [
         children: [
             {
                 path: '/pos/dashboard',
-                name: 'Dashboard',
+                name: 'Dashboard POS',
                 component: () => import('../pages/pos/DashboardPOS.vue'),
             },
         ],
@@ -37,6 +37,11 @@ const routes = [
         },
         component: HomeAdmin,
         children: [
+            {
+                path: '/admin/dashboard',
+                name: 'Dashboard Empresa',
+                component: () => import('../pages/admin/Dashboard.vue'),
+            },
             {
                 path: '/admin/empresa',
                 name: 'Empresa',
@@ -56,10 +61,16 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
+    redirectTo(to, from, next)
     handleTitle(to, from, next)
 })
 
 //handlers
+function redirectTo(to, from, next) {
+    if (to.path === '/admin') next({ path: '/admin/dashboard' })
+    if (to.path === '/pos') next({ path: '/pos/dashboard' })
+}
+
 function handleTitle(to, from, next) {
     if (to.meta.title) document.title = to.meta.title
     next()
