@@ -6,29 +6,12 @@
             class="container-fluid bd-gutter flex-wrap flex-lg-nowrap"
             aria-label="Main navigation"
         >
-            <div class="d-lg-none" style="width: 1.5rem">
-                <div class="d-flex">
-                    <button
-                        class="navbar-toggler d-flex d-lg-none order-3 p-2"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#bdNavbar"
-                        aria-controls="bdNavbar"
-                        aria-label="Toggle navigation"
-                    >
-                        <span class="material-symbols-outlined">
-                            shopping_cart
-                        </span>
-                    </button>
-                </div>
-            </div>
-
             <a
-                class="d-flex align-items-center p-lg-3 my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
-                href="/"
+                class="p-lg-3 my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
+                href="/admin"
                 aria-label="Bootstrap"
             >
-                <img src="../assets/logo-icon.png" alt="" />
+                <img src="../assets/logo-icon.png" alt="logo" />
             </a>
 
             <div class="d-flex">
