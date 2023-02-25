@@ -54,6 +54,7 @@ const routes = [
             {
                 path: '/admin/sucursal/:id',
                 name: 'Sucursal',
+                component: () => import('../pages/admin/Sucursal.vue'),
             },
         ],
     },
