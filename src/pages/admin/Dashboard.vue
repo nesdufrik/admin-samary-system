@@ -6,7 +6,7 @@
                 <p>Cree una empresa o ingrese a una que ya tenga creada</p>
             </div>
         </div>
-        <div class="row row-cols-3 row-cols-md-5 g-2 text-center">
+        <div class="row row-cols-3 row-cols-md-4 g-2 text-center">
             <div class="col empresa__box" v-for="item in empresasArr">
                 <RouterLink
                     :to="`/admin/empresa/${item._id}`"
