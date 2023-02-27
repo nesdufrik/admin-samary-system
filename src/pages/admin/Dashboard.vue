@@ -17,7 +17,11 @@
                     </div>
                 </RouterLink>
             </div>
-            <div class="col empresa__box">
+            <div
+                class="col empresa__box"
+                data-bs-toggle="modal"
+                data-bs-target="#createEmpresa"
+            >
                 <div class="card h-100 rounded-3 shadow-sm">
                     <div
                         class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
@@ -30,10 +34,12 @@
             </div>
         </div>
     </div>
+    <addEmpresa />
 </template>
 
 <script setup>
 import { useEmpresas } from '../../composables/useEmpresas'
+import addEmpresa from '../../components/admin/addEmpresa.vue'
 
 const { empresasArr, listEmpresas } = useEmpresas()
 
