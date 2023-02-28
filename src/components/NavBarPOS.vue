@@ -23,13 +23,13 @@
                 </div>
             </div>
 
-            <a
+            <RouterLink
                 class="d-flex align-items-center p-lg-3 my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
-                href="/"
+                :to="`/pos`"
                 aria-label="Bootstrap"
             >
                 <img src="../assets/logo-icon.png" alt="" />
-            </a>
+            </RouterLink>
 
             <div class="d-flex">
                 <button

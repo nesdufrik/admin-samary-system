@@ -6,13 +6,13 @@
             class="container-fluid bd-gutter flex-wrap flex-lg-nowrap"
             aria-label="Main navigation"
         >
-            <a
+            <RouterLink
                 class="p-lg-3 my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
-                href="/admin"
+                :to="`/admin`"
                 aria-label="Bootstrap"
             >
                 <img src="../assets/logo-icon.png" alt="logo" />
-            </a>
+            </RouterLink>
 
             <div class="d-flex">
                 <button
@@ -121,6 +121,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import navbar from '../helpers/navbar.json'
 
 const elementos = ref(navbar[0].usuario)
