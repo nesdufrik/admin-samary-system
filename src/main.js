@@ -1,5 +1,6 @@
 import { createApp, markRaw } from 'vue'
 import BootstrapVue3 from 'bootstrap-vue-3'
+import VueApexCharts from 'vue3-apexcharts'
 
 import App from './App.vue'
 import pinia from './stores'
@@ -16,6 +17,7 @@ pinia.use(({ store }) => {
 
 const app = createApp(App)
 
+app.use(VueApexCharts)
 app.use(pinia)
 app.use(router)
 app.use(BootstrapVue3)
