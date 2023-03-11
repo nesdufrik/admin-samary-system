@@ -16,7 +16,7 @@
                         aria-controls="bdNavbar"
                         aria-label="Toggle navigation"
                     >
-                        <span class="material-symbols-outlined">
+                        <span class="material-icons-outlined">
                             shopping_cart
                         </span>
                     </button>
@@ -40,7 +40,7 @@
                     aria-controls="bdNavbar"
                     aria-label="Toggle navigation"
                 >
-                    <span class="material-symbols-outlined"> menu </span>
+                    <span class="material-icons-outlined"> menu </span>
                 </button>
             </div>
 
@@ -79,7 +79,7 @@
                                 :to="elem.link"
                                 class="nav-link py-2 px-0 px-lg-2"
                             >
-                                <span class="material-symbols-outlined">
+                                <span class="material-icons-outlined">
                                     {{ elem.icon }}
                                 </span>
                                 <br />

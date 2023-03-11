@@ -26,7 +26,7 @@
                     <div
                         class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
                     >
-                        <span class="material-symbols-outlined fs-1">
+                        <span class="material-icons-outlined fs-1">
                             add_home
                         </span>
                     </div>
