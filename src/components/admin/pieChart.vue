@@ -58,7 +58,38 @@ filteredData.forEach(d => {
 })
 
 const options = {
-    chart: {},
+    plotOptions: {
+        pie: {
+            expandOnClick: false,
+            donut: {
+                size: '70%',
+                labels: {
+                    show: true,
+                    value: {
+                        show: true,
+                        fontSize: '18px',
+                        fontWeight: 600,
+                    },
+                    total: {
+                        show: true,
+                        fontSize: '22px',
+                        fontWeight: 600,
+                        color: '#373d3f',
+                    },
+                },
+            },
+        },
+    },
+    dataLabels: {
+        enabled: false,
+        dropShadow: {
+            enabled: false,
+        },
+    },
+    legend: {
+        show: true,
+        position: 'left',
+    },
     labels: Object.keys(groupedData),
 }
 const series = Object.values(groupedData)
