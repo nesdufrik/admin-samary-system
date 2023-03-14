@@ -55,6 +55,13 @@ const routes = [
                 path: '/admin/sucursal/:id',
                 name: 'Sucursal',
                 component: () => import('../pages/admin/Sucursal.vue'),
+                children: [
+                    {
+                        path: '/admin/sucursal/:id/stats',
+                        name: 'Stats de Sucursal',
+                        component: () => import('../pages/admin/Stats.vue'),
+                    },
+                ],
             },
         ],
     },

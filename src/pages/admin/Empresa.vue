@@ -41,11 +41,16 @@
 import { useRoute } from 'vue-router'
 import { useSucursales } from '../../composables/useSucursales'
 import addSucursal from '../../components/admin/addSucursal.vue'
+import { useNavBar } from '../../composables/useNavBar'
+
+const { showNavBar, contentNavBar } = useNavBar()
+showNavBar.value = false
 
 const { sucursalesArr, listSucursales } = useSucursales()
 const route = useRoute()
 
 listSucursales(route.params.id)
+contentNavBar()
 </script>
 
 <style scoped>

@@ -40,10 +40,15 @@
 <script setup>
 import { useEmpresas } from '../../composables/useEmpresas'
 import addEmpresa from '../../components/admin/addEmpresa.vue'
+import { useNavBar } from '../../composables/useNavBar'
+
+const { showNavBar, contentNavBar } = useNavBar()
+showNavBar.value = false
 
 const { empresasArr, listEmpresas } = useEmpresas()
 
 listEmpresas()
+contentNavBar()
 </script>
 
 <style scoped>

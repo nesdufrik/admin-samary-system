@@ -56,7 +56,7 @@
                     <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                         <li
                             class="nav-item col-6 col-lg-auto text-center"
-                            v-for="elem in elementos"
+                            v-for="elem in itemsNavBar"
                         >
                             <RouterLink
                                 :to="elem.link"
@@ -122,9 +122,12 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import navbar from '../helpers/navbar.json'
+import { useNavBar } from '../composables/useNavBar'
 
-const elementos = ref(navbar[0].usuario)
+const { showNavBar, itemsNavBar, contentNavBar } = useNavBar()
+
+contentNavBar()
+
 const name = ref(localStorage.getItem('name'))
 </script>
 

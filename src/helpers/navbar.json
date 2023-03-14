@@ -12,6 +12,16 @@
                 "title": "Inicio",
                 "link": "/admin",
                 "icon": "home"
+            },
+            {
+                "title": "Stats",
+                "link": "/stats",
+                "icon": "dashboard"
+            },
+            {
+                "title": "Inicio",
+                "link": "/admin",
+                "icon": "home"
             }
         ]
     }
