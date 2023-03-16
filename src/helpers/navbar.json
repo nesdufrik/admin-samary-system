@@ -14,14 +14,19 @@
                 "icon": "home"
             },
             {
-                "title": "Stats",
-                "link": "/stats",
+                "title": "Estadisticas",
+                "link": "stats",
                 "icon": "dashboard"
             },
             {
-                "title": "Inicio",
-                "link": "/admin",
-                "icon": "home"
+                "title": "Usuarios",
+                "link": "users",
+                "icon": "group"
+            },
+            {
+                "title": "Menu",
+                "link": "menu",
+                "icon": "menu_book"
             }
         ]
     }

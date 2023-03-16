@@ -4,7 +4,7 @@ import { useNavBarStore } from '../stores/navBar'
 
 export const useNavBar = () => {
     const navBarStore = useNavBarStore()
-    const { showNavBar, itemsNavBar } = storeToRefs(navBarStore)
+    const { showNavBar, itemsNavBar, paramId } = storeToRefs(navBarStore)
 
     const contentNavBar = () => {
         if (!showNavBar.value) {
@@ -19,6 +19,7 @@ export const useNavBar = () => {
         //! propiedades
         showNavBar,
         itemsNavBar,
+        paramId,
 
         //! metodos
         contentNavBar,

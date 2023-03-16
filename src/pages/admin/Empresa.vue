@@ -9,7 +9,7 @@
         <div class="row row-cols-3 row-cols-md-4 g-2 text-center">
             <div class="col empresa__box" v-for="item in sucursalesArr">
                 <RouterLink
-                    :to="`/admin/sucursal/${item._id}`"
+                    :to="`/admin/sucursal/${item._id}/stats`"
                     class="card h-100 rounded-3 shadow-sm text-decoration-none"
                 >
                     <div class="card-body p-1 py-3">

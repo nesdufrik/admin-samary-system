@@ -25,7 +25,6 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
 import barChart from '../../components/admin/barChart.vue'
 import pieChart from '../../components/admin/pieChart.vue'
 import topItems from '../../components/admin/topItems.vue'
@@ -34,7 +33,6 @@ import { useNavBar } from '../../composables/useNavBar'
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = true
 
-const route = useRoute()
 contentNavBar()
 </script>
 

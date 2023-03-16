@@ -61,6 +61,14 @@ const routes = [
                         name: 'Stats de Sucursal',
                         component: () => import('../pages/admin/Stats.vue'),
                     },
+                    {
+                        path: '/admin/sucursal/:id/users',
+                        name: 'Gestion de Usuarios',
+                    },
+                    {
+                        path: '/admin/sucursal/:id/menu',
+                        name: 'Administración de Productos',
+                    },
                 ],
             },
         ],

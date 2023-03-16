@@ -59,7 +59,7 @@
                             v-for="elem in itemsNavBar"
                         >
                             <RouterLink
-                                :to="elem.link"
+                                :to="`${elem.link}`"
                                 class="nav-link py-2 px-0 px-lg-2"
                             >
                                 <span class="material-icons-outlined">
@@ -124,9 +124,7 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useNavBar } from '../composables/useNavBar'
 
-const { showNavBar, itemsNavBar, contentNavBar } = useNavBar()
-
-contentNavBar()
+const { itemsNavBar } = useNavBar()
 
 const name = ref(localStorage.getItem('name'))
 </script>
