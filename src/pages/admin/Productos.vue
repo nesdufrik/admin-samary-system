@@ -1,61 +1,30 @@
 <template>
     <div class="container-fluid">
-        <h1>Productos</h1>
-        <div v-for="categoria in categoriasArr" :key="categoria._id">
-            <h2>
-                {{ categoria.name }}
-            </h2>
-            <ul class="list-group mb-3">
-                <li class="list-group-item">
-                    <span
-                        class="badge bg-secondary me-2"
-                        v-for="(etiqueta, index) in categoria.etiquetas"
-                        :key="index"
-                    >
-                        <span class="align-middle">
-                            {{ etiqueta }} - {{ index }}
-                        </span>
-                    </span>
-                </li>
-                <li class="list-group-item">
-                    <form>
-                        <div class="row">
-                            <div class="col-8">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    placeholder="Nueva etiqueta"
-                                    required
-                                />
-                            </div>
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Agregar
-                                </button>
-                            </div>
+        <h2>Productos</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div
+                class="col"
+                v-for="categoria in categoriasArr"
+                :key="categoria._id"
+            >
+                <div class="card h-100">
+                    <div class="card-header">
+                        {{ categoria.name }}
+                    </div>
+                    <div class="card-body">
+                        <div
+                            class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2 me-1"
+                            v-for="(etiqueta, index) in categoria.etiquetas"
+                            :key="index"
+                        >
+                            <span class="align-middle">
+                                {{ etiqueta }}
+                            </span>
                         </div>
-                    </form>
-                </li>
-            </ul>
-            <button class="btn btn-danger">Eliminar categoría</button>
-        </div>
-        <form>
-            <div class="row mt-3">
-                <div class="col-8">
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Nueva categoría"
-                        required
-                    />
-                </div>
-                <div class="col-4">
-                    <button type="submit" class="btn btn-primary">
-                        Agregar
-                    </button>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
