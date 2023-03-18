@@ -1,11 +1,12 @@
 <template>
-    <div class="container-fluid">
-        <div>
-            <h1>Empresa: <strong>name_empresa</strong></h1>
-        </div>
-        <div>Dashboard Sucursal: <strong>name_sucursal</strong></div>
-        <RouterView />
+    <div
+        class="bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
+    >
+        <h1 class="fw-bold">Bar La Chicheria</h1>
+        <span>Direccion:</span><br />
+        <span>Telefono:</span>
     </div>
+    <RouterView />
 </template>
 
 <script setup>
@@ -17,4 +18,9 @@ showNavBar.value = true
 contentNavBar()
 </script>
 
-<style scoped></style>
+<style scoped>
+.img-fluid {
+    height: 100%;
+    object-fit: cover;
+}
+</style>

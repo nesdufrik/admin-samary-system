@@ -1,6 +1,8 @@
 <template>
     <NavBar />
-    <RouterView />
+    <div class="container-xl">
+        <RouterView />
+    </div>
 </template>
 
 <script setup>

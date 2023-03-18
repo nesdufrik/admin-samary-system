@@ -3,7 +3,7 @@
         class="navbar navbar-expand-lg bd-navbar sticky-top bg-dark navbar-dark"
     >
         <nav
-            class="container-fluid bd-gutter flex-wrap flex-lg-nowrap"
+            class="container-xl bd-gutter flex-wrap flex-lg-nowrap"
             aria-label="Main navigation"
         >
             <RouterLink
@@ -122,8 +122,10 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useAuth } from '../composables/useAuth'
 import { useNavBar } from '../composables/useNavBar'
 
+const { logout } = useAuth()
 const { itemsNavBar } = useNavBar()
 
 const name = ref(localStorage.getItem('name'))

@@ -8,3 +8,34 @@
 body {
     background-color: #e2e2e2 !important;
 }
+
+.bd-callout-right {
+    border-right: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
+}
+
+.bd-callout-left {
+    border-left: 0.25rem solid var(--bd-callout-border, var(--bs-gray-300));
+}
+
+.bd-callout-secondary {
+    --bd-callout-color: var(--bs-dark-text);
+    --bd-callout-bg: var(--bs-secondary-bg-subtle);
+    --bd-callout-border: var(--bs-dark-border-subtle);
+}
+
+.bd-callout-dark {
+    --bd-callout-color: var(--bs-dark-text);
+    --bd-callout-bg: var(--bs-dark-bg-subtle);
+    --bd-callout-border: var(--bs-dark-border-subtle);
+}
+.bd-callout-success {
+    --bd-callout-color: var(--bs-success-text);
+    --bd-callout-bg: var(--bs-success-bg-subtle);
+    --bd-callout-border: var(--bs-success-border-subtle);
+}
+.bd-callout {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    color: var(--bd-callout-color, inherit);
+    background-color: var(--bd-callout-bg, var(--bs-gray-100));
+}

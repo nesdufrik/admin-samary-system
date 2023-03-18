@@ -1,35 +1,30 @@
 <template>
-    <div class="container-fluid p-3">
-        <div class="row mb-5">
-            <div class="col">
-                <h1>Administración de Empresas</h1>
-                <p>Cree una empresa o ingrese a una que ya tenga creada</p>
-            </div>
-        </div>
-        <div class="row row-cols-3 row-cols-md-4 g-2 text-center">
-            <div class="col empresa__box" v-for="item in sucursalesArr">
-                <RouterLink
-                    :to="`/admin/sucursal/${item._id}/stats`"
-                    class="card h-100 rounded-3 shadow-sm text-decoration-none"
-                >
-                    <div class="card-body p-1 py-3">
-                        <h2>{{ item.name }}</h2>
-                    </div>
-                </RouterLink>
-            </div>
-            <div
-                class="col empresa__box"
-                data-bs-toggle="modal"
-                data-bs-target="#createSucursal"
+    <div
+        class="bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
+    >
+        <h1 class="fw-bold">Samary Hotel S.A.</h1>
+    </div>
+    <div class="row row-cols-3 row-cols-md-4 g-2 text-center">
+        <div class="col empresa__box" v-for="item in sucursalesArr">
+            <RouterLink
+                :to="`/admin/sucursal/${item._id}/stats`"
+                class="card h-100 rounded-3 shadow-sm text-decoration-none"
             >
-                <div class="card h-100 rounded-3 shadow-sm">
-                    <div
-                        class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
-                    >
-                        <span class="material-icons-outlined fs-1">
-                            add_home
-                        </span>
-                    </div>
+                <div class="card-body p-1 py-3">
+                    <h2>{{ item.name }}</h2>
+                </div>
+            </RouterLink>
+        </div>
+        <div
+            class="col empresa__box"
+            data-bs-toggle="modal"
+            data-bs-target="#createSucursal"
+        >
+            <div class="card h-100 rounded-3 shadow-sm">
+                <div
+                    class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
+                >
+                    <span class="material-icons-outlined fs-1"> add_home </span>
                 </div>
             </div>
         </div>
