@@ -1,8 +1,5 @@
 <template>
-    <div class="container" v-if="!cargando">
-        <h1 class="display-3 text-center">Cargando...</h1>
-    </div>
-    <div class="d-flex flex-column h-100" v-else>
+    <div class="d-flex flex-column h-100">
         <div class="flex-shrink-0 mb-3">
             <NavBar />
             <div class="container-xl">
@@ -19,9 +16,6 @@
 
 <script setup>
 import NavBar from '../../components/NavBarAdmin.vue'
-import { useAuth } from '../../composables/useAuth'
-
-const { cargando } = useAuth()
 </script>
 
 <style scoped></style>

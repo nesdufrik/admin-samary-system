@@ -88,6 +88,12 @@ router.beforeEach(async (to, from, next) => {
     }
 
     // Redireccionamiento de rutas especificas
+    if (to.path === '/') {
+        const store = useAuthStore(pinia)
+        store.cargando = true
+        next()
+        return
+    }
     if (to.path === '/admin') {
         next({ path: '/admin/dashboard' })
         return
@@ -108,6 +114,10 @@ router.beforeEach(async (to, from, next) => {
         }
         if (!store.islogIn) {
             const verify = await store.verifyJwt()
+            if (verify === undefined) {
+                next('/')
+                return
+            }
             if (!verify.success) {
                 next('/')
                 return

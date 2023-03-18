@@ -44,7 +44,7 @@ export const useAuthStore = defineStore('auth', {
                     return res.data
                 })
                 .catch(err => {
-                    return err.response.data.data
+                    return err.code
                 })
 
             return res
