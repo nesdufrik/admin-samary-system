@@ -23,7 +23,7 @@
                     aria-controls="bdNavbar"
                     aria-label="Toggle navigation"
                 >
-                    <span class="material-icons-outlined"> menu </span>
+                    <span class="material-icons-round"> menu </span>
                 </button>
             </div>
 
@@ -62,7 +62,7 @@
                                 :to="`${elem.link}`"
                                 class="nav-link py-2 px-0 px-lg-2"
                             >
-                                <span class="material-icons-outlined">
+                                <span class="material-icons-round">
                                     {{ elem.icon }}
                                 </span>
                                 <br />

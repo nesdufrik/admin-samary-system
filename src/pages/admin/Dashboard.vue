@@ -8,13 +8,15 @@
             usuario</span
         >
     </div>
-    <div class="row row-cols-3 row-cols-md-4 g-2 text-center">
+    <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
         <div class="col empresa__box" v-for="item in empresasArr">
             <RouterLink
                 :to="`/admin/empresa/${item._id}`"
-                class="card h-100 rounded-3 shadow-sm text-decoration-none"
+                class="card h-100 rounded-3 shadow-sm"
             >
-                <div class="card-body p-1 py-3">
+                <div
+                    class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
+                >
                     <h2>{{ item.name }}</h2>
                 </div>
             </RouterLink>
@@ -28,7 +30,7 @@
                 <div
                     class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
                 >
-                    <span class="material-icons-outlined fs-1"> add_home </span>
+                    <span class="material-icons-round fs-1"> add_home </span>
                 </div>
             </div>
         </div>
@@ -50,16 +52,4 @@ listEmpresas()
 contentNavBar()
 </script>
 
-<style scoped>
-.empresa__box .card {
-    color: #212529;
-    user-select: none;
-}
-
-.empresa__box:hover .card {
-    color: #198754;
-    border: 4px solid transparent;
-    border-color: #198754;
-    cursor: pointer;
-}
-</style>
+<style scoped></style>

@@ -1,27 +1,29 @@
 <template>
     <div
-        class="rounded-2 bd-callout bd-callout-left bd-callout-secondary p-2 d-flex justify-content-between align-items-center"
+        class="tarjeta rounded-2 bd-callout bd-callout-left bd-callout-secondary p-2 d-flex justify-content-between align-items-center"
     >
         <div>
             <h2 class="fw-bold m-0">Categorias</h2>
         </div>
-        <div class="p-2">
-            <span class="link align-middle material-icons-outlined me-3"
-                >note_add</span
-            >
-            <span
-                class="link align-middle material-icons-outlined me-3"
-                v-if="cat_switch"
-                :onclick="switched"
-                >visibility_off</span
-            >
-            <span
-                class="link align-middle material-icons-outlined me-3"
-                v-else
-                :onclick="switched"
-                >visibility</span
-            >
-        </div>
+        <button
+            class="tarjeta__button link-secondary tarjeta__button--edit align-middle material-icons-round"
+        >
+            note_add
+        </button>
+        <button
+            class="tarjeta__button link-secondary align-middle material-icons-round"
+            v-if="cat_switch"
+            :onclick="switched"
+        >
+            visibility_off
+        </button>
+        <button
+            class="tarjeta__button link-secondary align-middle material-icons-round"
+            v-else
+            :onclick="switched"
+        >
+            visibility
+        </button>
     </div>
     <div class="row row-cols-1 row-cols-md-4 g-2" v-if="cat_switch">
         <div
@@ -29,35 +31,47 @@
             v-for="categoria in categoriasArr"
             :key="categoria._id"
         >
-            <div class="card h-100">
-                <h4 class="card-header fw-semibold">
-                    {{ categoria.name }}
-                </h4>
+            <div class="card tarjeta">
                 <div class="card-body">
-                    <div
-                        class="badge d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
-                        v-for="(etiqueta, index) in categoria.etiquetas"
-                        :key="index"
-                    >
-                        <span class="align-middle">
-                            {{ etiqueta }}
-                        </span>
+                    <div>
+                        <h4 class="fw-semibold">
+                            {{ categoria.name }}
+                        </h4>
+                        <div
+                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
+                            v-for="(etiqueta, index) in categoria.etiquetas"
+                            :key="index"
+                        >
+                            <span class="align-middle">
+                                {{ etiqueta }}
+                            </span>
+                        </div>
                     </div>
+                    <button
+                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
+                    >
+                        delete
+                    </button>
+                    <button
+                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+                    >
+                        edit
+                    </button>
                 </div>
             </div>
         </div>
     </div>
     <div
-        class="rounded-2 bd-callout bd-callout-left bd-callout-secondary p-2 d-flex justify-content-between align-items-center"
+        class="tarjeta rounded-2 bd-callout bd-callout-left bd-callout-secondary p-2 d-flex justify-content-between align-items-center"
     >
         <div>
             <h2 class="fw-bold m-0">Productos</h2>
         </div>
-        <div class="p-2">
-            <span class="link align-middle material-icons-outlined me-3"
-                >note_add</span
-            >
-        </div>
+        <button
+            class="tarjeta__button link-secondary align-middle material-icons-round"
+        >
+            note_add
+        </button>
     </div>
 </template>
 
@@ -85,5 +99,24 @@ listCategorias(route.params.id)
 .link {
     cursor: pointer;
     user-select: none;
+}
+
+.tarjeta {
+    position: relative;
+}
+
+.tarjeta__button {
+    user-select: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.tarjeta__button--edit {
+    margin-right: 2rem;
 }
 </style>
