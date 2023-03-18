@@ -7,7 +7,7 @@
         </div>
         <div class="p-2">
             <span class="link align-middle material-icons-outlined me-3"
-                >add_box</span
+                >note_add</span
             >
             <span
                 class="link align-middle material-icons-outlined me-3"
@@ -55,7 +55,7 @@
         </div>
         <div class="p-2">
             <span class="link align-middle material-icons-outlined me-3"
-                >add_box</span
+                >note_add</span
             >
         </div>
     </div>

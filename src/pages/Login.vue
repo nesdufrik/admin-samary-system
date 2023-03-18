@@ -1,6 +1,6 @@
 <template>
-    <div class="container vh-100 d-flex text-center">
-        <main class="form-signin w-100 m-auto">
+    <div class="d-flex flex-column text-center h-100">
+        <main class="form-signin w-100 m-auto flex-shrink-0">
             <form @submit.prevent="login">
                 <img class="mb-4" src="../assets/login.png" alt="logo" />
                 <h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
@@ -52,9 +52,13 @@
                     ></span>
                     Iniciando...
                 </button>
-                <p class="mt-5 mb-3 text-muted fst-italic">FrikTek© 2023</p>
             </form>
         </main>
+        <footer class="footer py-3 bg-light bg-opacity-50">
+            <div class="container-xl text-center">
+                <small class="text-muted">&copy; FrikTek 2023</small>
+            </div>
+        </footer>
     </div>
 </template>
 

@@ -4,7 +4,8 @@ import { useAuthStore } from '../stores/authStore'
 
 export const useAuth = () => {
     const authStore = useAuthStore()
-    const { islogIn, logInForm, logInData, loading } = storeToRefs(authStore)
+    const { islogIn, logInForm, logInData, loading, cargando } =
+        storeToRefs(authStore)
 
     const login = async () => {
         logInData.value.show = false
@@ -39,6 +40,7 @@ export const useAuth = () => {
         logInForm,
         logInData,
         loading,
+        cargando,
 
         //! computadas
 
