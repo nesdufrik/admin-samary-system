@@ -1,6 +1,17 @@
 <template>
-    <div class="container" v-if="!cargando">
-        <h1 class="display-3 text-center">Cargando...</h1>
+    <div class="vh-100" v-if="!cargando">
+        <div class="d-flex flex-column text-center h-100">
+            <main class="w-100 m-auto flex-shrink-0 p-5">
+                <h1 class="display-3 text-success">Cargando</h1>
+                <div
+                    class="spinner-grow text-success"
+                    style="width: 3rem; height: 3rem"
+                    role="status"
+                >
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </main>
+        </div>
     </div>
     <div class="vh-100" v-else>
         <RouterView />
