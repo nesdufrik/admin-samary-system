@@ -35,7 +35,7 @@
                 </h4>
                 <div class="card-body">
                     <div
-                        class="badge d-inline-flex mb-1 px-1 py-1 fw-semibold text-success-emphasis bg-success-subtle border border-success-subtle rounded-2 me-1"
+                        class="badge d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
                         v-for="(etiqueta, index) in categoria.etiquetas"
                         :key="index"
                     >
