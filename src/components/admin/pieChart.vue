@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div
+        class="rounded-2 bd-callout bd-callout-left bd-callout-secondary p-3 mt-0 mb-0"
+    >
+        <h2 class="fw-bold">Productos Vendidos</h2>
         <apexchart
             height="260"
             type="donut"

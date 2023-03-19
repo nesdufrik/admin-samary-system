@@ -1,6 +1,6 @@
 <template>
     <div
-        class="tarjeta rounded-2 bd-callout bd-callout-left bd-callout-secondary p-2 d-flex justify-content-between align-items-center"
+        class="tarjeta rounded-2 bd-callout bd-callout-left bd-callout-secondary p-2"
     >
         <div>
             <h2 class="fw-bold m-0">Categorias</h2>
