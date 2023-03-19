@@ -93,6 +93,9 @@ const options = {
         show: true,
         position: 'left',
     },
+    chart: {
+        fontFamily: 'Nunito',
+    },
     labels: Object.keys(groupedData),
 }
 const series = Object.values(groupedData)

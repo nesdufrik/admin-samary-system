@@ -51,6 +51,10 @@ const options = {
     chart: {
         width: '380',
         id: 'vuechart-example',
+        fontFamily: 'Nunito',
+    },
+    dataLabels: {
+        enabled: false,
     },
     xaxis: {
         categories: Object.keys(groupedData),
