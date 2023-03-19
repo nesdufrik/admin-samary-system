@@ -67,7 +67,11 @@ const routes = [
                     },
                     {
                         path: '/admin/sucursal/:id/menu',
-                        name: 'Administración de Productos',
+                        name: 'Administración del Menú',
+                    },
+                    {
+                        path: '/admin/sucursal/:id/productos',
+                        name: 'Administracion de los Productos',
                         component: () => import('../pages/admin/Productos.vue'),
                     },
                 ],

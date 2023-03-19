@@ -13,3 +13,11 @@ export const postEmpresa = async payload => {
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }
+
+export const getEmpresa = async id => {
+    return await axios
+        .get(`/empresas/${id}`)
+        .then(res => res.data.data)
+        .catch(err => err.response.data.data)
+    t
+}

@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 export const useSucursalesStore = defineStore('sucursales', {
     state: () => {
         return {
+            sucursalData: {},
             sucursalesArr: [],
             sucursalEdit: {},
             sucursalForm: {
@@ -10,7 +11,7 @@ export const useSucursalesStore = defineStore('sucursales', {
                 direccion: '',
                 telefono: '',
             },
-            loadedSucursal: false,
+            loadedSucursales: false,
             actionSucursal: false,
         }
     },
@@ -27,6 +28,14 @@ export const useSucursalesStore = defineStore('sucursales', {
             this.sucursalesArr = this.sucursalesArr.filter(
                 sucursal => sucursal._id !== id
             )
+        },
+        findSucursalData(id) {
+            this.sucursalData = this.sucursalesArr.find(
+                element => element._id == id
+            )
+        },
+        loadSucursalData(data) {
+            this.sucursalData = data
         },
     },
 })

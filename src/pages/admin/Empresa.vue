@@ -2,7 +2,7 @@
     <div
         class="bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
     >
-        <h1 class="fw-bold">Samary Hotel S.A.</h1>
+        <h1 class="fw-bold">{{ empresaData.name }}</h1>
     </div>
     <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
         <div class="col empresa__box" v-for="item in sucursalesArr">
@@ -35,18 +35,21 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
-import { useSucursales } from '../../composables/useSucursales'
 import addSucursal from '../../components/admin/addSucursal.vue'
+import { useRoute } from 'vue-router'
+import { useEmpresas } from '../../composables/useEmpresas'
+import { useSucursales } from '../../composables/useSucursales'
 import { useNavBar } from '../../composables/useNavBar'
 
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = false
 
+const { empresaData, loadEmpresa } = useEmpresas()
 const { sucursalesArr, listSucursales } = useSucursales()
 const route = useRoute()
 
 listSucursales(route.params.id)
+loadEmpresa(route.params.id)
 contentNavBar()
 </script>
 

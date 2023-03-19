@@ -1,14 +1,20 @@
 import { storeToRefs } from 'pinia'
-import { getEmpresas, postEmpresa } from '../helpers/helpEmpresas'
+import { getEmpresa, getEmpresas, postEmpresa } from '../helpers/helpEmpresas'
 import { useEmpresasStore } from '../stores/empresasStore'
 
 export const useEmpresas = () => {
     const empresasStore = useEmpresasStore()
-    const { empresasArr, empresaForm, actionEmpresa, loadedEmpresa } =
-        storeToRefs(empresasStore)
+    const {
+        empresaData,
+        empresasArr,
+        empresaForm,
+        actionEmpresa,
+        loadedEmpresas,
+    } = storeToRefs(empresasStore)
 
     const listEmpresas = async () => {
         empresasStore.loadEmpresas(await getEmpresas())
+        loadedEmpresas.value = true
     }
 
     const newEmpresa = async () => {
@@ -20,8 +26,18 @@ export const useEmpresas = () => {
         actionEmpresa.value = false
     }
 
+    const loadEmpresa = async id => {
+        if (!loadedEmpresas.value) {
+            empresasStore.loadEmpresaData(await getEmpresa(id))
+            loadedEmpresas.value = true
+            return
+        }
+        empresasStore.findEmpresaData(id)
+    }
+
     return {
         //! propiedades
+        empresaData,
         empresasArr,
         empresaForm,
         actionEmpresa,
@@ -29,5 +45,6 @@ export const useEmpresas = () => {
         //! metodos
         listEmpresas,
         newEmpresa,
+        loadEmpresa,
     }
 }

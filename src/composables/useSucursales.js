@@ -1,14 +1,24 @@
 import { storeToRefs } from 'pinia'
-import { getSucursales, postSucursal } from '../helpers/helpSucursales'
+import {
+    getSucursal,
+    getSucursales,
+    postSucursal,
+} from '../helpers/helpSucursales'
 import { useSucursalesStore } from '../stores/sucursalesStore'
 
 export const useSucursales = () => {
     const sucursalesStore = useSucursalesStore()
-    const { sucursalesArr, sucursalForm, actionSucursal, loadedSucursal } =
-        storeToRefs(sucursalesStore)
+    const {
+        sucursalData,
+        sucursalesArr,
+        sucursalForm,
+        actionSucursal,
+        loadedSucursales,
+    } = storeToRefs(sucursalesStore)
 
     const listSucursales = async id => {
         sucursalesStore.loadSucursales(await getSucursales(id))
+        loadedSucursales.value = true
     }
 
     const newSucursal = async id => {
@@ -22,8 +32,18 @@ export const useSucursales = () => {
         actionSucursal.value = false
     }
 
+    const loadSucursal = async id => {
+        if (!loadedSucursales.value) {
+            sucursalesStore.loadSucursalData(await getSucursal(id))
+            loadedSucursales.value = true
+            return
+        }
+        sucursalesStore.findSucursalData(id)
+    }
+
     return {
         //! propiedades
+        sucursalData,
         sucursalesArr,
         sucursalForm,
         actionSucursal,
@@ -31,5 +51,6 @@ export const useSucursales = () => {
         //! metodos
         listSucursales,
         newSucursal,
+        loadSucursal,
     }
 }

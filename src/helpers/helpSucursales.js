@@ -13,3 +13,10 @@ export const postSucursal = async (payload, id) => {
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }
+
+export const getSucursal = async id => {
+    return await axios
+        .get(`/empresas/sucursal/${id}`)
+        .then(res => res.data.data)
+        .catch(err => err.response.data)
+}

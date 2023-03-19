@@ -14,12 +14,17 @@
                 "icon": "home"
             },
             {
-                "title": "Estadisticas",
+                "title": "Estadísticas",
                 "link": "stats",
                 "icon": "dashboard"
             },
             {
-                "title": "Menu",
+                "title": "Productos",
+                "link": "productos",
+                "icon": "restaurant"
+            },
+            {
+                "title": "Menú",
                 "link": "menu",
                 "icon": "menu_book"
             },
