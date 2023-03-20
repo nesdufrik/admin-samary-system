@@ -27,11 +27,12 @@ export const useProductosStore = defineStore('productos', {
             )
         },
         editCategoria(id) {
-            this.categoriaEdit = this.categoriasArr.find(
+            const { _id, name, etiquetas } = this.categoriasArr.find(
                 element => element._id == id
             )
+            this.categoriaEdit = { _id, name, etiquetas: [...etiquetas] }
         },
-        updtProducto(item) {
+        updtCategoria(item) {
             const indiceEl = this.categoriasArr.findIndex(
                 el => el._id == item._id
             )

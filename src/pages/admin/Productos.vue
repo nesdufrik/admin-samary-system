@@ -56,6 +56,9 @@
                     </button>
                     <button
                         class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editCategoria"
+                        @click="editarCategoria(categoria._id)"
                     >
                         edit
                     </button>
@@ -75,16 +78,18 @@
             note_add
         </button>
     </div>
-    <addCategoria />
+    <addCategoriaModal />
+    <editCategoriaModal />
 </template>
 
 <script setup>
-import addCategoria from '../../components/admin/addCategoria.vue'
+import addCategoriaModal from '../../components/admin/addCategoria.vue'
+import editCategoriaModal from '../../components/admin/editCategoria.vue'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductos } from '../../composables/useProductos'
 
-const { categoriasArr, listCategorias } = useProductos()
+const { categoriasArr, listCategorias, editarCategoria } = useProductos()
 
 const route = useRoute()
 const cat_switch = ref(true)

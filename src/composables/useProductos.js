@@ -4,7 +4,7 @@ import { useProductosStore } from '../stores/productosStore'
 
 export const useProductos = () => {
     const productosStore = useProductosStore()
-    const { categoriasArr, categoriaForm, actionState } =
+    const { categoriasArr, categoriaForm, categoriaEdit, actionState } =
         storeToRefs(productosStore)
 
     const listCategorias = async id => {
@@ -20,14 +20,20 @@ export const useProductos = () => {
         actionState.value = false
     }
 
+    const editarCategoria = id => {
+        productosStore.editCategoria(id)
+    }
+
     return {
         //! propiedades
         categoriasArr,
         categoriaForm,
+        categoriaEdit,
         actionState,
 
         //! metodos
         listCategorias,
         newCategoria,
+        editarCategoria,
     }
 }
