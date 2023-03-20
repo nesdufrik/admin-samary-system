@@ -94,11 +94,24 @@
                         Cerrar
                     </button>
                     <button
+                        v-if="!actionState"
                         type="submit"
                         form="newCategoriaForm"
                         class="btn btn-primary"
                     >
                         Guardar
+                    </button>
+                    <button
+                        v-else
+                        class="btn btn-primary disabled"
+                        type="button"
+                    >
+                        <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+                        Guardando...
                     </button>
                 </div>
             </div>
