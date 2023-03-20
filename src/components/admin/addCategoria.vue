@@ -154,7 +154,7 @@ const removeEtiqueta = index => {
     user-select: none;
 }
 .textarea-container {
-    border: 1px solid #ccc;
+    border: 2px dotted #a3cfbb;
     border-radius: 5px;
     padding: 10px;
     min-height: 80px;

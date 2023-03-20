@@ -1,12 +1,26 @@
 <template>
     <div
-        class="bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
+        class="tarjeta bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
     >
         <h1 class="fw-bold">{{ sucursalData.name }}</h1>
         <span class="small fw-bold"
             >Direccion: {{ sucursalData.direccion }}</span
         ><br />
         <span class="small fw-bold">Telefono: {{ sucursalData.telefono }}</span>
+        <button
+            class="tarjeta__button link-secondary material-icons-round"
+            data-bs-toggle="modal"
+            data-bs-target="#editCategoria"
+        >
+            edit
+        </button>
+        <button
+            class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteCategoria"
+        >
+            delete
+        </button>
     </div>
     <RouterView />
 </template>
@@ -26,4 +40,23 @@ loadSucursal(route.params.id)
 contentNavBar()
 </script>
 
-<style scoped></style>
+<style scoped>
+.tarjeta {
+    position: relative;
+}
+
+.tarjeta__button {
+    user-select: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.7rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+}
+
+.tarjeta__button--edit {
+    margin-top: 2rem;
+}
+</style>
