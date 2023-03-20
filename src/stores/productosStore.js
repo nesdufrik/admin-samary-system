@@ -27,8 +27,9 @@ export const useProductosStore = defineStore('productos', {
             )
         },
         editCategoria(id) {
-            const res = this.categoriasArr.find(element => element._id == id)
-            this.categoriaEdit = {}
+            this.categoriaEdit = this.categoriasArr.find(
+                element => element._id == id
+            )
         },
         updtProducto(item) {
             const indiceEl = this.categoriasArr.findIndex(

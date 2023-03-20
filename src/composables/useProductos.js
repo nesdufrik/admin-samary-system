@@ -16,10 +16,7 @@ export const useProductos = () => {
         productosStore.addCategoria(
             await postCategoria(categoriaForm.value, id)
         )
-        categoriaForm.value = {
-            name: '',
-            etiquetas: [],
-        }
+        categoriaForm.value = []
         actionState.value = false
     }
 

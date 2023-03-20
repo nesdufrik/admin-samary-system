@@ -25,7 +25,7 @@
                     <form
                         id="newCategoriaForm"
                         class="row g-2"
-                        @submit.prevent=""
+                        @submit.prevent="newCategoria($route.params.id)"
                     >
                         <div>
                             <div class="form-floating">
@@ -110,7 +110,7 @@
 import { ref } from 'vue'
 import { useProductos } from '../../composables/useProductos'
 
-const { categoriaForm, newCategoria } = useProductos()
+const { categoriaForm, actionState, newCategoria } = useProductos()
 
 const etiqueta = ref('')
 const addEtiqueta = () => {

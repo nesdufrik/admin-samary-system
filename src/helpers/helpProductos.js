@@ -16,21 +16,21 @@ export const getCategoria = async categoriaId => {
 
 export const postCategoria = async (payload, sucursalId) => {
     return await axios
-        .get(`/categorias/sucursal/${sucursalId}`, payload)
+        .post(`/categorias/sucursal/${sucursalId}`, payload)
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }
 
 export const putCategoria = async (payload, categoriaId) => {
     return await axios
-        .get(`/categorias/${categoriaId}`, payload)
+        .put(`/categorias/${categoriaId}`, payload)
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }
 
 export const deleteCategoria = async categoriaId => {
     return await axios
-        .get(`/categorias/${categoriaId}`)
+        .delete(`/categorias/${categoriaId}`)
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }

@@ -20,7 +20,7 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="newSucursal(`${route.params.id}`)">
+                    <form @submit.prevent="newSucursal($route.params.id)">
                         <div class="form-floating mb-3">
                             <input
                                 v-model="sucursalForm.name"
@@ -90,11 +90,9 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
 import { useSucursales } from '../../composables/useSucursales'
 
 const { sucursalForm, actionSucursal, newSucursal } = useSucursales()
-const route = useRoute()
 </script>
 
 <style lang="scss" scoped></style>
