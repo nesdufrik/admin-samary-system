@@ -12,7 +12,7 @@
             data-bs-toggle="modal"
             data-bs-target="#editCategoria"
         >
-            edit
+            settings
         </button>
         <button
             class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"

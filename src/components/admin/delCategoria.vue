@@ -12,10 +12,10 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                    <h2 class="modal-title fw-bold" id="modalTitleId">
+                    <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
                         ¿Seguro de eliminar?
                     </h2>
-                    <p class="mt-4">
+                    <p>
                         Una vez que elimines
                         <strong class="text-danger fs-5">{{
                             categoriaEdit.name

@@ -11,18 +11,10 @@
     >
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fw-bold" id="exampleModalLabel">
+                <div class="modal-body text-center">
+                    <h2 class="modal-title fw-bold mb-4" id="exampleModalLabel">
                         Nueva Empresa
                     </h2>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
-                </div>
-                <div class="modal-body">
                     <form
                         id="newEmpresaForm"
                         class="row g-2"
