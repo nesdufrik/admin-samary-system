@@ -1,47 +1,33 @@
 <template>
     <div
         class="modal fade"
-        id="createEmpresa"
+        id="deleteCategoria"
         tabindex="-1"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         role="dialog"
-        aria-labelledby="createEmpresaLabel"
+        aria-labelledby="modalTitleId"
         aria-hidden="true"
     >
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title fw-bold" id="exampleModalLabel">
-                        Nueva Empresa
+                <div class="modal-body text-center">
+                    <h2 class="modal-title fw-bold" id="modalTitleId">
+                        ¿Seguro de eliminar?
                     </h2>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
+                    <p class="mt-4">
+                        Una vez que elimines
+                        <strong class="text-danger fs-5">{{
+                            categoriaEdit.name
+                        }}</strong
+                        >, no podrás recuperarlo. Asegúrate de que realmente no
+                        necesitas esta información antes de continuar con la
+                        eliminación.
+                    </p>
                 </div>
-                <div class="modal-body">
-                    <form
-                        id="newEmpresaForm"
-                        class="row g-2"
-                        @submit.prevent="newEmpresa"
-                    >
-                        <div class="form-floating">
-                            <input
-                                v-model="empresaForm.name"
-                                type="text"
-                                class="form-control"
-                                id="floatingName"
-                            />
-                            <label for="floatingName">Nombre de Empresa</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer p-0 mt-3">
+                <div class="modal-footer p-0">
                     <button
-                        v-if="!actionEmpresa"
+                        v-if="!actionState"
                         type="button"
                         class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
                         data-bs-dismiss="modal"
@@ -51,22 +37,22 @@
                     <button
                         v-else
                         type="button"
-                        class="btn-modal btn-modal-left btn-modal-secondary col-6 disabled"
+                        class="btn-modal btn-modal-left btn-modal-disabled col-6 disabled"
                         data-bs-dismiss="modal"
                     >
                         Cerrar
                     </button>
                     <button
-                        v-if="!actionEmpresa"
+                        v-if="!actionState"
                         type="submit"
-                        form="newEmpresaForm"
-                        class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
+                        class="btn-modal btn-modal-right btn-modal-danger m-0 col-6 fw-bold"
+                        @click="delCategoria(categoriaEdit._id)"
                     >
-                        Guardar
+                        Eliminar
                     </button>
                     <button
                         v-else
-                        class="btn-modal btn-modal-right btn-modal-disabled col-6 disabled"
+                        class="btn-modal btn-modal-right btn-modal-disabled m-0 col-6 disabled"
                         type="button"
                     >
                         <span
@@ -74,7 +60,7 @@
                             role="status"
                             aria-hidden="true"
                         ></span>
-                        Guardando...
+                        Eliminando...
                     </button>
                 </div>
             </div>
@@ -83,12 +69,24 @@
 </template>
 
 <script setup>
-import { useEmpresas } from '../../composables/useEmpresas'
+import { useProductos } from '../../composables/useProductos'
 
-const { empresaForm, actionEmpresa, newEmpresa } = useEmpresas()
+const { categoriaEdit, actionState, delCategoria } = useProductos()
 </script>
 
 <style scoped>
+.link-badge {
+    cursor: pointer;
+    user-select: none;
+}
+.textarea-container {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 80px;
+    width: 100%;
+    box-sizing: border-box;
+}
 .btn-modal {
     margin: 0;
     padding: 0.8rem;

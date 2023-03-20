@@ -51,6 +51,9 @@
                     </div>
                     <button
                         class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteCategoria"
+                        @click="editarCategoria(categoria._id)"
                     >
                         delete
                     </button>
@@ -80,11 +83,13 @@
     </div>
     <addCategoriaModal />
     <editCategoriaModal />
+    <delCategoriaModal />
 </template>
 
 <script setup>
 import addCategoriaModal from '../../components/admin/addCategoria.vue'
 import editCategoriaModal from '../../components/admin/editCategoria.vue'
+import delCategoriaModal from '../../components/admin/delCategoria.vue'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductos } from '../../composables/useProductos'
@@ -99,11 +104,6 @@ const switched = () => {
 listCategorias(route.params.id)
 </script>
 <style scoped>
-.link {
-    cursor: pointer;
-    user-select: none;
-}
-
 .tarjeta {
     position: relative;
 }

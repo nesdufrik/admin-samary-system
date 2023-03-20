@@ -11,7 +11,6 @@
                         v-model="logInForm.email"
                         class="form-control"
                         id="Login"
-                        placeholder="name@example.com"
                     />
                     <label for="Login">Usuario / Email</label>
                 </div>
@@ -21,7 +20,6 @@
                         v-model="logInForm.password"
                         class="form-control"
                         id="Password"
-                        placeholder="Password"
                     />
                     <label for="Password">Contraseña</label>
                 </div>

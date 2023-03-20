@@ -3,6 +3,7 @@
         class="modal fade"
         id="editCategoria"
         tabindex="-1"
+        data-bs-backdrop="static"
         data-bs-keyboard="false"
         role="dialog"
         aria-labelledby="modalTitleId"
@@ -12,7 +13,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h2 class="modal-title fw-bold" id="modalTitleId">
-                        Nueva Categoria
+                        Editar Categoria
                     </h2>
                     <button
                         type="button"
@@ -22,7 +23,11 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <form id="categoriaEdit" class="row g-2" @submit.prevent="">
+                    <form
+                        id="categoriaEdit"
+                        class="row g-2"
+                        @submit.prevent="updateCategoria(categoriaEdit._id)"
+                    >
                         <div>
                             <div class="form-floating">
                                 <input
@@ -30,7 +35,6 @@
                                     type="text"
                                     class="form-control"
                                     id="categoriaName"
-                                    placeholder="nombre"
                                     @keydown.enter.prevent=""
                                 />
                                 <label for="categoriaName"
@@ -45,7 +49,6 @@
                                     type="text"
                                     class="form-control"
                                     id="categoriaEtiqueta"
-                                    placeholder="etiqueta"
                                     @keydown.enter.prevent="addEtiqueta"
                                 />
                                 <label for="categoriaEtiqueta">Etiquetas</label>
@@ -71,7 +74,7 @@
                                             {{ etiqueta }}
                                         </span>
                                         <span
-                                            class="fs-5 align-middle material-icons-round"
+                                            class="link-badge fs-5 align-middle material-icons-round"
                                             @click="removeEtiqueta(index)"
                                             >clear</span
                                         >
@@ -81,10 +84,19 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer p-0 mt-3">
                     <button
+                        v-if="!actionState"
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button
+                        v-else
+                        type="button"
+                        class="btn-modal btn-modal-left btn-modal-disabled col-6 disabled"
                         data-bs-dismiss="modal"
                     >
                         Cerrar
@@ -93,13 +105,13 @@
                         v-if="!actionState"
                         type="submit"
                         form="categoriaEdit"
-                        class="btn btn-primary"
+                        class="btn-modal btn-modal-right btn-modal-primary m-0 col-6 fw-bold"
                     >
                         Actualizar
                     </button>
                     <button
                         v-else
-                        class="btn btn-primary disabled"
+                        class="btn-modal btn-modal-right btn-modal-disabled m-0 col-6 disabled"
                         type="button"
                     >
                         <span
@@ -119,7 +131,7 @@
 import { ref } from 'vue'
 import { useProductos } from '../../composables/useProductos'
 
-const { categoriaEdit, actionState } = useProductos()
+const { categoriaEdit, actionState, updateCategoria } = useProductos()
 
 const etiqueta = ref('')
 const addEtiqueta = () => {
@@ -134,6 +146,10 @@ const removeEtiqueta = index => {
 </script>
 
 <style scoped>
+.link-badge {
+    cursor: pointer;
+    user-select: none;
+}
 .textarea-container {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -141,5 +157,55 @@ const removeEtiqueta = index => {
     min-height: 80px;
     width: 100%;
     box-sizing: border-box;
+}
+.btn-modal {
+    margin: 0;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    user-select: none;
+}
+.btn-modal-left {
+    border-bottom-left-radius: 0.375rem;
+}
+.btn-modal-right {
+    border-bottom-right-radius: 0.375rem;
+}
+
+.btn-modal-primary {
+    color: var(--bs-primary-text);
+    background-color: var(--bs-primary-bg-subtle);
+}
+.btn-modal-primary:hover {
+    color: var(--bs-gray-100);
+    background-color: var(--bs-primary-text);
+    border-color: var(--bs-primary-text);
+}
+.btn-modal-danger {
+    color: var(--bs-danger-text);
+    background-color: var(--bs-danger-bg-subtle);
+}
+.btn-modal-danger:hover {
+    color: var(--bs-gray-100);
+    background-color: var(--bs-danger-text);
+    border-color: var(--bs-danger-text);
+}
+.btn-modal-secondary {
+    color: var(--bs-dark-text);
+    background-color: var(--bs-gray-100);
+}
+
+.btn-modal-secondary:hover {
+    color: var(--bs-gray-100);
+    background-color: var(--bs-dark-text);
+    border-color: var(--bs-secondary-text);
+}
+.btn-modal-disabled {
+    color: var(--bs-gray-600);
+    background-color: var(--bs-gray-200);
+    cursor: not-allowed;
 }
 </style>

@@ -1,5 +1,10 @@
 import { storeToRefs } from 'pinia'
-import { getCategorias, postCategoria } from '../helpers/helpProductos'
+import {
+    deleteCategoria,
+    getCategorias,
+    postCategoria,
+    putCategoria,
+} from '../helpers/helpProductos'
 import { useProductosStore } from '../stores/productosStore'
 
 export const useProductos = () => {
@@ -24,6 +29,19 @@ export const useProductos = () => {
         productosStore.editCategoria(id)
     }
 
+    const updateCategoria = async id => {
+        actionState.value = true
+        productosStore.updtCategoria(
+            await putCategoria(categoriaEdit.value, id)
+        )
+        actionState.value = false
+    }
+
+    const delCategoria = async id => {
+        await deleteCategoria(id)
+        productosStore.deleteCategoria(id)
+    }
+
     return {
         //! propiedades
         categoriasArr,
@@ -35,5 +53,7 @@ export const useProductos = () => {
         listCategorias,
         newCategoria,
         editarCategoria,
+        updateCategoria,
+        delCategoria,
     }
 }

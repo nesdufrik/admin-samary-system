@@ -3,15 +3,18 @@
         class="modal fade"
         id="createSucursal"
         tabindex="-1"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        role="dialog"
         aria-labelledby="createSucursalLabel"
         aria-hidden="true"
     >
-        <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">
-                        Agregar Nueva Sucursal
-                    </h1>
+                    <h2 class="modal-title fw-bold" id="exampleModalLabel">
+                        Nueva Sucursal
+                    </h2>
                     <button
                         type="button"
                         class="btn-close"
@@ -20,69 +23,79 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <form @submit.prevent="newSucursal($route.params.id)">
-                        <div class="form-floating mb-3">
+                    <form
+                        id="newSucursalForm"
+                        class="row g-2"
+                        @submit.prevent="newSucursal($route.params.id)"
+                    >
+                        <div class="form-floating">
                             <input
                                 v-model="sucursalForm.name"
                                 type="text"
                                 class="form-control"
                                 id="floatingName"
-                                placeholder="nombre"
                             />
                             <label for="floatingName"
                                 >Nombre de la sucursal</label
                             >
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating">
                             <input
                                 v-model="sucursalForm.direccion"
                                 type="text"
                                 class="form-control"
                                 id="floatingDireccion"
-                                placeholder="direccion"
                             />
                             <label for="floatingDireccion">Dirección</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating">
                             <input
                                 v-model="sucursalForm.telefono"
                                 type="tel"
                                 class="form-control"
                                 id="floatingTelefono"
-                                placeholder="telefono"
                             />
                             <label for="floatingTelefono">Teléfono</label>
                         </div>
-                        <div class="d-grid gap-2">
-                            <button
-                                v-if="actionSucursal"
-                                class="btn btn-lg btn-primary"
-                                type="button"
-                                disabled
-                            >
-                                <span
-                                    class="spinner-border spinner-border-sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                ></span>
-                                Guardando...
-                            </button>
-                            <button
-                                v-else
-                                class="btn btn-primary btn-lg"
-                                type="submit"
-                            >
-                                Guardar
-                            </button>
-                            <button
-                                class="btn btn-secondary"
-                                type="button"
-                                data-bs-dismiss="modal"
-                            >
-                                Cerrar
-                            </button>
-                        </div>
                     </form>
+                </div>
+                <div class="modal-footer p-0 mt-3">
+                    <button
+                        v-if="!actionSucursal"
+                        type="button"
+                        class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button
+                        v-else
+                        type="button"
+                        class="btn-modal btn-modal-left btn-modal-secondary col-6 disabled"
+                        data-bs-dismiss="modal"
+                    >
+                        Cerrar
+                    </button>
+                    <button
+                        v-if="!actionSucursal"
+                        type="submit"
+                        form="newSucursalForm"
+                        class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
+                    >
+                        Guardar
+                    </button>
+                    <button
+                        v-else
+                        class="btn-modal btn-modal-right btn-modal-disabled col-6 disabled"
+                        type="button"
+                    >
+                        <span
+                            class="spinner-border spinner-border-sm"
+                            role="status"
+                            aria-hidden="true"
+                        ></span>
+                        Guardando...
+                    </button>
                 </div>
             </div>
         </div>
@@ -95,4 +108,55 @@ import { useSucursales } from '../../composables/useSucursales'
 const { sucursalForm, actionSucursal, newSucursal } = useSucursales()
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.btn-modal {
+    margin: 0;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-top: 0;
+    border-bottom: 0;
+    border-right: 0;
+    user-select: none;
+}
+.btn-modal-left {
+    border-bottom-left-radius: 0.375rem;
+}
+.btn-modal-right {
+    border-bottom-right-radius: 0.375rem;
+}
+
+.btn-modal-primary {
+    color: var(--bs-primary-text);
+    background-color: var(--bs-primary-bg-subtle);
+}
+.btn-modal-primary:hover {
+    color: var(--bs-gray-100);
+    background-color: var(--bs-primary-text);
+    border-color: var(--bs-primary-text);
+}
+.btn-modal-danger {
+    color: var(--bs-danger-text);
+    background-color: var(--bs-danger-bg-subtle);
+}
+.btn-modal-danger:hover {
+    color: var(--bs-gray-100);
+    background-color: var(--bs-danger-text);
+    border-color: var(--bs-danger-text);
+}
+.btn-modal-secondary {
+    color: var(--bs-dark-text);
+    background-color: var(--bs-gray-100);
+}
+
+.btn-modal-secondary:hover {
+    color: var(--bs-gray-100);
+    background-color: var(--bs-dark-text);
+    border-color: var(--bs-secondary-text);
+}
+.btn-modal-disabled {
+    color: var(--bs-gray-600);
+    background-color: var(--bs-gray-200);
+    cursor: not-allowed;
+}
+</style>
