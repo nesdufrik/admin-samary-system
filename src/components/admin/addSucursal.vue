@@ -39,6 +39,7 @@
                                 type="text"
                                 class="form-control"
                                 id="floatingDireccion"
+                                placeholder="direccion"
                             />
                             <label for="floatingDireccion">Dirección</label>
                         </div>
@@ -48,6 +49,7 @@
                                 type="tel"
                                 class="form-control"
                                 id="floatingTelefono"
+                                placeholder="telefono"
                             />
                             <label for="floatingTelefono">Teléfono</label>
                         </div>

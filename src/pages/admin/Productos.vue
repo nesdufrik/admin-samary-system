@@ -7,6 +7,8 @@
         </div>
         <button
             class="tarjeta__button link-secondary tarjeta__button--edit align-middle material-icons-round"
+            data-bs-toggle="modal"
+            data-bs-target="#newCategoria"
         >
             note_add
         </button>
@@ -73,20 +75,16 @@
             note_add
         </button>
     </div>
+    <addCategoria />
 </template>
 
 <script setup>
+import addCategoria from '../../components/admin/addCategoria.vue'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductos } from '../../composables/useProductos'
 
-const {
-    categoriasArr,
-    categoriaForm,
-    actionState,
-    listCategorias,
-    newCategoria,
-} = useProductos()
+const { categoriasArr, listCategorias } = useProductos()
 
 const route = useRoute()
 const cat_switch = ref(true)

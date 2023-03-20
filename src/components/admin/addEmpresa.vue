@@ -3,10 +3,12 @@
         class="modal fade"
         id="createEmpresa"
         tabindex="-1"
+        data-bs-keyboard="false"
+        role="dialog"
         aria-labelledby="createEmpresaLabel"
         aria-hidden="true"
     >
-        <div class="modal-dialog modal-fullscreen-sm-down">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">
