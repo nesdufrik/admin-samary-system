@@ -18,7 +18,7 @@
                     <form
                         id="editProductoForm"
                         class="row g-2"
-                        @submit.prevent="newProducto($route.params.id)"
+                        @submit.prevent="updateProducto(productoForm._id)"
                     >
                         <div class="form-floating">
                             <input
@@ -116,9 +116,8 @@
                         class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
                         data-bs-target="#editProducto2"
                         data-bs-toggle="modal"
-                        @click="updateProducto(productoForm._id)"
                     >
-                        Guardar
+                        Actualizar
                     </button>
                 </div>
             </div>
