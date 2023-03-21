@@ -125,11 +125,13 @@
 
     <addProductoModal />
     <editProductoModal />
+    <delProductoModal />
 </template>
 
 <script setup>
 import addProductoModal from '../../components/admin/addProducto.vue'
 import editProductoModal from '../../components/admin/editProducto.vue'
+import delProductoModal from '../../components/admin/delProducto.vue'
 import addCategoriaModal from '../../components/admin/addCategoria.vue'
 import editCategoriaModal from '../../components/admin/editCategoria.vue'
 import delCategoriaModal from '../../components/admin/delCategoria.vue'
