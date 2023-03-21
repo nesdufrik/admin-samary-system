@@ -81,6 +81,52 @@
             note_add
         </button>
     </div>
+    <!-- Lista de productos -->
+    <div class="bg-light rounded-3 table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th colspan="3" class="align-middle">Productos</th>
+                    <th colspan="2" class="align-middle">Precio Bs.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle">Tallarines con pasta Bolognesa</td>
+                    <td class="align-middle">Comida</td>
+                    <td class="align-middle">Pastas</td>
+                    <td class="align-middle">34.9</td>
+                    <td class="align-middle text-end">
+                        <span
+                            class="tarjeta__link text-secondary material-icons-round me-md-2"
+                            >edit</span
+                        >
+                        <span
+                            class="tarjeta__link text-danger material-icons-round"
+                            >delete</span
+                        >
+                    </td>
+                </tr>
+                <tr>
+                    <td class="align-middle">Botellin Paceña Pico de Oro</td>
+                    <td class="align-middle">Bebidas</td>
+                    <td class="align-middle">Cervezas</td>
+                    <td class="align-middle">34.9</td>
+                    <td class="align-middle text-end">
+                        <span
+                            class="tarjeta__link text-secondary material-icons-round me-md-2"
+                            >edit</span
+                        >
+                        <span
+                            class="tarjeta__link text-danger material-icons-round"
+                            >delete</span
+                        >
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <addCategoriaModal />
     <editCategoriaModal />
     <delCategoriaModal />
@@ -117,6 +163,13 @@ listCategorias(route.params.id)
     position: absolute;
     right: 0.5rem;
     top: 0.5rem;
+}
+
+.tarjeta__link {
+    user-select: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .tarjeta__button--edit {

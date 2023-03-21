@@ -13,7 +13,7 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <h2 class="modal-title fw-bold mb-4" id="exampleModalLabel">
-                        Nueva Sucursal
+                        Editar Sucursal
                     </h2>
                     <form
                         id="editSucursalForm"
@@ -88,7 +88,7 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
-                        Editar Categoria
+                        Editar Sucursal
                     </h2>
                     <p v-if="!actionSucursal">
                         El elemento
