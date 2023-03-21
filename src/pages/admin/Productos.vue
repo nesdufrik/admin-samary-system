@@ -138,9 +138,12 @@
     <addCategoriaModal />
     <editCategoriaModal />
     <delCategoriaModal />
+
+    <addProductoModal />
 </template>
 
 <script setup>
+import addProductoModal from '../../components/admin/addProducto.vue'
 import addCategoriaModal from '../../components/admin/addCategoria.vue'
 import editCategoriaModal from '../../components/admin/editCategoria.vue'
 import delCategoriaModal from '../../components/admin/delCategoria.vue'
