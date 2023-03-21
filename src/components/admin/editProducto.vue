@@ -13,10 +13,10 @@
             <div class="modal-content text-center">
                 <div class="modal-body">
                     <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
-                        Nuevo Producto
+                        Editar Producto
                     </h2>
                     <form
-                        id="newProductoForm"
+                        id="editProductoForm"
                         class="row g-2"
                         @submit.prevent="newProducto($route.params.id)"
                     >
@@ -103,7 +103,6 @@
                 </div>
                 <div class="modal-footer p-0 mt-3">
                     <button
-                        v-if="!actionState"
                         type="button"
                         class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
                         data-bs-dismiss="modal"
@@ -112,32 +111,70 @@
                         Cerrar
                     </button>
                     <button
-                        v-else
+                        type="submit"
+                        form="editProductoForm"
+                        class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
+                        data-bs-target="#editProducto2"
+                        data-bs-toggle="modal"
+                        @click="updateProducto(productoForm._id)"
+                    >
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Second Modal -->
+    <div
+        class="modal fade"
+        id="editProducto2"
+        tabindex="-1"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        role="dialog"
+        aria-labelledby="modalTitleId"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
+                        Editar Categoria
+                    </h2>
+                    <p v-if="!actionState">
+                        El elemento
+                        <strong class="text-success fs-5">{{
+                            productoForm.name
+                        }}</strong
+                        >, fue actualizado correctamente.
+                    </p>
+                    <p v-else class="fw-bold fs-4 text-success">
+                        <span
+                            class="spinner-border spinner-border-md"
+                            role="status"
+                            aria-hidden="true"
+                        ></span
+                        ><br />
+                        Actualizando...
+                    </p>
+                </div>
+                <div class="modal-footer p-0">
+                    <button
+                        v-if="!actionState"
                         type="button"
-                        class="btn-modal btn-modal-left btn-modal-secondary col-6 disabled"
+                        class="btn-modal btn-modal-block btn-modal-secondary col fw-bold"
                         data-bs-dismiss="modal"
+                        @click="clearForm"
                     >
                         Cerrar
                     </button>
                     <button
-                        v-if="!actionState"
-                        type="submit"
-                        form="newProductoForm"
-                        class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
-                    >
-                        Guardar
-                    </button>
-                    <button
                         v-else
-                        class="btn-modal btn-modal-right btn-modal-disabled col-6 disabled"
                         type="button"
+                        class="btn-modal btn-modal-block btn-modal-disabled col disabled"
+                        data-bs-dismiss="modal"
                     >
-                        <span
-                            class="spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                        ></span>
-                        Guardando...
+                        Cerrar
                     </button>
                 </div>
             </div>
@@ -148,7 +185,7 @@
 <script setup>
 import { useProductos } from '../../composables/useProductos'
 
-const { productoForm, categoriasArr, actionState, newProducto, clearForm } =
+const { productoForm, categoriasArr, actionState, updateProducto, clearForm } =
     useProductos()
 </script>
 
