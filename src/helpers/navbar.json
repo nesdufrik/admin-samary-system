@@ -24,11 +24,6 @@
                 "icon": "restaurant"
             },
             {
-                "title": "Menú",
-                "link": "menu",
-                "icon": "menu_book"
-            },
-            {
                 "title": "Usuarios",
                 "link": "users",
                 "icon": "group"
