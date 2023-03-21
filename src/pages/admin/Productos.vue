@@ -115,22 +115,6 @@
                         >
                     </td>
                 </tr>
-                <tr>
-                    <td class="align-middle">Botellin Paceña Pico de Oro</td>
-                    <td class="align-middle">Bebidas</td>
-                    <td class="align-middle">Cervezas</td>
-                    <td class="align-middle">34.9</td>
-                    <td class="align-middle text-end">
-                        <span
-                            class="tarjeta__link text-secondary material-icons-round me-md-2"
-                            >edit</span
-                        >
-                        <span
-                            class="tarjeta__link text-danger material-icons-round"
-                            >delete</span
-                        >
-                    </td>
-                </tr>
             </tbody>
         </table>
     </div>

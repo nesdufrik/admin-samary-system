@@ -52,7 +52,7 @@ export const getProducto = async itemId => {
 export const postProducto = async (payload, sucursalId) => {
     return axios
         .post(`/items/sucursal/${sucursalId}`, payload)
-        .then(res => res.data)
+        .then(res => res.data.data)
         .catch(err => err.response.data)
 }
 

@@ -55,6 +55,7 @@
                             <div
                                 class="form-floating"
                                 v-for="categoria in categoriasArr"
+                                v-if="productoForm.categoria"
                             >
                                 <select
                                     v-model="productoForm.etiqueta"
@@ -72,11 +73,13 @@
                                         {{ etiqueta }}
                                     </option>
                                 </select>
+                                <label for="productoEtiqueta">Etiqueta</label>
+                            </div>
+                            <div class="form-floating" v-else>
                                 <select
                                     v-model="productoForm.etiqueta"
                                     class="form-select"
                                     id="productoEtiqueta"
-                                    v-else
                                     disabled
                                 >
                                     <option selected></option>
@@ -90,6 +93,7 @@
                                 type="number"
                                 class="form-control"
                                 id="productoPrecio"
+                                step=".1"
                                 @keydown.enter.prevent
                                 required
                             />
@@ -103,6 +107,7 @@
                         type="button"
                         class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
                         data-bs-dismiss="modal"
+                        @click="clearForm"
                     >
                         Cerrar
                     </button>
@@ -143,7 +148,8 @@
 <script setup>
 import { useProductos } from '../../composables/useProductos'
 
-const { productoForm, categoriasArr, actionState, newProducto } = useProductos()
+const { productoForm, categoriasArr, actionState, newProducto, clearForm } =
+    useProductos()
 </script>
 
 <style scoped>
