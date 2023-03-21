@@ -1,7 +1,7 @@
 <template>
     <div
         class="modal fade"
-        id="createProducto"
+        id="newProducto"
         tabindex="-1"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -16,63 +16,84 @@
                         Nuevo Producto
                     </h2>
                     <form
-                        id="newCategoriaForm"
+                        id="newProductoForm"
                         class="row g-2"
-                        @submit.prevent="newCategoria($route.params.id)"
+                        @submit.prevent="newProducto($route.params.id)"
                     >
-                        <div>
-                            <div class="form-floating">
-                                <input
-                                    v-model="categoriaForm.name"
-                                    type="text"
-                                    class="form-control"
-                                    id="categoriaName"
-                                    @keydown.enter.prevent=""
-                                />
-                                <label for="categoriaName"
-                                    >Nombre de Categoria</label
-                                >
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <div class="form-floating">
-                                <input
-                                    v-model="etiqueta"
-                                    type="text"
-                                    class="form-control"
-                                    id="categoriaEtiqueta"
-                                    @keydown.enter.prevent="addEtiqueta"
-                                />
-                                <label for="categoriaEtiqueta">Etiquetas</label>
-                            </div>
-                            <button
-                                type="button"
-                                @click="addEtiqueta"
-                                class="btn btn-outline-success material-icons-round"
+                        <div class="form-floating">
+                            <input
+                                v-model="productoForm.name"
+                                type="text"
+                                class="form-control"
+                                id="productoName"
+                                @keydown.enter.prevent
+                                required
+                            />
+                            <label for="productoName"
+                                >Nombre del Producto</label
                             >
-                                send
-                            </button>
                         </div>
-                        <div>
-                            <div class="textarea-container">
-                                <div
-                                    v-for="(
-                                        etiqueta, index
-                                    ) in categoriaForm.etiquetas"
-                                    class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
+                        <div class="col-md">
+                            <div class="form-floating">
+                                <select
+                                    v-model="productoForm.categoria"
+                                    class="form-select"
+                                    id="productoCategoria"
                                 >
-                                    <div>
-                                        <span class="align-middle me-3">
-                                            {{ etiqueta }}
-                                        </span>
-                                        <span
-                                            class="link-badge fs-5 align-middle material-icons-round"
-                                            @click="removeEtiqueta(index)"
-                                            >clear</span
-                                        >
-                                    </div>
-                                </div>
+                                    <option selected></option>
+                                    <option
+                                        v-for="categoria in categoriasArr"
+                                        :value="categoria.name"
+                                    >
+                                        {{ categoria.name }}
+                                    </option>
+                                </select>
+                                <label for="productoCategoria">Categoria</label>
                             </div>
+                        </div>
+                        <div class="col-md">
+                            <div
+                                class="form-floating"
+                                v-for="categoria in categoriasArr"
+                            >
+                                <select
+                                    v-model="productoForm.etiqueta"
+                                    class="form-select"
+                                    id="productoEtiqueta"
+                                    v-if="
+                                        categoria.name == productoForm.categoria
+                                    "
+                                >
+                                    <option selected></option>
+                                    <option
+                                        v-for="etiqueta in categoria.etiquetas"
+                                        :value="etiqueta"
+                                    >
+                                        {{ etiqueta }}
+                                    </option>
+                                </select>
+                                <select
+                                    v-model="productoForm.etiqueta"
+                                    class="form-select"
+                                    id="productoEtiqueta"
+                                    v-else
+                                    disabled
+                                >
+                                    <option selected></option>
+                                </select>
+                                <label for="productoEtiqueta">Etiqueta</label>
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <input
+                                v-model="productoForm.precio"
+                                type="number"
+                                class="form-control"
+                                id="productoPrecio"
+                                @keydown.enter.prevent
+                                required
+                            />
+                            <label for="productoPrecio">Precio en Bs.</label>
                         </div>
                     </form>
                 </div>
@@ -96,7 +117,7 @@
                     <button
                         v-if="!actionState"
                         type="submit"
-                        form="newCategoriaForm"
+                        form="newProductoForm"
                         class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
                     >
                         Guardar
@@ -120,39 +141,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useProductos } from '../../composables/useProductos'
 
-const { categoriaForm, actionState, newCategoria } = useProductos()
-
-const etiqueta = ref('')
-const addEtiqueta = () => {
-    if (!categoriaForm.value.etiquetas) {
-        categoriaForm.value.etiquetas = []
-    }
-    if (etiqueta.value.trim()) {
-        categoriaForm.value.etiquetas.push(etiqueta.value.trim())
-        etiqueta.value = ''
-    }
-}
-const removeEtiqueta = index => {
-    categoriaForm.value.etiquetas.splice(index, 1)
-}
+const { productoForm, categoriasArr, actionState, newProducto } = useProductos()
 </script>
 
 <style scoped>
-.link-badge {
-    cursor: pointer;
-    user-select: none;
-}
-.textarea-container {
-    border: 2px dotted #a3cfbb;
-    border-radius: 5px;
-    padding: 10px;
-    min-height: 80px;
-    width: 100%;
-    box-sizing: border-box;
-}
 .btn-modal {
     margin: 0;
     padding: 0.8rem;
