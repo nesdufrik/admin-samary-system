@@ -8,7 +8,6 @@ export const useProductosStore = defineStore('productos', {
             categoriaEdit: {},
             productosArr: [],
             productoForm: {},
-            productoEdit: {},
             actionState: false,
         }
     },
@@ -22,13 +21,11 @@ export const useProductosStore = defineStore('productos', {
             })
         },
         deleteCategoria(id) {
-            this.categoriasArr = this.categoriasArr.filter(
-                cat => cat._id !== id
-            )
+            this.categoriasArr = this.categoriasArr.filter(el => el._id !== id)
         },
         editCategoria(id) {
             const { _id, name, etiquetas } = this.categoriasArr.find(
-                element => element._id == id
+                el => el._id == id
             )
             this.categoriaEdit = { _id, name, etiquetas: [...etiquetas] }
         },
@@ -37,6 +34,28 @@ export const useProductosStore = defineStore('productos', {
                 el => el._id == item._id
             )
             this.categoriasArr[indiceEl] = item
+        },
+        loadProductos(items) {
+            this.productosArr = items
+        },
+        addProducto(item) {
+            this.productosArr.push({
+                ...item,
+            })
+        },
+        deleteProducto(id) {
+            this.productosArr = this.productosArr.filter(el => el._id !== id)
+        },
+        editProducto(id) {
+            this.productoForm = {
+                ...this.productosArr.find(el => el._id == id),
+            }
+        },
+        updtProducto(item) {
+            const indiceEl = this.productosArr.findIndex(
+                el => el._id == item._id
+            )
+            this.productosArr[indiceEl] = item
         },
     },
 })
