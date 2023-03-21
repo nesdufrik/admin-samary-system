@@ -6,26 +6,84 @@
             <h2 class="fw-bold m-0">Usuarios</h2>
         </div>
         <button
-            class="tarjeta__button link-secondary tarjeta__button--edit align-middle material-icons-round"
+            class="tarjeta__button link-secondary align-middle material-icons-round"
         >
             note_add
         </button>
-        <button
-            class="tarjeta__button link-secondary align-middle material-icons-round"
-            v-if="cat_switch"
-            :onclick="switched"
-        >
-            visibility_off
-        </button>
-        <button
-            class="tarjeta__button link-secondary align-middle material-icons-round"
-            v-else
-            :onclick="switched"
-        >
-            visibility
-        </button>
     </div>
-    <div class="row row-cols-1 row-cols-md-4 g-2" v-if="cat_switch">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-2">
+        <div class="col">
+            <div class="card tarjeta">
+                <div class="card-body">
+                    <div>
+                        <h4 class="fw-semibold">categoria.name</h4>
+                        <div
+                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
+                        >
+                            <span class="align-middle"> etiqueta </span>
+                        </div>
+                    </div>
+                    <button
+                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
+                    >
+                        delete
+                    </button>
+                    <button
+                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+                    >
+                        edit
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card tarjeta">
+                <div class="card-body">
+                    <div>
+                        <h4 class="fw-semibold">categoria.name</h4>
+                        <div
+                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
+                        >
+                            <span class="align-middle"> etiqueta </span>
+                        </div>
+                    </div>
+                    <button
+                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
+                    >
+                        delete
+                    </button>
+                    <button
+                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+                    >
+                        edit
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100 tarjeta">
+                <div class="card-body">
+                    <div>
+                        <h4 class="fw-semibold">categoria.name</h4>
+                        <div
+                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
+                        >
+                            <span class="align-middle"> etiqueta </span>
+                        </div>
+                    </div>
+                    <button
+                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
+                    >
+                        delete
+                    </button>
+                    <button
+                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+                    >
+                        edit
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="col">
             <div class="card tarjeta">
                 <div class="card-body">
@@ -54,14 +112,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const cat_switch = ref(true)
-const switched = () => {
-    cat_switch.value = !cat_switch.value
-}
 </script>
 <style scoped>
 .tarjeta {
