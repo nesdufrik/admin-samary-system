@@ -82,11 +82,11 @@
         </button>
     </div>
     <!-- Lista de productos -->
-    <div class="bg-light rounded-3 table-responsive">
+    <div class="bg-light rounded-3 table-responsive p-2">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th colspan="3" class="align-middle">Productos</th>
+                    <th colspan="3" class="align-middle fs-4">Productos</th>
                     <th colspan="2" class="align-middle">Precio Bs.</th>
                 </tr>
             </thead>
