@@ -4,14 +4,14 @@ export const getCategorias = async sucursalId => {
     return await axios
         .get(`/categorias/sucursal/${sucursalId}`)
         .then(res => res.data.data)
-        .catch(err => err.response.data.data)
+        .catch(err => err.response.data)
 }
 
 export const getCategoria = async categoriaId => {
     return await axios
         .get(`/categorias/${categoriaId}`)
         .then(res => res.data.data)
-        .catch(err => err.response.data.data)
+        .catch(err => err.response.data)
 }
 
 export const postCategoria = async (payload, sucursalId) => {

@@ -1,46 +1,54 @@
 <template>
     <div
         class="modal fade"
-        id="deleteCategoria"
+        id="editarEmpresa"
         tabindex="-1"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         role="dialog"
-        aria-labelledby="modalTitleId"
+        aria-labelledby="createEmpresaLabel"
         aria-hidden="true"
     >
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                    <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
-                        ¿Seguro de eliminar?
+                    <h2 class="modal-title fw-bold mb-4" id="exampleModalLabel">
+                        Editar Empresa
                     </h2>
-                    <p>
-                        Una vez que elimines
-                        <strong class="text-danger fs-5">{{
-                            categoriaEdit.name
-                        }}</strong
-                        >, no podrás recuperarlo. Asegúrate de que realmente no
-                        necesitas esta información antes de continuar con la
-                        eliminación.
-                    </p>
+                    <form
+                        id="newEmpresaForm"
+                        class="row g-2"
+                        @submit.prevent="newEmpresa"
+                    >
+                        <div class="form-floating">
+                            <input
+                                v-model="empresaForm.name"
+                                type="text"
+                                class="form-control"
+                                id="floatingName"
+                            />
+                            <label for="floatingName">Nombre de Empresa</label>
+                        </div>
+                    </form>
                 </div>
-                <div class="modal-footer p-0">
+                <div class="modal-footer p-0 mt-3">
                     <button
                         type="button"
                         class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
                         data-bs-dismiss="modal"
+                        @click="cleanForm"
                     >
                         Cerrar
                     </button>
                     <button
                         type="submit"
-                        class="btn-modal btn-modal-right btn-modal-danger m-0 col-6 fw-bold"
-                        @click="delCategoria(categoriaEdit._id)"
-                        data-bs-target="#deleteCategoria2"
+                        form="newEmpresaForm"
+                        class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
+                        @click="updateEmpresa(empresaForm._id)"
+                        data-bs-target="#editarEmpresa2"
                         data-bs-toggle="modal"
                     >
-                        Eliminar
+                        Actualizar
                     </button>
                 </div>
             </div>
@@ -49,7 +57,7 @@
     <!-- Second Modal -->
     <div
         class="modal fade"
-        id="deleteCategoria2"
+        id="editarEmpresa2"
         tabindex="-1"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -61,31 +69,32 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
-                        ¿Seguro de eliminar?
+                        Editar Empresa
                     </h2>
-                    <p v-if="!actionState">
+                    <p v-if="!actionEmpresa">
                         El elemento
-                        <strong class="text-danger fs-5">{{
-                            categoriaEdit.name
+                        <strong class="text-success fs-5">{{
+                            empresaForm.name
                         }}</strong
-                        >, fue eliminado correctamente.
+                        >, fue actualizado correctamente.
                     </p>
-                    <p v-else class="fw-bold fs-4 text-secondary">
+                    <p v-else class="fw-bold fs-4 text-success">
                         <span
                             class="spinner-border spinner-border-md"
                             role="status"
                             aria-hidden="true"
                         ></span
                         ><br />
-                        Eliminando...
+                        Actualizando...
                     </p>
                 </div>
                 <div class="modal-footer p-0">
                     <button
-                        v-if="!actionState"
+                        v-if="!actionEmpresa"
                         type="button"
                         class="btn-modal btn-modal-block btn-modal-secondary col fw-bold"
                         data-bs-dismiss="modal"
+                        @click="cleanForm"
                     >
                         Cerrar
                     </button>
@@ -104,25 +113,12 @@
 </template>
 
 <script setup>
-import { useProductos } from '../../composables/useProductos'
+import { useEmpresas } from '../../composables/useEmpresas'
 
-const { categoriaEdit, actionState, delCategoria } = useProductos()
+const { empresaForm, actionEmpresa, updateEmpresa, cleanForm } = useEmpresas()
 </script>
 
 <style scoped>
-.link-badge {
-    cursor: pointer;
-    user-select: none;
-}
-.textarea-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    min-height: 80px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
 .btn-modal {
     margin: 0;
     padding: 0.8rem;

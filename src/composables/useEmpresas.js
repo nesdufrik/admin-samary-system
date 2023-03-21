@@ -1,5 +1,11 @@
 import { storeToRefs } from 'pinia'
-import { getEmpresa, getEmpresas, postEmpresa } from '../helpers/helpEmpresas'
+import {
+    deleteEmpresa,
+    getEmpresa,
+    getEmpresas,
+    postEmpresa,
+    putEmpresa,
+} from '../helpers/helpEmpresas'
 import { useEmpresasStore } from '../stores/empresasStore'
 
 export const useEmpresas = () => {
@@ -20,9 +26,24 @@ export const useEmpresas = () => {
     const newEmpresa = async () => {
         actionEmpresa.value = true
         empresasStore.addEmpresa(await postEmpresa(empresaForm.value))
-        empresaForm.value = {
-            name: '',
-        }
+        empresaForm.value = {}
+        actionEmpresa.value = false
+    }
+
+    const editarEmpresa = () => {
+        empresasStore.editEmpresa()
+    }
+
+    const updateEmpresa = async id => {
+        actionEmpresa.value = true
+        empresasStore.updtEmpresa(await putEmpresa(empresaForm.value, id))
+        actionEmpresa.value = false
+    }
+
+    const delEmpresa = async id => {
+        actionEmpresa.value = true
+        await deleteEmpresa(id)
+        empresasStore.deleteEmpresa(id)
         actionEmpresa.value = false
     }
 
@@ -35,6 +56,14 @@ export const useEmpresas = () => {
         empresasStore.findEmpresaData(id)
     }
 
+    const cleanForm = () => {
+        empresaForm.value = {}
+    }
+
+    const cleanAndRedirect = () => {
+        empresasStore.redirect()
+    }
+
     return {
         //! propiedades
         empresaData,
@@ -45,6 +74,11 @@ export const useEmpresas = () => {
         //! metodos
         listEmpresas,
         newEmpresa,
+        editarEmpresa,
+        updateEmpresa,
+        delEmpresa,
         loadEmpresa,
+        cleanForm,
+        cleanAndRedirect,
     }
 }

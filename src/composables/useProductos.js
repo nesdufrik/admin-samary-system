@@ -21,7 +21,7 @@ export const useProductos = () => {
         productosStore.addCategoria(
             await postCategoria(categoriaForm.value, id)
         )
-        categoriaForm.value = []
+        categoriaForm.value = {}
         actionState.value = false
     }
 
@@ -38,8 +38,10 @@ export const useProductos = () => {
     }
 
     const delCategoria = async id => {
+        actionState.value = true
         await deleteCategoria(id)
         productosStore.deleteCategoria(id)
+        actionState.value = false
     }
 
     return {

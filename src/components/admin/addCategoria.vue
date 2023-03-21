@@ -163,44 +163,4 @@ const removeEtiqueta = index => {
     border-right: 0;
     user-select: none;
 }
-.btn-modal-left {
-    border-bottom-left-radius: 0.375rem;
-}
-.btn-modal-right {
-    border-bottom-right-radius: 0.375rem;
-}
-
-.btn-modal-primary {
-    color: var(--bs-primary-text);
-    background-color: var(--bs-primary-bg-subtle);
-}
-.btn-modal-primary:hover {
-    color: var(--bs-gray-100);
-    background-color: var(--bs-primary-text);
-    border-color: var(--bs-primary-text);
-}
-.btn-modal-danger {
-    color: var(--bs-danger-text);
-    background-color: var(--bs-danger-bg-subtle);
-}
-.btn-modal-danger:hover {
-    color: var(--bs-gray-100);
-    background-color: var(--bs-danger-text);
-    border-color: var(--bs-danger-text);
-}
-.btn-modal-secondary {
-    color: var(--bs-dark-text);
-    background-color: var(--bs-gray-100);
-}
-
-.btn-modal-secondary:hover {
-    color: var(--bs-gray-100);
-    background-color: var(--bs-dark-text);
-    border-color: var(--bs-secondary-text);
-}
-.btn-modal-disabled {
-    color: var(--bs-gray-600);
-    background-color: var(--bs-gray-200);
-    cursor: not-allowed;
-}
 </style>

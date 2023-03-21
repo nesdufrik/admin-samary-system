@@ -5,12 +5,7 @@ export const useSucursalesStore = defineStore('sucursales', {
         return {
             sucursalData: {},
             sucursalesArr: [],
-            sucursalEdit: {},
-            sucursalForm: {
-                name: '',
-                direccion: '',
-                telefono: '',
-            },
+            sucursalForm: {},
             loadedSucursales: false,
             actionSucursal: false,
         }
@@ -24,10 +19,29 @@ export const useSucursalesStore = defineStore('sucursales', {
                 ...data,
             })
         },
-        delSucursal(id) {
-            this.sucursalesArr = this.sucursalesArr.filter(
-                sucursal => sucursal._id !== id
-            )
+        deleleSucursal(id) {
+            if (this.sucursalesArr.length > 0) {
+                this.sucursalesArr = this.sucursalesArr.filter(
+                    sucursal => sucursal._id !== id
+                )
+            }
+            this.sucursalData = {}
+        },
+        editSucursal() {
+            this.sucursalForm = {
+                ...this.sucursalData,
+            }
+        },
+        updtSucursal(item) {
+            if (this.sucursalesArr.length === 0) {
+                this.sucursalData = item
+            } else {
+                const indiceEl = this.sucursalesArr.findIndex(
+                    el => el._id == item._id
+                )
+                this.sucursalesArr[indiceEl] = item
+                this.sucursalData = item
+            }
         },
         findSucursalData(id) {
             this.sucursalData = this.sucursalesArr.find(
@@ -36,6 +50,10 @@ export const useSucursalesStore = defineStore('sucursales', {
         },
         loadSucursalData(data) {
             this.sucursalData = data
+        },
+        redirect(dir) {
+            this.sucursalForm = {}
+            this.router.push(`/admin/empresa/${dir}`)
         },
     },
 })

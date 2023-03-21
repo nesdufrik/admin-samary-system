@@ -9,7 +9,5 @@ export const loginApi = async payload => {
             ] = `Bearer ${res.data.data.token}`
             return res.data
         })
-        .catch(err => {
-            return err.response.data.data
-        })
+        .catch(err => err.response.data)
 }

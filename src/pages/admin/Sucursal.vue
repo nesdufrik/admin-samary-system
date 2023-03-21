@@ -9,23 +9,29 @@
         <span class="small fw-bold">Telefono: {{ sucursalData.telefono }}</span>
         <button
             class="tarjeta__button link-secondary material-icons-round"
+            @click="editarSucursal"
             data-bs-toggle="modal"
-            data-bs-target="#editCategoria"
+            data-bs-target="#editarSucursal"
         >
             settings
         </button>
         <button
             class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+            @click="editarSucursal"
             data-bs-toggle="modal"
-            data-bs-target="#deleteCategoria"
+            data-bs-target="#deleteSucursal"
         >
             delete
         </button>
     </div>
     <RouterView />
+    <editSucursalModal />
+    <delSucursalModal />
 </template>
 
 <script setup>
+import editSucursalModal from '../../components/admin/editSucursal.vue'
+import delSucursalModal from '../../components/admin/delSucursal.vue'
 import { useRoute } from 'vue-router'
 import { useNavBar } from '../../composables/useNavBar'
 import { useSucursales } from '../../composables/useSucursales'
@@ -33,7 +39,7 @@ import { useSucursales } from '../../composables/useSucursales'
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = true
 
-const { sucursalData, loadSucursal } = useSucursales()
+const { sucursalData, editarSucursal, loadSucursal } = useSucursales()
 const route = useRoute()
 
 loadSucursal(route.params.id)

@@ -35,12 +35,12 @@
             </div>
         </div>
     </div>
-    <addEmpresa />
+    <addEmpresaModal />
 </template>
 
 <script setup>
+import addEmpresaModal from '../../components/admin/addEmpresa.vue'
 import { useEmpresas } from '../../composables/useEmpresas'
-import addEmpresa from '../../components/admin/addEmpresa.vue'
 import { useNavBar } from '../../composables/useNavBar'
 
 const { showNavBar, contentNavBar } = useNavBar()

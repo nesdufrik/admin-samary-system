@@ -1,24 +1,24 @@
 <template>
     <div
         class="modal fade"
-        id="deleteCategoria"
+        id="deleteEmpresa"
         tabindex="-1"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         role="dialog"
-        aria-labelledby="modalTitleId"
+        aria-labelledby="createSucursalLabel"
         aria-hidden="true"
     >
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                    <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
+                    <h2 class="modal-title fw-bold mb-4" id="exampleModalLabel">
                         ¿Seguro de eliminar?
                     </h2>
                     <p>
                         Una vez que elimines
                         <strong class="text-danger fs-5">{{
-                            categoriaEdit.name
+                            empresaForm.name
                         }}</strong
                         >, no podrás recuperarlo. Asegúrate de que realmente no
                         necesitas esta información antes de continuar con la
@@ -30,14 +30,15 @@
                         type="button"
                         class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
                         data-bs-dismiss="modal"
+                        @click="cleanForm"
                     >
                         Cerrar
                     </button>
                     <button
                         type="submit"
                         class="btn-modal btn-modal-right btn-modal-danger m-0 col-6 fw-bold"
-                        @click="delCategoria(categoriaEdit._id)"
-                        data-bs-target="#deleteCategoria2"
+                        @click="delEmpresa(empresaForm._id)"
+                        data-bs-target="#deleteEmpresa2"
                         data-bs-toggle="modal"
                     >
                         Eliminar
@@ -49,7 +50,7 @@
     <!-- Second Modal -->
     <div
         class="modal fade"
-        id="deleteCategoria2"
+        id="deleteEmpresa2"
         tabindex="-1"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
@@ -63,10 +64,10 @@
                     <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
                         ¿Seguro de eliminar?
                     </h2>
-                    <p v-if="!actionState">
+                    <p v-if="!actionEmpresa">
                         El elemento
                         <strong class="text-danger fs-5">{{
-                            categoriaEdit.name
+                            empresaForm.name
                         }}</strong
                         >, fue eliminado correctamente.
                     </p>
@@ -82,10 +83,11 @@
                 </div>
                 <div class="modal-footer p-0">
                     <button
-                        v-if="!actionState"
+                        v-if="!actionEmpresa"
                         type="button"
                         class="btn-modal btn-modal-block btn-modal-secondary col fw-bold"
                         data-bs-dismiss="modal"
+                        @click="cleanAndRedirect(empresaForm.empresa)"
                     >
                         Cerrar
                     </button>
@@ -104,25 +106,13 @@
 </template>
 
 <script setup>
-import { useProductos } from '../../composables/useProductos'
+import { useEmpresas } from '../../composables/useEmpresas'
 
-const { categoriaEdit, actionState, delCategoria } = useProductos()
+const { empresaForm, actionEmpresa, delEmpresa, cleanForm, cleanAndRedirect } =
+    useEmpresas()
 </script>
 
 <style scoped>
-.link-badge {
-    cursor: pointer;
-    user-select: none;
-}
-.textarea-container {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    min-height: 80px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
 .btn-modal {
     margin: 0;
     padding: 0.8rem;

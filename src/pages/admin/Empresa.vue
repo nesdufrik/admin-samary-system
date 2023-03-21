@@ -1,8 +1,24 @@
 <template>
     <div
-        class="bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
+        class="tarjeta bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
     >
         <h1 class="fw-bold">{{ empresaData.name }}</h1>
+        <button
+            class="tarjeta__button link-secondary material-icons-round"
+            @click="editarEmpresa"
+            data-bs-toggle="modal"
+            data-bs-target="#editarEmpresa"
+        >
+            settings
+        </button>
+        <button
+            class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+            @click="editarEmpresa"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteEmpresa"
+        >
+            delete
+        </button>
     </div>
     <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
         <div class="col empresa__box" v-for="item in sucursalesArr">
@@ -31,11 +47,15 @@
             </div>
         </div>
     </div>
-    <addSucursal />
+    <addSucursalModal />
+    <editEmpresaModal />
+    <delEmpresaModal />
 </template>
 
 <script setup>
-import addSucursal from '../../components/admin/addSucursal.vue'
+import editEmpresaModal from '../../components/admin/editEmpresa.vue'
+import delEmpresaModal from '../../components/admin/delEmpresa.vue'
+import addSucursalModal from '../../components/admin/addSucursal.vue'
 import { useRoute } from 'vue-router'
 import { useEmpresas } from '../../composables/useEmpresas'
 import { useSucursales } from '../../composables/useSucursales'
@@ -44,7 +64,7 @@ import { useNavBar } from '../../composables/useNavBar'
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = false
 
-const { empresaData, loadEmpresa } = useEmpresas()
+const { empresaData, loadEmpresa, editarEmpresa } = useEmpresas()
 const { sucursalesArr, listSucursales } = useSucursales()
 const route = useRoute()
 
@@ -53,4 +73,23 @@ loadEmpresa(route.params.id)
 contentNavBar()
 </script>
 
-<style scoped></style>
+<style scoped>
+.tarjeta {
+    position: relative;
+}
+
+.tarjeta__button {
+    user-select: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.7rem;
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+}
+
+.tarjeta__button--edit {
+    margin-top: 2rem;
+}
+</style>
