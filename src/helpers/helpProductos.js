@@ -34,3 +34,38 @@ export const deleteCategoria = async categoriaId => {
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }
+
+export const getProductos = async sucursalId => {
+    return await axios
+        .get(`/items/sucursal/${sucursalId}`)
+        .then(res => res.data.data)
+        .catch(err => err.response.data)
+}
+
+export const getProducto = async itemId => {
+    return await axios
+        .get(`/items/${itemId}`)
+        .then(res => res.data.data)
+        .catch(err => err.response.data)
+}
+
+export const postProducto = async (payload, sucursalId) => {
+    return axios
+        .post(`/items/sucursal/${sucursalId}`, payload)
+        .then(res => res.data)
+        .catch(err => err.response.data)
+}
+
+export const putProducto = async (payload, itemId) => {
+    return await axios
+        .put(`/items/${itemId}`, payload)
+        .then(res => res.data.data)
+        .catch(err => err.response.data)
+}
+
+export const deleteProducto = async itemId => {
+    return await axios
+        .delete(`/items/${itemId}`)
+        .then(res => res.data.data)
+        .catch(err => err.response.data)
+}
