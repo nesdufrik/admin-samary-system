@@ -140,7 +140,13 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductos } from '../../composables/useProductos'
 
-const { categoriasArr, listCategorias, editarCategoria } = useProductos()
+const {
+    categoriasArr,
+    listCategorias,
+    editarCategoria,
+    listProductos,
+    editarProducto,
+} = useProductos()
 
 const route = useRoute()
 const cat_switch = ref(true)

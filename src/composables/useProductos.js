@@ -95,6 +95,8 @@ export const useProductos = () => {
         categoriasArr,
         categoriaForm,
         categoriaEdit,
+        productosArr,
+        productoForm,
         actionState,
 
         //! metodos
