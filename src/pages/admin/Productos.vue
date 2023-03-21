@@ -7,8 +7,8 @@
         </div>
         <button
             class="tarjeta__button link-secondary tarjeta__button--edit align-middle material-icons-round"
-            data-bs-toggle="modal"
             data-bs-target="#newCategoria"
+            data-bs-toggle="modal"
         >
             note_add
         </button>
@@ -77,6 +77,8 @@
         </div>
         <button
             class="tarjeta__button link-secondary align-middle material-icons-round"
+            data-bs-target="#newProducto"
+            data-bs-toggle="modal"
         >
             note_add
         </button>
@@ -91,18 +93,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="align-middle">Tallarines con pasta Bolognesa</td>
-                    <td class="align-middle">Comida</td>
-                    <td class="align-middle">Pastas</td>
-                    <td class="align-middle">34.9</td>
+                <tr v-for="producto in productosArr" :key="producto._id">
+                    <td class="align-middle">{{ producto.name }}</td>
+                    <td class="align-middle">{{ producto.categoria }}</td>
+                    <td class="align-middle">{{ producto.etiqueta }}</td>
+                    <td class="align-middle">{{ producto.precio }}</td>
                     <td class="align-middle text-end">
                         <span
                             class="tarjeta__link text-secondary material-icons-round me-md-2"
+                            data-bs-target="#editProducto"
+                            data-bs-toggle="modal"
+                            @click="editarProducto(producto._id)"
                             >edit</span
                         >
                         <span
                             class="tarjeta__link text-danger material-icons-round"
+                            data-bs-target="#deleteProducto"
+                            data-bs-toggle="modal"
+                            @click="editarProducto(producto._id)"
                             >delete</span
                         >
                     </td>
@@ -142,6 +150,7 @@ import { useProductos } from '../../composables/useProductos'
 
 const {
     categoriasArr,
+    productosArr,
     listCategorias,
     editarCategoria,
     listProductos,
@@ -154,6 +163,7 @@ const switched = () => {
     cat_switch.value = !cat_switch.value
 }
 listCategorias(route.params.id)
+listProductos(route.params.id)
 </script>
 <style scoped>
 .tarjeta {
