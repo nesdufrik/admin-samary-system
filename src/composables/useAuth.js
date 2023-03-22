@@ -4,7 +4,7 @@ import { useAuthStore } from '../stores/authStore'
 
 export const useAuth = () => {
     const authStore = useAuthStore()
-    const { islogIn, logInForm, logInData, loading, cargando } =
+    const { islogIn, logInForm, logInData, actionState, appLoading } =
         storeToRefs(authStore)
 
     const login = async () => {
@@ -14,15 +14,15 @@ export const useAuth = () => {
             logInData.value.show = true
             return
         }
-        loading.value = false
+        actionState.value = true
         await loginApi(logInForm.value).then(res => {
-            loading.value = true
+            actionState.value = false
             if (res.success) {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('name', res.data.name)
                 authStore.loginAuth(res.data.path)
             } else {
-                logInData.value.message = res.message
+                logInData.value.message = res.data.message
                 logInData.value.show = true
             }
         })
@@ -39,8 +39,8 @@ export const useAuth = () => {
         islogIn,
         logInForm,
         logInData,
-        loading,
-        cargando,
+        actionState,
+        appLoading,
 
         //! computadas
 

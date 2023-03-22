@@ -23,7 +23,7 @@
     <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
         <div class="col empresa__box" v-for="item in sucursalesArr">
             <RouterLink
-                :to="`/admin/sucursal/${item._id}/stats`"
+                :to="`/sucursal/${item._id}/stats`"
                 class="card h-100 rounded-3 shadow-sm"
             >
                 <div
@@ -53,13 +53,13 @@
 </template>
 
 <script setup>
-import editEmpresaModal from '../../components/admin/editEmpresa.vue'
-import delEmpresaModal from '../../components/admin/delEmpresa.vue'
-import addSucursalModal from '../../components/admin/addSucursal.vue'
+import editEmpresaModal from '../components/modalsEmpresa/editEmpresa.vue'
+import delEmpresaModal from '../components/modalsEmpresa/delEmpresa.vue'
+import addSucursalModal from '../components/modalsSucursal/addSucursal.vue'
 import { useRoute } from 'vue-router'
-import { useEmpresas } from '../../composables/useEmpresas'
-import { useSucursales } from '../../composables/useSucursales'
-import { useNavBar } from '../../composables/useNavBar'
+import { useEmpresas } from '../composables/useEmpresas'
+import { useSucursales } from '../composables/useSucursales'
+import { useNavBar } from '../composables/useNavBar'
 
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = false

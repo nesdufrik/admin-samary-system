@@ -53,7 +53,7 @@ export const useSucursalesStore = defineStore('sucursales', {
         },
         redirect(dir) {
             this.sucursalForm = {}
-            this.router.push(`/admin/empresa/${dir}`)
+            this.router.push(`/empresa/${dir}`)
         },
     },
 })

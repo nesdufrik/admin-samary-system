@@ -8,7 +8,7 @@
         >
             <RouterLink
                 class="p-lg-3 my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
-                :to="`/admin`"
+                :to="`/`"
                 aria-label="Bootstrap"
             >
                 <img src="../assets/logo-icon.png" alt="logo" />

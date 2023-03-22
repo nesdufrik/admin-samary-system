@@ -4,12 +4,11 @@ import pinia from '../stores'
 import { useAuthStore } from '../stores/authStore'
 
 import Login from '../pages/Login.vue'
-import HomePOS from '../pages/pos/HomePOS.vue'
-import HomeAdmin from '../pages/admin/HomeAdmin.vue'
+import Home from '../pages/Home.vue'
 
 const routes = [
     {
-        path: '/',
+        path: '/login',
         name: 'Login',
         meta: {
             title: 'Inicio de Sesión',
@@ -17,59 +16,43 @@ const routes = [
         component: Login,
     },
     {
-        path: '/pos',
-        name: 'PuntoDeVenta',
+        path: '/',
+        name: 'Inicio',
         meta: {
             requiresAuth: true,
-            title: 'Punto de Venta - Sucursal',
+            title: 'Gestion de Dependencias',
         },
-        component: HomePOS,
+        component: Home,
         children: [
             {
-                path: '/pos/dashboard',
-                name: 'Dashboard POS',
-                component: () => import('../pages/pos/DashboardPOS.vue'),
-            },
-        ],
-    },
-    {
-        path: '/admin',
-        name: 'Admininstrador',
-        meta: {
-            requiresAuth: true,
-            title: 'Administración de Cuenta',
-        },
-        component: HomeAdmin,
-        children: [
-            {
-                path: '/admin/dashboard',
-                name: 'Dashboard Empresa',
-                component: () => import('../pages/admin/Dashboard.vue'),
+                path: '/home',
+                name: 'Home',
+                component: () => import('../pages/Dashboard.vue'),
             },
             {
-                path: '/admin/empresa/:id',
+                path: '/empresa/:id',
                 name: 'Empresa',
-                component: () => import('../pages/admin/Empresa.vue'),
+                component: () => import('../pages/Empresa.vue'),
             },
             {
-                path: '/admin/sucursal/:id',
+                path: '/sucursal/:id',
                 name: 'Sucursal',
-                component: () => import('../pages/admin/Sucursal.vue'),
+                component: () => import('../pages/Sucursal.vue'),
                 children: [
                     {
-                        path: '/admin/sucursal/:id/stats',
+                        path: '/sucursal/:id/stats',
                         name: 'Stats de Sucursal',
-                        component: () => import('../pages/admin/Stats.vue'),
+                        component: () => import('../pages/Stats.vue'),
                     },
                     {
-                        path: '/admin/sucursal/:id/users',
+                        path: '/sucursal/:id/users',
                         name: 'Gestion de Usuarios',
-                        component: () => import('../pages/admin/Usuarios.vue'),
+                        component: () => import('../pages/Usuarios.vue'),
                     },
                     {
-                        path: '/admin/sucursal/:id/productos',
+                        path: '/sucursal/:id/productos',
                         name: 'Administracion de los Productos',
-                        component: () => import('../pages/admin/Productos.vue'),
+                        component: () => import('../pages/Productos.vue'),
                     },
                 ],
             },
@@ -90,17 +73,7 @@ router.beforeEach(async (to, from, next) => {
 
     // Redireccionamiento de rutas especificas
     if (to.path === '/') {
-        const store = useAuthStore(pinia)
-        store.cargando = true
-        next()
-        return
-    }
-    if (to.path === '/admin') {
-        next({ path: '/admin/dashboard' })
-        return
-    }
-    if (to.path === '/pos') {
-        next({ path: '/pos/dashboard' })
+        next({ path: '/home' })
         return
     }
 
@@ -110,23 +83,22 @@ router.beforeEach(async (to, from, next) => {
         const store = useAuthStore(pinia)
 
         if (!token) {
-            next('/')
+            next('/login')
             return
         }
         if (!store.islogIn) {
             const verify = await store.verifyJwt()
-            if (verify === undefined) {
-                next('/')
-                return
-            }
+            store.appLoading = false
+
             if (!verify.success) {
-                next('/')
+                store.logInData.show = true
+                store.logInData.message = verify.data.message
+                next('/login')
                 return
             }
             store.islogIn = true
         }
     }
-
     next()
 })
 

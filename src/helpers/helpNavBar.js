@@ -1,6 +1,6 @@
 import navbar from './navbar.json'
 
 export const getNavBar = () => {
-    const elementos = navbar[0].usuario
+    const elementos = navbar
     return elementos
 }

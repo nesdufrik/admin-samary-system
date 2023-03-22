@@ -51,7 +51,7 @@ export const useEmpresasStore = defineStore('empresas', {
         },
         redirect() {
             this.empresaForm = {}
-            this.router.push(`/admin`)
+            this.router.push(`/`)
         },
     },
 })

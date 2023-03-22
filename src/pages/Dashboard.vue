@@ -11,7 +11,7 @@
     <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
         <div class="col empresa__box" v-for="item in empresasArr">
             <RouterLink
-                :to="`/admin/empresa/${item._id}`"
+                :to="`/empresa/${item._id}`"
                 class="card h-100 rounded-3 shadow-sm"
             >
                 <div
@@ -39,9 +39,9 @@
 </template>
 
 <script setup>
-import addEmpresaModal from '../../components/admin/addEmpresa.vue'
-import { useEmpresas } from '../../composables/useEmpresas'
-import { useNavBar } from '../../composables/useNavBar'
+import addEmpresaModal from '../components/modalsEmpresa/addEmpresa.vue'
+import { useEmpresas } from '../composables/useEmpresas'
+import { useNavBar } from '../composables/useNavBar'
 
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = false

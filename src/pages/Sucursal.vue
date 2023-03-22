@@ -30,11 +30,11 @@
 </template>
 
 <script setup>
-import editSucursalModal from '../../components/admin/editSucursal.vue'
-import delSucursalModal from '../../components/admin/delSucursal.vue'
+import editSucursalModal from '../components/modalsSucursal/editSucursal.vue'
+import delSucursalModal from '../components/modalsSucursal/delSucursal.vue'
 import { useRoute } from 'vue-router'
-import { useNavBar } from '../../composables/useNavBar'
-import { useSucursales } from '../../composables/useSucursales'
+import { useNavBar } from '../composables/useNavBar'
+import { useSucursales } from '../composables/useSucursales'
 
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = true

@@ -13,41 +13,42 @@ export const useAuthStore = defineStore('auth', {
                 message: '',
                 show: false,
             },
-            loading: true,
-            cargando: false,
+            actionState: false,
+            appLoading: false,
         }
     },
     actions: {
-        loginAuth(path) {
+        loginAuth() {
             this.islogIn = true
-            this.cargando = true
-            this.router.push(`/${path}`)
+            this.appLoading = false
+            this.router.push(`/`)
         },
         logoutAuth() {
             this.islogIn = false
-            this.cargando = false
             this.logInForm = {
                 username: '',
                 password: '',
             }
-            window.location.assign('/')
+            this.router.push('/')
         },
         async verifyJwt() {
-            this.cargando = false
+            this.appLoading = true
             axios.defaults.headers.common[
                 'Authorization'
             ] = `Bearer ${localStorage.getItem('token')}`
-            const res = await axios
+            return await axios
                 .get('/auth/jwt')
-                .then(res => {
-                    this.cargando = true
-                    return res.data
-                })
+                .then(res => res.data)
                 .catch(err => {
-                    return err.code
+                    if (err.response) return err.response.data
+                    return {
+                        success: false,
+                        data: {
+                            message:
+                                'Lo siento, parece que hemos perdido temporalmente la conexión con nuestra API. Estamos trabajando para solucionar el problema lo antes posible. Por favor, inténtelo de nuevo más tarde. Agradecemos su comprensión y paciencia.',
+                        },
+                    }
                 })
-
-            return res
         },
     },
 })

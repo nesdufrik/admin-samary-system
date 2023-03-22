@@ -129,15 +129,15 @@
 </template>
 
 <script setup>
-import addProductoModal from '../../components/admin/addProducto.vue'
-import editProductoModal from '../../components/admin/editProducto.vue'
-import delProductoModal from '../../components/admin/delProducto.vue'
-import addCategoriaModal from '../../components/admin/addCategoria.vue'
-import editCategoriaModal from '../../components/admin/editCategoria.vue'
-import delCategoriaModal from '../../components/admin/delCategoria.vue'
+import addProductoModal from '../components/modalsProducto/addProducto.vue'
+import editProductoModal from '../components/modalsProducto/editProducto.vue'
+import delProductoModal from '../components/modalsProducto/delProducto.vue'
+import addCategoriaModal from '../components/modalsCategoria/addCategoria.vue'
+import editCategoriaModal from '../components/modalsCategoria/editCategoria.vue'
+import delCategoriaModal from '../components/modalsCategoria/delCategoria.vue'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { useProductos } from '../../composables/useProductos'
+import { useProductos } from '../composables/useProductos'
 
 const {
     categoriasArr,
