@@ -33,6 +33,15 @@
                         </div>
                         <div class="form-floating">
                             <input
+                                v-model="sucursalForm.arroba"
+                                type="text"
+                                class="form-control"
+                                id="floatingArroba"
+                            />
+                            <label for="floatingArroba">Arroba</label>
+                        </div>
+                        <div class="form-floating">
+                            <input
                                 v-model="sucursalForm.direccion"
                                 type="text"
                                 class="form-control"
@@ -49,6 +58,13 @@
                             />
                             <label for="floatingTelefono">Teléfono</label>
                         </div>
+                        <div
+                            v-if="errorApi.show"
+                            class="alert alert-warning"
+                            role="alert"
+                        >
+                            {{ errorApi.message }}
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer p-0 mt-3">
@@ -57,6 +73,7 @@
                         type="button"
                         class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
                         data-bs-dismiss="modal"
+                        @click="cleanForm"
                     >
                         Cerrar
                     </button>
@@ -97,7 +114,8 @@
 <script setup>
 import { useSucursales } from '../../composables/useSucursales'
 
-const { sucursalForm, actionSucursal, newSucursal } = useSucursales()
+const { sucursalForm, actionSucursal, errorApi, newSucursal, cleanForm } =
+    useSucursales()
 </script>
 
 <style scoped>

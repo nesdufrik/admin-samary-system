@@ -3,10 +3,7 @@
         class="bd-callout bd-callout-right bd-callout-success rounded-3 text-end p-3"
     >
         <h1 class="fw-bold">Administrar Empresas</h1>
-        <span
-            >Sección de acceso a las diferentes empresas creadas del
-            usuario</span
-        >
+        <p>Sección de acceso a las diferentes empresas creadas del usuario</p>
     </div>
     <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
         <div class="col empresa__box" v-for="item in empresasArr">

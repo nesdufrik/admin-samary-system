@@ -8,16 +8,23 @@ export const useSucursalesStore = defineStore('sucursales', {
             sucursalForm: {},
             loadedSucursales: false,
             actionSucursal: false,
+            errorApi: {},
         }
     },
     actions: {
         loadSucursales(data) {
-            this.sucursalesArr = data
+            this.sucursalesArr = data.data
         },
         addSucursal(data) {
+            if (!data.success) {
+                this.errorApi.show = true
+                this.errorApi.message = data.data.message
+                return
+            }
             this.sucursalesArr.push({
-                ...data,
+                ...data.data,
             })
+            this.sucursalForm = {}
         },
         deleleSucursal(id) {
             if (this.sucursalesArr.length > 0) {
@@ -32,15 +39,15 @@ export const useSucursalesStore = defineStore('sucursales', {
                 ...this.sucursalData,
             }
         },
-        updtSucursal(item) {
+        updtSucursal(data) {
             if (this.sucursalesArr.length === 0) {
-                this.sucursalData = item
+                this.sucursalData = data.data
             } else {
                 const indiceEl = this.sucursalesArr.findIndex(
-                    el => el._id == item._id
+                    el => el._id == data.data._id
                 )
-                this.sucursalesArr[indiceEl] = item
-                this.sucursalData = item
+                this.sucursalesArr[indiceEl] = data.data
+                this.sucursalData = data.data
             }
         },
         findSucursalData(id) {
@@ -49,7 +56,7 @@ export const useSucursalesStore = defineStore('sucursales', {
             )
         },
         loadSucursalData(data) {
-            this.sucursalData = data
+            this.sucursalData = data.data
         },
         redirect(dir) {
             this.sucursalForm = {}

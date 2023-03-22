@@ -16,6 +16,7 @@ export const useSucursales = () => {
         sucursalForm,
         actionSucursal,
         loadedSucursales,
+        errorApi,
     } = storeToRefs(sucursalesStore)
 
     const listSucursales = async id => {
@@ -25,8 +26,8 @@ export const useSucursales = () => {
 
     const newSucursal = async id => {
         actionSucursal.value = true
+        errorApi.value.show = false
         sucursalesStore.addSucursal(await postSucursal(sucursalForm.value, id))
-        sucursalForm.value = {}
         actionSucursal.value = false
     }
 
@@ -58,6 +59,7 @@ export const useSucursales = () => {
 
     const cleanForm = () => {
         sucursalForm.value = {}
+        errorApi.value = {}
     }
 
     const cleanAndRedirect = dir => {
@@ -70,6 +72,7 @@ export const useSucursales = () => {
         sucursalesArr,
         sucursalForm,
         actionSucursal,
+        errorApi,
 
         //! metodos
         listSucursales,

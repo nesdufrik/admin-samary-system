@@ -3,6 +3,10 @@
         class="tarjeta bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
     >
         <h1 class="fw-bold">{{ empresaData.name }}</h1>
+        <p>
+            Gestiona todas las sucursales de tu empresa de manera eficiente y
+            sin complicaciones
+        </p>
         <button
             class="tarjeta__button link-secondary material-icons-round"
             @click="editarEmpresa"
@@ -68,8 +72,8 @@ const { empresaData, loadEmpresa, editarEmpresa } = useEmpresas()
 const { sucursalesArr, listSucursales } = useSucursales()
 const route = useRoute()
 
-listSucursales(route.params.id)
 loadEmpresa(route.params.id)
+listSucursales(route.params.id)
 contentNavBar()
 </script>
 

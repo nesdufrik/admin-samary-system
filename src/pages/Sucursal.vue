@@ -6,7 +6,9 @@
         <span class="small fw-bold"
             >Direccion: {{ sucursalData.direccion }}</span
         ><br />
-        <span class="small fw-bold">Telefono: {{ sucursalData.telefono }}</span>
+        <span class="small fw-bold">Telefono: {{ sucursalData.telefono }}</span
+        ><br />
+        <span class="fw-bold">{{ sucursalData.arroba }}</span>
         <button
             class="tarjeta__button link-secondary material-icons-round"
             @click="editarSucursal"
