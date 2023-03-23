@@ -11,102 +11,31 @@
             note_add
         </button>
     </div>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 g-2">
-        <div class="col">
-            <div class="card tarjeta">
-                <div class="card-body">
-                    <div>
-                        <h4 class="fw-semibold">categoria.name</h4>
-                        <div
-                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
-                        >
-                            <span class="align-middle"> etiqueta </span>
-                        </div>
-                    </div>
-                    <button
-                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
-                    >
-                        delete
-                    </button>
-                    <button
-                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
-                    >
-                        edit
-                    </button>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-xl-4 g-2">
+        <div class="col tarjeta">
+            <div class="user-card">
+                <div class="user-image">
+                    <img
+                        src="/avatars/man04.png"
+                        alt="Imagen de perfil de usuario"
+                    />
+                </div>
+                <div class="user-description">
+                    <h2 class="user-name">
+                        Marco Antonio Humberto Decormis Pinto
+                    </h2>
+                    <p class="user-job">Cargo de usuario</p>
+                    <p class="user-username">Nombre de usuario</p>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card tarjeta">
-                <div class="card-body">
-                    <div>
-                        <h4 class="fw-semibold">categoria.name</h4>
-                        <div
-                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
-                        >
-                            <span class="align-middle"> etiqueta </span>
-                        </div>
-                    </div>
-                    <button
-                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
-                    >
-                        delete
-                    </button>
-                    <button
-                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
-                    >
-                        edit
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100 tarjeta">
-                <div class="card-body">
-                    <div>
-                        <h4 class="fw-semibold">categoria.name</h4>
-                        <div
-                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
-                        >
-                            <span class="align-middle"> etiqueta </span>
-                        </div>
-                    </div>
-                    <button
-                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
-                    >
-                        delete
-                    </button>
-                    <button
-                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
-                    >
-                        edit
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card tarjeta">
-                <div class="card-body">
-                    <div>
-                        <h4 class="fw-semibold">categoria.name</h4>
-                        <div
-                            class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
-                        >
-                            <span class="align-middle"> etiqueta </span>
-                        </div>
-                    </div>
-                    <button
-                        class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
-                    >
-                        delete
-                    </button>
-                    <button
-                        class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
-                    >
-                        edit
-                    </button>
-                </div>
-            </div>
+            <button
+                class="tarjeta__button tarjeta__button--edit tarjeta__button--delete link-danger material-icons-round"
+            >
+                delete
+            </button>
+            <button class="tarjeta__button link-secondary material-icons-round">
+                edit
+            </button>
         </div>
     </div>
 </template>
@@ -140,6 +69,81 @@ const route = useRoute()
 }
 
 .tarjeta__button--edit {
-    margin-right: 2rem;
+    margin-top: 1.7rem;
+}
+
+.user-card {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.user-image {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.user-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-description {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.user-name {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.user-job,
+.user-username {
+    margin: 2px 0 0 0;
+    font-size: 16px;
+    color: #666;
+}
+
+@media only screen and (max-width: 767px) {
+    .user-card {
+        justify-content: flex-start;
+        text-align: left;
+        flex-direction: row;
+    }
+
+    .user-image {
+        width: 80px;
+        height: 80px;
+        margin-right: 8px;
+        margin-bottom: 0;
+    }
+
+    .user-description {
+        text-align: left;
+        margin-right: 10px;
+        max-width: calc(100% - 120px);
+        flex-wrap: wrap;
+    }
+
+    .user-name {
+        font-size: 20px;
+    }
+
+    .user-job,
+    .user-username {
+        font-size: 16px;
+        margin: 0;
+    }
 }
 </style>
