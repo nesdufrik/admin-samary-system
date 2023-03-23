@@ -58,6 +58,11 @@ const routes = [
             },
         ],
     },
+    {
+        path: '/:catchAll(.*)',
+        name: 'NotFound',
+        component: () => import('../pages/Page404.vue'),
+    },
 ]
 
 const router = createRouter({

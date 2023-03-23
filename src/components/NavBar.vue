@@ -94,19 +94,21 @@
                                 class="dropdown-menu text-small shadow dropdown-menu-lg-end"
                             >
                                 <li>
-                                    <span
+                                    <a
+                                        href="#"
                                         class="dropdown-item fw-bold text-secondary"
                                     >
                                         <span
                                             class="material-icons-round align-middle"
                                             >settings</span
                                         >
-                                        Configuraciones</span
+                                        Configuraciones</a
                                     >
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li>
-                                    <span
+                                    <a
+                                        href="#"
                                         class="dropdown-item fw-bold text-danger"
                                         @click="logout"
                                     >
@@ -114,7 +116,7 @@
                                             class="material-icons-round align-middle"
                                             >logout</span
                                         >
-                                        Cerrar sesión</span
+                                        Cerrar sesión</a
                                     >
                                 </li>
                             </ul>

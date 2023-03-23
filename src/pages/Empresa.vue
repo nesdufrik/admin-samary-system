@@ -1,6 +1,6 @@
 <template>
     <div
-        class="tarjeta bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
+        class="tarjeta bd-callout bd-callout-right bd-callout-dark rounded-3 text-end py-3 px-4"
     >
         <h1 class="fw-bold">{{ empresaData.name }}</h1>
         <p>
