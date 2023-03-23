@@ -19,7 +19,7 @@
                     <form
                         id="createEmpleadoForm"
                         class="row g-2"
-                        @submit.prevent="updateEmpleado($route.params.id)"
+                        @submit.prevent="newEmpleado($route.params.id)"
                     >
                         <div class="form-floating">
                             <input
@@ -92,7 +92,7 @@
                         data-bs-target="#createEmpleadoMessage"
                         data-bs-toggle="modal"
                     >
-                        Actualizar
+                        Guardar
                     </button>
                 </div>
             </div>
@@ -149,8 +149,8 @@
                     <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
                         Editar Sucursal
                     </h2>
-                    <p v-if="errorApi.show" class="fs-5 fw-bold text-danger">
-                        {{ errorApi.Message }}
+                    <p v-if="errorApi.show" class="fs-6 fw-bold text-danger">
+                        {{ errorApi.message }}
                     </p>
 
                     <p
@@ -173,7 +173,7 @@
                     <button
                         v-if="errorApi.show"
                         type="button"
-                        class="btn-modal btn-modal-block btn-modal-primary col fw-bold"
+                        class="btn-modal btn-modal-block btn-modal-danger col fw-bold"
                         data-bs-target="#createEmpleado"
                         data-bs-toggle="modal"
                     >
@@ -205,7 +205,7 @@
 <script setup>
 import { useEmpleados } from '../../composables/useEmpleados'
 
-const { empleadoForm, actionState, errorApi, updateEmpleado, cleanForm } =
+const { empleadoForm, actionState, errorApi, newEmpleado, cleanForm } =
     useEmpleados()
 </script>
 

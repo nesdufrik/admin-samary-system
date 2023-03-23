@@ -13,11 +13,11 @@ export const useEmpleados = () => {
     }
 
     const newEmpleado = async sucursalId => {
+        errorApi.value.show = false
         actionState.value = true
         empleadosStore.addEmpleado(
             await postEmpleado(empleadoForm.value, sucursalId)
         )
-        empleadoForm.value = {}
         actionState.value = false
     }
 
@@ -26,7 +26,7 @@ export const useEmpleados = () => {
     }
 
     const updateEmpleado = async empleadoId => {
-        errorApi.show.value = false
+        errorApi.value.show = false
         actionState.value = true
         empleadosStore.updtEmpleado(
             await putEmpleado(empleadoForm.value, empleadoId)
