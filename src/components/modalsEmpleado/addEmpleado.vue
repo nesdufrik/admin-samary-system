@@ -26,27 +26,31 @@
                                 v-model="empleadoForm.name"
                                 type="text"
                                 class="form-control"
-                                id="floatingName"
+                                id="floatinNameEmpleado"
                             />
-                            <label for="floatingName">Nombre completo</label>
+                            <label for="floatinNameEmpleado"
+                                >Nombre completo</label
+                            >
                         </div>
                         <div class="form-floating">
                             <input
                                 v-model="empleadoForm.cargo"
                                 type="text"
                                 class="form-control"
-                                id="floatingCargo"
+                                id="floatingCargoEmpleado"
                             />
-                            <label for="floatingCargo">Cargo empleado</label>
+                            <label for="floatingCargoEmpleado"
+                                >Cargo empleado</label
+                            >
                         </div>
                         <div class="form-floating">
                             <input
                                 v-model="empleadoForm.avatar"
                                 type="text"
                                 class="form-control"
-                                id="floatingAvatar"
+                                id="floatingAvatarEmpleado"
                             />
-                            <label for="floatingAvatar"
+                            <label for="floatingAvatarEmpleado"
                                 >Seleccionar imagen</label
                             >
                         </div>
@@ -55,9 +59,9 @@
                                 v-model="empleadoForm.email"
                                 type="text"
                                 class="form-control"
-                                id="floatingUsername"
+                                id="floatingUsernameEmpleado"
                             />
-                            <label for="floatingUsername"
+                            <label for="floatingUsernameEmpleado"
                                 >nombre.apellido</label
                             >
                         </div>

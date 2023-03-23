@@ -7,6 +7,8 @@
         </div>
         <button
             class="tarjeta__button link-secondary align-middle material-icons-round"
+            data-bs-target="#createEmpleado"
+            data-bs-toggle="modal"
         >
             note_add
         </button>
@@ -38,9 +40,12 @@
             </button>
         </div>
     </div>
+
+    <addEmpleadoModal />
 </template>
 
 <script setup>
+import addEmpleadoModal from '../components/modalsEmpleado/addEmpleado.vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
