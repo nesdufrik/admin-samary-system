@@ -5,7 +5,7 @@ import { getEmpleados, postEmpleado } from '../helpers/helpEmpleados'
 export const useEmpleados = () => {
     const empleadosStore = useEmpleadosStore()
 
-    const { empleadosArr, empleadoForm, actionState } =
+    const { empleadosArr, empleadoForm, actionState, errorApi } =
         storeToRefs(empleadosStore)
 
     const listEmpleados = async sucursalId => {
@@ -26,6 +26,7 @@ export const useEmpleados = () => {
     }
 
     const updateEmpleado = async empleadoId => {
+        errorApi.show.value = false
         actionState.value = true
         empleadosStore.updtEmpleado(
             await putEmpleado(empleadoForm.value, empleadoId)
@@ -40,7 +41,7 @@ export const useEmpleados = () => {
         actionState.value = false
     }
 
-    const clearForm = () => {
+    const cleanForm = () => {
         empleadoForm.value = {}
     }
 
@@ -49,6 +50,7 @@ export const useEmpleados = () => {
         empleadosArr,
         empleadoForm,
         actionState,
+        errorApi,
 
         //! metodos
         listEmpleados,
@@ -56,6 +58,6 @@ export const useEmpleados = () => {
         editarEmpleado,
         updateEmpleado,
         delEmpleado,
-        clearForm,
+        cleanForm,
     }
 }
