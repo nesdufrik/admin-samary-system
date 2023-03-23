@@ -27,7 +27,7 @@
     <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
         <div class="col empresa__box" v-for="item in sucursalesArr">
             <RouterLink
-                :to="`/sucursal/${item._id}/stats`"
+                :to="`/sucursal/${item._id}/dashboard`"
                 class="card h-100 rounded-3 shadow-sm"
             >
                 <div

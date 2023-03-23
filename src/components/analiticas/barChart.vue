@@ -1,6 +1,6 @@
 <template>
     <div
-        class="rounded-2 bd-callout bd-callout-left bd-callout-secondary p-3 mt-0 mb-0"
+        class="rounded-2 bd-callout bd-callout-left bd-callout-secondary p-3 mt-0 mb-0 h-100"
     >
         <h2 class="fw-bold">Ganancias del Mes</h2>
         <apexchart

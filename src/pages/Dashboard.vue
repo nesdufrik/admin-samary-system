@@ -1,51 +1,28 @@
 <template>
-    <div
-        class="bd-callout bd-callout-right bd-callout-success rounded-3 text-end p-3"
-    >
-        <h1 class="fw-bold">Administrar Empresas</h1>
-        <p>Sección de acceso a las diferentes empresas creadas del usuario</p>
-    </div>
-    <div class="row row-cols-2 row-cols-md-4 g-2 text-center">
-        <div class="col empresa__box" v-for="item in empresasArr">
-            <RouterLink
-                :to="`/empresa/${item._id}`"
-                class="card h-100 rounded-3 shadow-sm"
-            >
-                <div
-                    class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
-                >
-                    <h2>{{ item.name }}</h2>
-                </div>
-            </RouterLink>
+    <div class="row row-cols-1 row-cols-md-2 g-3">
+        <div class="col">
+            <barChart />
         </div>
-        <div
-            class="col empresa__box"
-            data-bs-toggle="modal"
-            data-bs-target="#createEmpresa"
-        >
-            <div class="card h-100 rounded-3 shadow-sm">
-                <div
-                    class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
-                >
-                    <span class="material-icons-round fs-1"> add_home </span>
-                </div>
+        <div class="col">
+            <pieChart />
+        </div>
+        <div class="col">
+            <div class="row row-cols-1 row-cols-xl-2 g-3">
+                <topItems />
             </div>
         </div>
     </div>
-    <addEmpresaModal />
 </template>
 
 <script setup>
-import addEmpresaModal from '../components/modalsEmpresa/addEmpresa.vue'
-import { useEmpresas } from '../composables/useEmpresas'
+import barChart from '../components/analiticas/barChart.vue'
+import pieChart from '../components/analiticas/pieChart.vue'
+import topItems from '../components/analiticas/topItems.vue'
 import { useNavBar } from '../composables/useNavBar'
 
 const { showNavBar, contentNavBar } = useNavBar()
-showNavBar.value = false
+showNavBar.value = true
 
-const { empresasArr, listEmpresas } = useEmpresas()
-
-listEmpresas()
 contentNavBar()
 </script>
 

@@ -20,6 +20,7 @@ export const useAuth = () => {
             if (res.success) {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('name', res.data.name)
+                localStorage.setItem('avatar', res.data.avatar)
                 authStore.loginAuth(res.data.path)
             } else {
                 logInData.value.message = res.data.message
@@ -31,6 +32,7 @@ export const useAuth = () => {
     const logout = () => {
         localStorage.removeItem('name')
         localStorage.removeItem('token')
+        localStorage.removeItem('avatar')
         authStore.logoutAuth()
     }
 

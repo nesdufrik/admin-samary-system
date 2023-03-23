@@ -9,7 +9,7 @@
             <RouterLink
                 class="p-lg-3 my-2 my-lg-0 me-lg-auto text-white text-decoration-none"
                 :to="`/`"
-                aria-label="Bootstrap"
+                aria-label="Home"
             >
                 <img src="../assets/logo-icon.png" alt="logo" />
             </RouterLink>
@@ -82,7 +82,7 @@
                                 aria-expanded="false"
                             >
                                 <img
-                                    src="../assets/avatares/man.png"
+                                    :src="avatar"
                                     alt="avatar"
                                     width="55"
                                     height="55"
@@ -94,20 +94,27 @@
                                 class="dropdown-menu text-small shadow dropdown-menu-lg-end"
                             >
                                 <li>
-                                    <a class="dropdown-item" href="#"
-                                        >Configuraciones</a
+                                    <span
+                                        class="dropdown-item fw-bold text-secondary"
                                     >
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">Perfil</a>
+                                        <span
+                                            class="material-icons-round align-middle"
+                                            >settings</span
+                                        >
+                                        Configuraciones</span
+                                    >
                                 </li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li>
-                                    <a
-                                        class="dropdown-item"
-                                        href="#"
+                                    <span
+                                        class="dropdown-item fw-bold text-danger"
                                         @click="logout"
-                                        >Cerrar sesión</a
+                                    >
+                                        <span
+                                            class="material-icons-round align-middle"
+                                            >logout</span
+                                        >
+                                        Cerrar sesión</span
                                     >
                                 </li>
                             </ul>
@@ -129,6 +136,7 @@ const { logout } = useAuth()
 const { itemsNavBar } = useNavBar()
 
 const name = ref(localStorage.getItem('name'))
+const avatar = ref(localStorage.getItem('avatar'))
 </script>
 
 <style lang="scss" scoped></style>

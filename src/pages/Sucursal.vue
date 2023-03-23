@@ -3,12 +3,12 @@
         class="tarjeta bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
     >
         <h1 class="fw-bold">{{ sucursalData.name }}</h1>
-        <span class="small fw-bold"
-            >Direccion: {{ sucursalData.direccion }}</span
+        <span class="fw-bold fs-5">{{ sucursalData.arroba }}</span
         ><br />
-        <span class="small fw-bold">Telefono: {{ sucursalData.telefono }}</span
+        <span class="fst-italic">Dirección: {{ sucursalData.direccion }}</span
         ><br />
-        <span class="fw-bold">{{ sucursalData.arroba }}</span>
+        <span class="fst-italic">Teléfono: {{ sucursalData.telefono }}</span
+        ><br />
         <button
             class="tarjeta__button link-secondary material-icons-round"
             @click="editarSucursal"

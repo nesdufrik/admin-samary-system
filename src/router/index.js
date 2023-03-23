@@ -4,7 +4,7 @@ import pinia from '../stores'
 import { useAuthStore } from '../stores/authStore'
 
 import Login from '../pages/Login.vue'
-import Home from '../pages/Home.vue'
+import GeneralView from '../pages/GenearlView.vue'
 
 const routes = [
     {
@@ -22,12 +22,12 @@ const routes = [
             requiresAuth: true,
             title: 'Gestion de Dependencias',
         },
-        component: Home,
+        component: GeneralView,
         children: [
             {
                 path: '/home',
                 name: 'Home',
-                component: () => import('../pages/Dashboard.vue'),
+                component: () => import('../pages/Home.vue'),
             },
             {
                 path: '/empresa/:id',
@@ -40,9 +40,9 @@ const routes = [
                 component: () => import('../pages/Sucursal.vue'),
                 children: [
                     {
-                        path: '/sucursal/:id/stats',
+                        path: '/sucursal/:id/dashboard',
                         name: 'Stats de Sucursal',
-                        component: () => import('../pages/Stats.vue'),
+                        component: () => import('../pages/Dashboard.vue'),
                     },
                     {
                         path: '/sucursal/:id/users',
