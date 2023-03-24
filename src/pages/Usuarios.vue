@@ -9,33 +9,46 @@
             class="tarjeta__button link-secondary align-middle material-icons-round"
             data-bs-target="#createEmpleado"
             data-bs-toggle="modal"
+            @click="defaulAvatar"
         >
             note_add
         </button>
     </div>
     <div class="row row-cols-1 row-cols-md-3 row-cols-xl-4 g-2">
-        <div class="col tarjeta">
-            <div class="user-card">
+        <div
+            v-for="empleado in empleadosArr"
+            :key="empleado._id"
+            class="col tarjeta"
+        >
+            <div class="user-card h-100">
                 <div class="user-image">
                     <img
-                        src="/avatars/man04.png"
+                        :src="empleado.avatar"
                         alt="Imagen de perfil de usuario"
                     />
                 </div>
                 <div class="user-description">
                     <h2 class="user-name">
-                        Marco Antonio Humberto Decormis Pinto
+                        {{ empleado.fullName }}
                     </h2>
-                    <p class="user-job">Cargo de usuario</p>
-                    <p class="user-username">Nombre de usuario</p>
+                    <p class="user-job">{{ empleado.cargo }}</p>
+                    <p class="user-username">{{ empleado.email }}</p>
                 </div>
             </div>
             <button
                 class="tarjeta__button tarjeta__button--edit tarjeta__button--delete link-danger material-icons-round"
+                data-bs-target="#deleteEmpleado"
+                data-bs-toggle="modal"
+                @click="editarEmpleado"
             >
                 delete
             </button>
-            <button class="tarjeta__button link-secondary material-icons-round">
+            <button
+                class="tarjeta__button link-secondary material-icons-round"
+                data-bs-target="#editEmpleado"
+                data-bs-toggle="modal"
+                @click="editarEmpleado"
+            >
                 edit
             </button>
         </div>
@@ -47,8 +60,14 @@
 <script setup>
 import addEmpleadoModal from '../components/modalsEmpleado/addEmpleado.vue'
 import { useRoute } from 'vue-router'
+import { useEmpleados } from '../composables/useEmpleados'
+
+const { empleadosArr, listEmpleados, editarEmpleado, defaulAvatar } =
+    useEmpleados()
 
 const route = useRoute()
+
+listEmpleados(route.params.id)
 </script>
 <style scoped>
 .tarjeta {

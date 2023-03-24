@@ -23,7 +23,7 @@
                     >
                         <div class="form-floating">
                             <input
-                                v-model="empleadoForm.name"
+                                v-model="empleadoForm.fullName"
                                 type="text"
                                 class="form-control"
                                 id="floatinNameEmpleado"
@@ -43,27 +43,46 @@
                                 >Cargo empleado</label
                             >
                         </div>
-                        <div class="form-floating">
-                            <input
-                                v-model="empleadoForm.avatar"
-                                type="text"
-                                class="form-control"
-                                id="floatingAvatarEmpleado"
-                            />
-                            <label for="floatingAvatarEmpleado"
-                                >Seleccionar imagen</label
-                            >
+                        <div class="input-group">
+                            <div class="form-floating">
+                                <input
+                                    :value="empleadoForm.avatar"
+                                    type="text"
+                                    class="form-control"
+                                    id="floatingAvatarEmpleado"
+                                    disabled
+                                />
+                                <label for="floatingAvatarEmpleado"
+                                    >Seleccionar imagen</label
+                                >
+                            </div>
+                            <button
+                                type="button"
+                                class="btn btn-secondary boton-imagen"
+                                :style="{
+                                    backgroundImage:
+                                        'url(' + empleadoForm.avatar + ')',
+                                }"
+                                data-bs-target="#createEmpleadoAvatar"
+                                data-bs-toggle="modal"
+                            ></button>
                         </div>
-                        <div class="form-floating">
-                            <input
-                                v-model="empleadoForm.email"
-                                type="text"
-                                class="form-control"
-                                id="floatingUsernameEmpleado"
-                            />
-                            <label for="floatingUsernameEmpleado"
-                                >nombre.apellido</label
-                            >
+                        <div class="input-group">
+                            <div class="form-floating">
+                                <input
+                                    v-model="username"
+                                    type="text"
+                                    class="form-control"
+                                    id="floatingUsernameEmpleado"
+                                />
+
+                                <label for="floatingUsernameEmpleado"
+                                    >nombre.apellido</label
+                                >
+                            </div>
+                            <span class="input-group-text" id="basic-addon2">{{
+                                sucursalData.arroba
+                            }}</span>
                         </div>
                         <div class="form-floating">
                             <input
@@ -113,11 +132,22 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <img
-                        :src="`/avatars/${empleadoForm.avatar}`"
+                        :src="`${empleadoForm.avatar}`"
+                        width="100"
                         alt=""
                         srcset=""
                     />
-                    <div>Grupo de imagenes</div>
+                    <h5 class="mt-3 fw-bold">Seleccionar una imagen</h5>
+                    <div class="images">
+                        <img
+                            v-for="(image, index) in avatares"
+                            alt=""
+                            :key="index"
+                            :src="image"
+                            width="50"
+                            @click="selectImage(image)"
+                        />
+                    </div>
                 </div>
                 <div class="modal-footer p-0">
                     <button
@@ -203,10 +233,44 @@
 </template>
 
 <script setup>
+import { ref, computed, watch } from 'vue'
 import { useEmpleados } from '../../composables/useEmpleados'
+import { useSucursales } from '../../composables/useSucursales'
 
 const { empleadoForm, actionState, errorApi, newEmpleado, cleanForm } =
     useEmpleados()
+const { sucursalData } = useSucursales()
+
+const avatares = [
+    '/avatars/man01.png',
+    '/avatars/man02.png',
+    '/avatars/man03.png',
+    '/avatars/man04.png',
+    '/avatars/man05.png',
+    '/avatars/man06.png',
+    '/avatars/man07.png',
+    '/avatars/man08.png',
+    '/avatars/woman01.png',
+    '/avatars/woman02.png',
+    '/avatars/woman03.png',
+    '/avatars/woman04.png',
+    '/avatars/woman05.png',
+    '/avatars/woman06.png',
+    '/avatars/woman07.png',
+    '/avatars/woman08.png',
+]
+const selectImage = image => {
+    empleadoForm.value.avatar = image
+}
+const username = ref('')
+
+const usernameCompleto = computed(() => {
+    return username.value + sucursalData.value.arroba
+})
+
+watch(username, () => {
+    empleadoForm.value.email = usernameCompleto.value
+})
 </script>
 
 <style scoped>
@@ -219,5 +283,12 @@ const { empleadoForm, actionState, errorApi, newEmpleado, cleanForm } =
     border-bottom: 0;
     border-right: 0;
     user-select: none;
+}
+
+.boton-imagen {
+    background-size: cover; /* ajusta la imagen al tamaño del botón */
+    width: 58px;
+    height: 58px;
+    border: none;
 }
 </style>

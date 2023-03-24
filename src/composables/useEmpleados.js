@@ -45,6 +45,10 @@ export const useEmpleados = () => {
         empleadoForm.value = {}
     }
 
+    const defaulAvatar = () => {
+        empleadoForm.value.avatar = '/avatars/default.png'
+    }
+
     return {
         //! propiedades
         empleadosArr,
@@ -59,5 +63,6 @@ export const useEmpleados = () => {
         updateEmpleado,
         delEmpleado,
         cleanForm,
+        defaulAvatar,
     }
 }

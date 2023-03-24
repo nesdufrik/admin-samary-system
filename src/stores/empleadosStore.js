@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useEmpleadosStore = defineStore('empleados', {
     state: () => {
         return {
-            empleadosArr: {},
+            empleadosArr: [],
             empleadoForm: {},
             actionState: false,
             errorApi: {},

@@ -10,7 +10,7 @@
                     alt="menus_vendidos"
                 />
             </div>
-            <div class="align-self-center text-center">
+            <div class="align-self-center text-end">
                 <h3 class="m-0 fw-bold">117</h3>
                 <small>Menús</small>
             </div>
@@ -27,7 +27,7 @@
                     alt="menus_vendidos"
                 />
             </div>
-            <div class="align-self-center text-center">
+            <div class="align-self-center text-end">
                 <h3 class="m-0 fw-bold">2639.5</h3>
                 <small>Beneficios</small>
             </div>
@@ -44,7 +44,7 @@
                     alt="menus_vendidos"
                 />
             </div>
-            <div class="align-self-center text-center">
+            <div class="align-self-center text-end">
                 <h3 class="m-0 fw-bold">423</h3>
                 <small>Productos</small>
             </div>
@@ -61,7 +61,7 @@
                     alt="menus_vendidos"
                 />
             </div>
-            <div class="align-self-center text-center">
+            <div class="align-self-center text-end">
                 <h3 class="m-0 fw-bold">117</h3>
                 <small>Ordenes</small>
             </div>
