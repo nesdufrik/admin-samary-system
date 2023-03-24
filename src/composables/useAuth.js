@@ -18,10 +18,15 @@ export const useAuth = () => {
         await loginApi(logInForm.value).then(res => {
             actionState.value = false
             if (res.success) {
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('name', res.data.name)
-                localStorage.setItem('avatar', res.data.avatar)
-                authStore.loginAuth(res.data.path)
+                if (res.data.logInAdmin) {
+                    localStorage.setItem('token', res.data.token)
+                    localStorage.setItem('name', res.data.name)
+                    localStorage.setItem('avatar', res.data.avatar)
+                    authStore.loginAuth()
+                    return
+                }
+                window.location.href = import.meta.env.VITE_POS_URL
+                return
             } else {
                 logInData.value.message = res.data.message
                 logInData.value.show = true
