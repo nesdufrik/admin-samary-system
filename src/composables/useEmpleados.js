@@ -1,6 +1,11 @@
 import { storeToRefs } from 'pinia'
 import { useEmpleadosStore } from '../stores/empleadosStore'
-import { getEmpleados, postEmpleado } from '../helpers/helpEmpleados'
+import {
+    deleteEmpleado,
+    getEmpleados,
+    postEmpleado,
+    putEmpleado,
+} from '../helpers/helpEmpleados'
 
 export const useEmpleados = () => {
     const empleadosStore = useEmpleadosStore()

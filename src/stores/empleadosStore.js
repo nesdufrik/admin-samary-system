@@ -33,9 +33,9 @@ export const useEmpleadosStore = defineStore('empleados', {
         },
         updtEmpleado(data) {
             const indiceEl = this.empleadosArr.findIndex(
-                el => el._id == data._id
+                el => el._id == data.data._id
             )
-            this.empleadosArr[indiceEl] = data
+            this.empleadosArr[indiceEl] = data.data
         },
     },
 })

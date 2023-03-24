@@ -39,7 +39,7 @@
                 class="tarjeta__button tarjeta__button--edit tarjeta__button--delete link-danger material-icons-round"
                 data-bs-target="#deleteEmpleado"
                 data-bs-toggle="modal"
-                @click="editarEmpleado"
+                @click="editarEmpleado(empleado._id)"
             >
                 delete
             </button>
@@ -47,7 +47,7 @@
                 class="tarjeta__button link-secondary material-icons-round"
                 data-bs-target="#editEmpleado"
                 data-bs-toggle="modal"
-                @click="editarEmpleado"
+                @click="editarEmpleado(empleado._id)"
             >
                 edit
             </button>
@@ -55,10 +55,12 @@
     </div>
 
     <addEmpleadoModal />
+    <editEmpleadoModal />
 </template>
 
 <script setup>
 import addEmpleadoModal from '../components/modalsEmpleado/addEmpleado.vue'
+import editEmpleadoModal from '../components/modalsEmpleado/editEmpleado.vue'
 import { useRoute } from 'vue-router'
 import { useEmpleados } from '../composables/useEmpleados'
 
