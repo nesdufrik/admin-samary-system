@@ -25,7 +25,10 @@ export const useAuth = () => {
                     authStore.loginAuth()
                     return
                 }
-                window.location.href = import.meta.env.VITE_POS_URL
+                const dirURL = `${import.meta.env.VITE_POS_URL}?token=${
+                    res.data.token
+                }`
+                window.location.href = dirURL
                 return
             } else {
                 logInData.value.message = res.data.message

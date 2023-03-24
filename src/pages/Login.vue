@@ -61,9 +61,19 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router'
 import { useAuth } from '../composables/useAuth'
 
 const { logInForm, logInData, actionState, login } = useAuth()
+
+const route = useRoute()
+
+if (route.query.show && route.query.message) {
+    logInData.value = {
+        show: route.query.show,
+        message: route.query.message,
+    }
+}
 </script>
 
 <style scoped>
