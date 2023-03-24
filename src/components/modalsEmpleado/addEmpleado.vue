@@ -177,7 +177,7 @@
             <div class="modal-content">
                 <div class="modal-body text-center">
                     <h2 class="modal-title fw-bold mb-4" id="modalTitleId">
-                        Editar Sucursal
+                        Nuevo Empleado
                     </h2>
                     <p v-if="errorApi.show" class="fs-6 fw-bold text-danger">
                         {{ errorApi.message }}
