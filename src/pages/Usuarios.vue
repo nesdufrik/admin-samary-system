@@ -37,7 +37,7 @@
             </div>
             <button
                 class="tarjeta__button tarjeta__button--edit tarjeta__button--delete link-danger material-icons-round"
-                data-bs-target="#deleteEmpleado"
+                data-bs-target="#delEmpleado"
                 data-bs-toggle="modal"
                 @click="editarEmpleado(empleado._id)"
             >
@@ -56,11 +56,13 @@
 
     <addEmpleadoModal />
     <editEmpleadoModal />
+    <delEmpleadoModal />
 </template>
 
 <script setup>
 import addEmpleadoModal from '../components/modalsEmpleado/addEmpleado.vue'
 import editEmpleadoModal from '../components/modalsEmpleado/editEmpleado.vue'
+import delEmpleadoModal from '../components/modalsEmpleado/delEmpleado.vue'
 import { useRoute } from 'vue-router'
 import { useEmpleados } from '../composables/useEmpleados'
 

@@ -71,7 +71,7 @@
 
                     <p
                         v-else-if="actionState"
-                        class="fs-4 fw-bold text-success"
+                        class="fs-4 fw-bold text-secondary"
                     >
                         <span
                             class="spinner-border spinner-border-md"
@@ -79,10 +79,14 @@
                             aria-hidden="true"
                         ></span
                         ><br />
-                        Guardando...
+                        Eliminando...
                     </p>
-                    <p v-else class="fs-4 fw-bold text-success">
-                        Se guardo ¡Correctamente!
+                    <p v-else>
+                        El empleado
+                        <strong class="text-danger fs-5">{{
+                            empleadoForm.fullName
+                        }}</strong
+                        >, fue eliminado correctamente.
                     </p>
                 </div>
                 <div class="modal-footer p-0">
