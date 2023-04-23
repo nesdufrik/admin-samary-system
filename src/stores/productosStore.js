@@ -8,6 +8,7 @@ export const useProductosStore = defineStore('productos', {
             categoriaEdit: {},
             productosArr: [],
             productoForm: {},
+            previewUrl: '',
             actionState: false,
         }
     },
@@ -50,6 +51,7 @@ export const useProductosStore = defineStore('productos', {
             this.productoForm = {
                 ...this.productosArr.find(el => el._id == id),
             }
+            this.previewUrl = this.productoForm.image
         },
         updtProducto(item) {
             const indiceEl = this.productosArr.findIndex(

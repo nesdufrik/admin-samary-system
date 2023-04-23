@@ -20,6 +20,7 @@ export const useProductos = () => {
         categoriaEdit,
         productosArr,
         productoForm,
+        previewUrl,
         actionState,
     } = storeToRefs(productosStore)
 
@@ -34,6 +35,7 @@ export const useProductos = () => {
             await postCategoria(categoriaForm.value, id)
         )
         categoriaForm.value = {}
+        previewUrl.value = ''
         actionState.value = false
     }
 
@@ -62,10 +64,16 @@ export const useProductos = () => {
     }
 
     const newProducto = async id => {
-        actionState.value = true
-        productosStore.addProducto(await postProducto(productoForm.value, id))
-        productoForm.value = {}
-        actionState.value = false
+        try {
+            actionState.value = true
+            productosStore.addProducto(
+                await postProducto(productoForm.value, id)
+            )
+            productoForm.value = {}
+            actionState.value = false
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     const editarProducto = id => {
@@ -88,6 +96,12 @@ export const useProductos = () => {
     //Metodos globales
     const clearForm = () => {
         productoForm.value = {}
+        previewUrl.value = ''
+    }
+
+    const onFileChange = event => {
+        productoForm.value.image = event.target.files[0]
+        previewUrl.value = URL.createObjectURL(productoForm.value.image)
     }
 
     return {
@@ -97,6 +111,7 @@ export const useProductos = () => {
         categoriaEdit,
         productosArr,
         productoForm,
+        previewUrl,
         actionState,
 
         //! metodos
@@ -111,5 +126,6 @@ export const useProductos = () => {
         updateProducto,
         delProducto,
         clearForm,
+        onFileChange,
     }
 }

@@ -99,6 +99,29 @@
                             />
                             <label for="productoPrecio">Precio en Bs.</label>
                         </div>
+                        <div class="text-start">
+                            <label
+                                class="text-secondary p-2"
+                                for="productoPrecio"
+                                >Cargar imágen:</label
+                            >
+                            <input
+                                class="form-control"
+                                type="file"
+                                id="image"
+                                ref="image"
+                                @change="onFileChange"
+                                @keydown.enter.prevent
+                                required
+                            />
+                        </div>
+                        <div>
+                            <img
+                                :src="previewUrl"
+                                v-if="previewUrl"
+                                style="max-width: 200px; margin-top: 10px"
+                            />
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer p-0 mt-3">
@@ -148,8 +171,15 @@
 <script setup>
 import { useProductos } from '../../composables/useProductos'
 
-const { productoForm, categoriasArr, actionState, newProducto, clearForm } =
-    useProductos()
+const {
+    productoForm,
+    previewUrl,
+    categoriasArr,
+    actionState,
+    newProducto,
+    clearForm,
+    onFileChange,
+} = useProductos()
 </script>
 
 <style scoped>

@@ -50,15 +50,43 @@ export const getProducto = async itemId => {
 }
 
 export const postProducto = async (payload, sucursalId) => {
+    const formData = new FormData()
+
+    formData.append('categoria', payload.categoria)
+    formData.append('etiqueta', payload.etiqueta)
+    formData.append('name', payload.name)
+    formData.append('precio', payload.precio)
+    formData.append('image', payload.image)
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    }
+
     return axios
-        .post(`/items/sucursal/${sucursalId}`, payload)
+        .post(`/items/sucursal/${sucursalId}`, formData, config)
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }
 
 export const putProducto = async (payload, itemId) => {
+    const formData = new FormData()
+
+    formData.append('categoria', payload.categoria)
+    formData.append('etiqueta', payload.etiqueta)
+    formData.append('name', payload.name)
+    formData.append('precio', payload.precio)
+    formData.append('image', payload.image)
+
+    const config = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    }
+
     return await axios
-        .put(`/items/${itemId}`, payload)
+        .put(`/items/${itemId}`, formData, config)
         .then(res => res.data.data)
         .catch(err => err.response.data)
 }

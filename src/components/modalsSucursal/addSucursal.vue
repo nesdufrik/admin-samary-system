@@ -58,6 +58,48 @@
                             />
                             <label for="floatingTelefono">Teléfono</label>
                         </div>
+                        <div class="input-group">
+                            <div class="form-floating">
+                                <input
+                                    v-model="metodo"
+                                    type="text"
+                                    class="form-control"
+                                    id="categoriaEtiqueta"
+                                    @keydown.enter.prevent="addMetodo"
+                                />
+                                <label for="categoriaEtiqueta"
+                                    >Metodo de Pago</label
+                                >
+                            </div>
+                            <button
+                                type="button"
+                                @click="addMetodo"
+                                class="btn btn-outline-success material-icons-round"
+                            >
+                                send
+                            </button>
+                        </div>
+                        <div>
+                            <div class="textarea-container">
+                                <div
+                                    v-for="(
+                                        metodo, index
+                                    ) in sucursalForm.metodosPago"
+                                    class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
+                                >
+                                    <div>
+                                        <span class="align-middle me-3">
+                                            {{ metodo }}
+                                        </span>
+                                        <span
+                                            class="link-badge fs-5 align-middle material-icons-round"
+                                            @click="removeMetodo(index)"
+                                            >clear</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div
                             v-if="errorApi.show"
                             class="alert alert-warning"
@@ -112,10 +154,25 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useSucursales } from '../../composables/useSucursales'
 
 const { sucursalForm, actionSucursal, errorApi, newSucursal, cleanForm } =
     useSucursales()
+
+const metodo = ref('')
+const addMetodo = () => {
+    if (!sucursalForm.value.metodosPago) {
+        sucursalForm.value.metodosPago = []
+    }
+    if (metodo.value.trim()) {
+        sucursalForm.value.metodosPago.push(metodo.value.trim())
+        metodo.value = ''
+    }
+}
+const removeMetodo = index => {
+    sucursalForm.value.metodosPago.splice(index, 1)
+}
 </script>
 
 <style scoped>
@@ -128,5 +185,18 @@ const { sucursalForm, actionSucursal, errorApi, newSucursal, cleanForm } =
     border-bottom: 0;
     border-right: 0;
     user-select: none;
+}
+
+.link-badge {
+    cursor: pointer;
+    user-select: none;
+}
+.textarea-container {
+    border: 2px dotted #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    min-height: 80px;
+    width: 100%;
+    box-sizing: border-box;
 }
 </style>
