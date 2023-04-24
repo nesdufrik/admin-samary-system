@@ -112,7 +112,6 @@
                                 ref="image"
                                 @change="onFileChange"
                                 @keydown.enter.prevent
-                                required
                             />
                         </div>
                         <div>
