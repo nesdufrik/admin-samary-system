@@ -51,9 +51,11 @@ export const useAnalitics = () => {
         // Obtener totales por día
         const totalsByDay = ordenesTotales.value.reduce((acc, obj) => {
             const date = obj.localDate.slice(0, 2)
-            acc[date] = (acc[date] || 0) + obj.total
+            acc[date] = parseFloat(((acc[date] || 0) + obj.total).toFixed(1))
             return acc
         }, {})
+        console.log(ordenesTotales.value)
+        console.log(totalsByDay)
         return totalsByDay
     }
 

@@ -23,6 +23,18 @@
                     />
                     <label for="Password">Contraseña</label>
                 </div>
+                <div class="form-check mb-3 text-start">
+                    <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="showPassword"
+                        v-model="showPassword"
+                        @click="toggleShowPassword"
+                    />
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Mostrar contraseña
+                    </label>
+                </div>
                 <div
                     class="alert alert-warning"
                     role="alert"
@@ -74,6 +86,17 @@ if (route.query.show && route.query.message) {
         message: route.query.message,
     }
 }
+
+let showPassword = false
+
+function toggleShowPassword() {
+    const passwordInput = document.getElementById('Password')
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text'
+    } else {
+        passwordInput.type = 'password'
+    }
+}
 </script>
 
 <style scoped>
@@ -86,13 +109,13 @@ if (route.query.show && route.query.message) {
     z-index: 2;
 }
 
-.form-signin input[type='text'] {
+.form-signin #Login {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-.form-signin input[type='password'] {
+.form-signin #Password {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
