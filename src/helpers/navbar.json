@@ -1,10 +1,5 @@
 [
     {
-        "title": "Inicio",
-        "link": "/",
-        "icon": "home"
-    },
-    {
         "title": "Estadísticas",
         "link": "dashboard",
         "icon": "dashboard"

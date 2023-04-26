@@ -31,6 +31,30 @@ export const useAnalitics = () => {
         )
     }
 
+    const loadAnaliticsSpecific = async (sucursalId, mes) => {
+        const actual = new Date()
+        const year = actual.getFullYear()
+        const month = mes
+
+        const actualDateDesde = new Date(year, month, 1, 0, 0, 0)
+        const actualDateHasta = new Date(year, month + 1, 0, 23, 59, 59)
+
+        const actualDateDesdeUTC = actualDateDesde.toISOString()
+        const actualDateHastaUTC = actualDateHasta.toISOString()
+
+        const query = {
+            desde: actualDateDesdeUTC,
+            hasta: actualDateHastaUTC,
+        }
+
+        analiticsStore.loadOrdenesTotales(
+            await getOrdenesByTotal(sucursalId, query)
+        )
+        analiticsStore.loadOrdenesItems(
+            await getOrdenesByItem(sucursalId, query)
+        )
+    }
+
     const chartTotales = computed(() => totalDelDia())
     const chartItems = computed(() => totalItems())
 
@@ -54,8 +78,6 @@ export const useAnalitics = () => {
             acc[date] = parseFloat(((acc[date] || 0) + obj.total).toFixed(1))
             return acc
         }, {})
-        console.log(ordenesTotales.value)
-        console.log(totalsByDay)
         return totalsByDay
     }
 
@@ -68,7 +90,6 @@ export const useAnalitics = () => {
                 groupedData[d.name] = d.cantidad
             }
         })
-
         return groupedData
     }
 
@@ -82,5 +103,6 @@ export const useAnalitics = () => {
 
         //!metodos
         loadAnalitics,
+        loadAnaliticsSpecific,
     }
 }

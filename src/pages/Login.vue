@@ -64,11 +64,6 @@
                 </button>
             </form>
         </main>
-        <footer class="footer py-3 bg-light bg-opacity-50">
-            <div class="container-xl text-center">
-                <small class="text-muted">&copy; FrikTek 2023</small>
-            </div>
-        </footer>
     </div>
 </template>
 

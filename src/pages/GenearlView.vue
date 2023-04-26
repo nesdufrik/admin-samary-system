@@ -6,11 +6,7 @@
                 <RouterView />
             </div>
         </div>
-        <footer class="footer mt-auto py-3 bg-light bg-opacity-50">
-            <div class="container-xl text-center">
-                <small class="text-muted">&copy; FrikTek 2023</small>
-            </div>
-        </footer>
+        <footer class="footer mt-auto py-1"></footer>
     </div>
 </template>
 

@@ -11,7 +11,7 @@
                 />
             </div>
             <div class="align-self-center text-end">
-                <h3 class="m-0 fw-bold">117</h3>
+                <h3 class="m-0 fw-bold">{{ totalOrdenes }}</h3>
                 <small>Menús</small>
             </div>
         </div>
@@ -28,7 +28,7 @@
                 />
             </div>
             <div class="align-self-center text-end">
-                <h3 class="m-0 fw-bold">2639.5</h3>
+                <h3 class="m-0 fw-bold">{{ totalProfits }}</h3>
                 <small>Beneficios</small>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 />
             </div>
             <div class="align-self-center text-end">
-                <h3 class="m-0 fw-bold">423</h3>
+                <h3 class="m-0 fw-bold">{{ totalItems }}</h3>
                 <small>Productos</small>
             </div>
         </div>
@@ -62,13 +62,28 @@
                 />
             </div>
             <div class="align-self-center text-end">
-                <h3 class="m-0 fw-bold">117</h3>
+                <h3 class="m-0 fw-bold">{{ totalOrdenes }}</h3>
                 <small>Ordenes</small>
             </div>
         </div>
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed, ref } from 'vue'
+import { useAnalitics } from '../../composables/useAnaliticas'
+
+const { chartTotales, chartItems, ordenesTotales } = useAnalitics()
+
+const totalProfits = computed(() =>
+    Object.values(chartTotales.value).reduce((acc, val) => acc + val, 0)
+)
+
+const totalItems = computed(() =>
+    Object.values(chartItems.value).reduce((acc, val) => acc + val, 0)
+)
+
+const totalOrdenes = computed(() => ordenesTotales.value.length)
+</script>
 
 <style lang="scss" scoped></style>
