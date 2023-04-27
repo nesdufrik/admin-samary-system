@@ -13,5 +13,10 @@
         "title": "Usuarios",
         "link": "users",
         "icon": "group"
+    },
+    {
+        "title": "Reportes",
+        "link": "reportes",
+        "icon": "task"
     }
 ]

@@ -54,6 +54,11 @@ const routes = [
                         name: 'Administracion de los Productos',
                         component: () => import('../pages/Productos.vue'),
                     },
+                    {
+                        path: '/sucursal/:id/reportes',
+                        name: 'Reporte de Beneficios',
+                        component: () => import('../pages/Reportes.vue'),
+                    },
                 ],
             },
         ],
