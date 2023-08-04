@@ -78,7 +78,16 @@ export const useAnalitics = () => {
             acc[date] = parseFloat(((acc[date] || 0) + obj.total).toFixed(1))
             return acc
         }, {})
-        return totalsByDay
+
+        // Ordenar el array y quitar los 0 que estan el los dias 01 -> 1
+        const ordenado = Object.entries(totalsByDay).sort(([a], [b]) => a - b)
+        const objeto = ordenado.reduce((obj, [clave, valor]) => {
+            const nuevaClave = clave.replace(/^0+/, '')
+            obj[nuevaClave] = valor
+            return obj
+        }, {})
+
+        return objeto
     }
 
     function totalItems() {

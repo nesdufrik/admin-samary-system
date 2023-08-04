@@ -43,30 +43,68 @@
     <!-- ##Contenido -->
     <div id="reporteDiaParaImprimir" class="bg-light rounded-3 p-2">
         <div class="p-3">
-            <div class="text-center mb-4">
+            <div class="text-center">
                 <h2 class="fw-bold">Reporte de Cajas</h2>
             </div>
-            <div class="row row-cols-1 row-cols-md-4 g-3">
-                <div class="col" v-for="caja in cajasArr">
-                    <div class="border border-4 rounded p-2 h-100">
-                        <div class="fw-bold">
-                            {{ dateFormated(caja.createdAt) }}
-                        </div>
-                        <div class="fw-bold fs-5 mt-2">
-                            Total: {{ caja.total }} Bs.
-                        </div>
-                        <div class="fw-bold mt-1 row row-cols-2 row-cols-md-1">
-                            <div class="col" v-for="metodo in caja.reporte">
-                                <div class="ms-2">
-                                    {{ metodo.payMetodo }}:
-                                    <span class="text-success">{{
-                                        metodo.total
-                                    }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Status</th>
+                            <th>Detalle</th>
+                            <th class="text-end">Total</th>
+                            <th class="text-end"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-for="caja in cajasArr" :key="caja._id">
+                            <tr>
+                                <td class="align-middle text-center">
+                                    <span
+                                        v-if="caja.active"
+                                        class="fw-bold text-success material-icons-round"
+                                        >circle</span
+                                    >
+                                    <span
+                                        v-else
+                                        class="fw-bold text-secondary material-icons-round"
+                                        >circle</span
+                                    >
+                                </td>
+                                <td class="align-middle">
+                                    <small class="text-secondary">{{
+                                        dateFormated(caja.createdAt)
+                                    }}</small>
+                                    <br />
+                                    <div
+                                        class="d-inline-flex mb-1 px-1 py-1 fw-bold bg-secondary bg-opacity-10 border border-dark border-opacity-10 rounded-2 me-1"
+                                        v-for="metodo in caja.reporte"
+                                    >
+                                        {{ metodo.payMetodo }}:
+                                        <span class="text-success">
+                                            {{ metodo.total }} Bs.
+                                        </span>
+                                    </div>
+                                </td>
+                                <td class="align-middle fw-bold text-end fs-5">
+                                    {{ caja.total }} Bs.
+                                </td>
+                                <td class="align-middle text-end">
+                                    <span
+                                        v-if="caja.total !== 0"
+                                        class="material-icons-round text-secondary"
+                                        >search</span
+                                    >
+                                    <span
+                                        v-else
+                                        class="material-icons-round text-danger"
+                                        >delete</span
+                                    >
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
             </div>
             <div class="mt-3 fs-4 fw-bold">
                 Total: {{ totalCajasDates }} Bs.

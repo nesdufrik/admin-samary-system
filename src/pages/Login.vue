@@ -31,7 +31,10 @@
                         v-model="showPassword"
                         @click="toggleShowPassword"
                     />
-                    <label class="form-check-label" for="flexCheckDefault">
+                    <label
+                        class="form-check-label user-select-none"
+                        for="showPassword"
+                    >
                         Mostrar contraseña
                     </label>
                 </div>
