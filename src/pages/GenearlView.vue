@@ -1,13 +1,13 @@
 <template>
-    <div class="d-flex flex-column h-100">
-        <div class="flex-shrink-0 mb-3">
-            <NavBar />
-            <div class="container-xl">
-                <RouterView />
-            </div>
-        </div>
-        <footer class="footer mt-auto py-1"></footer>
-    </div>
+	<div class="d-flex flex-column h-100">
+		<div class="flex-shrink-0 mb-3">
+			<NavBar />
+			<div class="container-xl">
+				<RouterView />
+			</div>
+		</div>
+		<footer class="footer mt-auto py-1"></footer>
+	</div>
 </template>
 
 <script setup>
