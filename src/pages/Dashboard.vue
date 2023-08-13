@@ -26,7 +26,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Menús"
-				url-img="/src/assets/icons/menu.png"
+				url-img="../assets/icons/menu.png"
 				text-alt="menus_vendidos"
 				:total="ordenesTotales.length"
 			/>
@@ -34,7 +34,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Beneficios"
-				url-img="/src/assets/icons/money.png"
+				url-img="../assets/icons/money.png"
 				text-alt="menus_vendidos"
 				:total="totalProfits"
 			/>
@@ -42,7 +42,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Productos"
-				url-img="/src/assets/icons/food.png"
+				url-img="../assets/icons/food.png"
 				text-alt="menus_vendidos"
 				:total="totalItems"
 			/>
@@ -50,7 +50,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Ordenes"
-				url-img="/src/assets/icons/to-do-list.png"
+				url-img="../assets/icons/to-do-list.png"
 				text-alt="menus_vendidos"
 				:total="ordenesTotales.length"
 			/>
