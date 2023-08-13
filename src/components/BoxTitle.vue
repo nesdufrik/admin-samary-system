@@ -5,7 +5,7 @@
 		<h2 class="fw-bold m-0 ms-2">
 			{{ titulo }}
 		</h2>
-		<div class="ms-auto">
+		<div class="ms-auto d-flex">
 			<slot></slot>
 		</div>
 	</div>

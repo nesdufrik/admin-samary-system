@@ -26,22 +26,12 @@
 	</div>
 	<div class="row row-cols-1 row-cols-md-4 g-2" v-if="cat_switch">
 		<div class="col" v-for="categoria in categoriasArr" :key="categoria._id">
-			<div class="card tarjeta">
-				<div class="card-body">
-					<div>
-						<h4 class="fw-semibold">
-							{{ categoria.name }}
-						</h4>
-						<div
-							class="d-inline-flex mb-1 px-1 py-1 fw-semibold text-success bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-1"
-							v-for="(etiqueta, index) in categoria.etiquetas"
-							:key="index"
-						>
-							<span class="align-middle">
-								{{ etiqueta }}
-							</span>
-						</div>
-					</div>
+			<BoxArticle :nombre-categoria="categoria.name">
+				<BoxBadge
+					v-for="etiqueta in categoria.etiquetas"
+					:nombre-etiqueta="etiqueta"
+				/>
+				<template #buttons>
 					<button
 						class="tarjeta__button tarjeta__button--delete link-danger material-icons-round"
 						data-bs-toggle="modal"
@@ -58,8 +48,8 @@
 					>
 						edit
 					</button>
-				</div>
-			</div>
+				</template>
+			</BoxArticle>
 		</div>
 	</div>
 	<div class="tarjeta">
@@ -74,8 +64,10 @@
 		</BoxTitle>
 	</div>
 	<!-- Lista de productos -->
-	<div class="bg-light rounded-3 table-responsive p-2">
-		<table class="table table-hover">
+	<div
+		class="bg-light rounded-3 table-responsive border-top border-dark-subtle border-5 p-2"
+	>
+		<table class="table table-light table-hover">
 			<thead>
 				<tr>
 					<th colspan="3" class="align-middle fs-4">Productos</th>
@@ -120,6 +112,8 @@
 
 <script setup>
 import BoxTitle from '../components/BoxTitle.vue'
+import BoxArticle from '../components/BoxArticle.vue'
+import BoxBadge from '../components/BoxBadge.vue'
 import addProductoModal from '../components/modalsProducto/addProducto.vue'
 import editProductoModal from '../components/modalsProducto/editProducto.vue'
 import delProductoModal from '../components/modalsProducto/delProducto.vue'

@@ -1,34 +1,33 @@
 <template>
-    <div
-        class="tarjeta bd-callout bd-callout-right bd-callout-dark rounded-3 text-end p-3"
-    >
-        <h1 class="fw-bold">{{ sucursalData.name }}</h1>
-        <span class="fw-bold fs-5">{{ sucursalData.arroba }}</span
-        ><br />
-        <span class="fst-italic">Dirección: {{ sucursalData.direccion }}</span
-        ><br />
-        <span class="fst-italic">Teléfono: {{ sucursalData.telefono }}</span
-        ><br />
-        <button
-            class="tarjeta__button link-secondary material-icons-round"
-            @click="editarSucursal"
-            data-bs-toggle="modal"
-            data-bs-target="#editarSucursal"
-        >
-            settings
-        </button>
-        <button
-            class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
-            @click="editarSucursal"
-            data-bs-toggle="modal"
-            data-bs-target="#deleteSucursal"
-        >
-            delete
-        </button>
-    </div>
-    <RouterView />
-    <editSucursalModal />
-    <delSucursalModal />
+	<div
+		class="tarjeta bg-dark-subtle border-end border-5 border-dark-subtle rounded-3 text-end p-3 my-3"
+	>
+		<div class="d-flex flex-column">
+			<h1 class="fw-bold">{{ sucursalData.name }}</h1>
+			<span class="fw-bold fs-5">{{ sucursalData.arroba }}</span>
+			<span class="fst-italic">Dirección: {{ sucursalData.direccion }}</span>
+			<span class="fst-italic">Teléfono: {{ sucursalData.telefono }}</span>
+		</div>
+		<button
+			class="tarjeta__button link-secondary material-icons-round"
+			@click="editarSucursal"
+			data-bs-toggle="modal"
+			data-bs-target="#editarSucursal"
+		>
+			settings
+		</button>
+		<button
+			class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
+			@click="editarSucursal"
+			data-bs-toggle="modal"
+			data-bs-target="#deleteSucursal"
+		>
+			delete
+		</button>
+	</div>
+	<RouterView />
+	<editSucursalModal />
+	<delSucursalModal />
 </template>
 
 <script setup>
@@ -50,21 +49,21 @@ contentNavBar()
 
 <style scoped>
 .tarjeta {
-    position: relative;
+	position: relative;
 }
 
 .tarjeta__button {
-    user-select: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.7rem;
-    position: absolute;
-    left: 0.5rem;
-    top: 0.5rem;
+	user-select: none;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	font-size: 1.7rem;
+	position: absolute;
+	left: 0.5rem;
+	top: 0.5rem;
 }
 
 .tarjeta__button--edit {
-    margin-top: 2rem;
+	margin-top: 2rem;
 }
 </style>
