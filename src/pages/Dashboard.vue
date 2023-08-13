@@ -26,7 +26,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Menús"
-				url-img="../assets/icons/menu.png"
+				:url-img="menu"
 				text-alt="menus_vendidos"
 				:total="ordenesTotales.length"
 			/>
@@ -34,7 +34,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Beneficios"
-				url-img="../assets/icons/money.png"
+				:url-img="money"
 				text-alt="menus_vendidos"
 				:total="totalProfits"
 			/>
@@ -42,7 +42,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Productos"
-				url-img="../assets/icons/food.png"
+				:url-img="food"
 				text-alt="menus_vendidos"
 				:total="totalItems"
 			/>
@@ -50,7 +50,7 @@
 		<div class="col">
 			<BoxDataSell
 				titulo="Ordenes"
-				url-img="../assets/icons/to-do-list.png"
+				:url-img="toDo"
 				text-alt="menus_vendidos"
 				:total="ordenesTotales.length"
 			/>
@@ -59,6 +59,10 @@
 </template>
 
 <script setup>
+import money from '../assets/icons/money.png'
+import menu from '../assets/icons/menu.png'
+import food from '../assets/icons/food.png'
+import toDo from '../assets/icons/to-do-list.png'
 import BoxDashboard from '../components/BoxDashboard.vue'
 import BoxDataSell from '../components/BoxDataSell.vue'
 import BoxTitle from '../components/BoxTitle.vue'
