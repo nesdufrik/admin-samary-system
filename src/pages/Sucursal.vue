@@ -25,9 +25,12 @@
 			delete
 		</button>
 	</div>
+
 	<RouterView />
-	<editSucursalModal />
-	<delSucursalModal />
+	<Teleport to="#app">
+		<delSucursalModal />
+		<editSucursalModal />
+	</Teleport>
 </template>
 
 <script setup>
@@ -40,7 +43,8 @@ import { useSucursales } from '../composables/useSucursales'
 const { showNavBar, contentNavBar } = useNavBar()
 showNavBar.value = true
 
-const { sucursalData, editarSucursal, loadSucursal } = useSucursales()
+const { sucursalData, editarSucursal, loadSucursal, actionState } =
+	useSucursales()
 const route = useRoute()
 
 loadSucursal(route.params.id)

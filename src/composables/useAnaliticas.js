@@ -87,7 +87,7 @@ export const useAnalitics = () => {
 	}
 
 	function totalItems() {
-		let groupedData = {}
+		const groupedData = {}
 		ordenesItems.value.forEach((d) => {
 			if (groupedData[d.name]) {
 				groupedData[d.name] += d.cantidad
@@ -99,14 +99,14 @@ export const useAnalitics = () => {
 	}
 
 	return {
-		//!propiedades
+		// !propiedades
 		ordenesItems,
 		ordenesTotales,
 
 		chartTotales,
 		chartItems,
 
-		//!metodos
+		// !metodos
 		loadAnalitics,
 		loadAnaliticsSpecific,
 	}

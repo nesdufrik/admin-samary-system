@@ -33,7 +33,7 @@
                 </div>
                 <div class="modal-footer p-0 mt-3">
                     <button
-                        v-if="!actionEmpresa"
+                        v-if="!actionState"
                         type="button"
                         class="btn-modal btn-modal-left btn-modal-secondary col-6 fw-bold"
                         data-bs-dismiss="modal"
@@ -49,7 +49,7 @@
                         Cerrar
                     </button>
                     <button
-                        v-if="!actionEmpresa"
+                        v-if="!actionState"
                         type="submit"
                         form="newEmpresaForm"
                         class="btn-modal btn-modal-right btn-modal-primary col-6 fw-bold"
@@ -77,7 +77,7 @@
 <script setup>
 import { useEmpresas } from '../../composables/useEmpresas'
 
-const { empresaForm, actionEmpresa, newEmpresa } = useEmpresas()
+const { empresaForm, actionState, newEmpresa } = useEmpresas()
 </script>
 
 <style scoped>

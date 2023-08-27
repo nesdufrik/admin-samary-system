@@ -10,21 +10,13 @@
 			</button>
 			<button
 				class="tarjeta__button link-secondary align-middle material-icons-round"
-				v-if="cat_switch"
-				:onclick="switched"
+				@click="cat_switch = !cat_switch"
 			>
-				visibility_off
-			</button>
-			<button
-				class="tarjeta__button link-secondary align-middle material-icons-round"
-				v-else
-				:onclick="switched"
-			>
-				visibility
+				{{ cat_switch ? 'visibility_off' : 'visibility' }}
 			</button>
 		</BoxTitle>
 	</div>
-	<div class="row row-cols-1 row-cols-md-4 g-2" v-if="cat_switch">
+	<div class="row row-cols-1 row-cols-md-4 g-2" v-show="cat_switch">
 		<div class="col" v-for="categoria in categoriasArr" :key="categoria._id">
 			<BoxArticle :nombre-categoria="categoria.name">
 				<BoxBadge
@@ -70,15 +62,53 @@
 		<table class="table table-light table-hover">
 			<thead>
 				<tr>
-					<th colspan="3" class="align-middle fs-4">Productos</th>
+					<th class="align-middle fs-4">Productos</th>
+					<th class="align-middle fs-6">
+						<div class="d-flex w-100 align-items-center">
+							<span class="material-icons-round fs-5">filter_list</span>
+							<select
+								v-model="filterCategoria"
+								class="form-select border-0 fw-bold bg-light fs-6 ps-2 py-0"
+								@change="filter"
+							>
+								<option value="" selected>Todos...</option>
+								<option v-for="cat in categoriasArr" :value="cat.name">
+									{{ cat.name }}
+								</option>
+							</select>
+						</div>
+					</th>
+					<th class="align-middle fs-6">
+						<div class="d-flex w-100 align-items-center">
+							<span class="material-icons-round fs-5">filter_list</span>
+							<select
+								v-model="filterSubcategoria"
+								class="form-select border-0 fw-bold fs-6 ps-2 py-0"
+								@change="filter"
+								:class="[
+									subcatArr
+										? 'bg-light '
+										: 'bg-secondary-subtle text-secondary',
+								]"
+								:disabled="!subcatArr"
+							>
+								<option value="">Todos...</option>
+								<option v-for="sub in subcatArr" :value="sub">{{ sub }}</option>
+							</select>
+						</div>
+					</th>
 					<th colspan="2" class="align-middle">Precio Bs.</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr v-for="producto in productosArr" :key="producto._id">
-					<td class="align-middle">{{ producto.name }}</td>
-					<td class="align-middle">{{ producto.categoria }}</td>
-					<td class="align-middle">{{ producto.etiqueta }}</td>
+					<td class="align-middle col-6">{{ producto.name }}</td>
+					<td class="align-middle col-2">
+						{{ producto.categoria }}
+					</td>
+					<td class="align-middle col-2">
+						{{ producto.etiqueta }}
+					</td>
 					<td class="align-middle">{{ producto.precio }}</td>
 					<td class="align-middle text-end">
 						<span
@@ -99,15 +129,51 @@
 				</tr>
 			</tbody>
 		</table>
+		<nav>
+			<ul class="pagination mt-3 justify-content-center user-select-none">
+				<li
+					:class="[
+						pageProducto.hasPrevPage ? 'page-item' : 'page-item disabled',
+					]"
+				>
+					<a
+						class="page-link"
+						aria-label="Previous"
+						role="button"
+						@click="changePage(pageProducto.prevPage)"
+					>
+						Anterior
+					</a>
+				</li>
+				<li class="page-item">
+					<a class="page-link" role="button">{{ pageProducto.page }}</a>
+				</li>
+				<li
+					:class="[
+						pageProducto.hasNextPage ? 'page-item' : 'page-item disabled',
+					]"
+				>
+					<a
+						class="page-link"
+						aria-label="Next"
+						role="button"
+						@click="changePage(pageProducto.nextPage)"
+					>
+						Próximo
+					</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
+	<Teleport to="#app">
+		<addCategoriaModal />
+		<editCategoriaModal />
+		<delCategoriaModal />
 
-	<addCategoriaModal />
-	<editCategoriaModal />
-	<delCategoriaModal />
-
-	<addProductoModal />
-	<editProductoModal />
-	<delProductoModal />
+		<addProductoModal />
+		<editProductoModal />
+		<delProductoModal />
+	</Teleport>
 </template>
 
 <script setup>
@@ -120,13 +186,17 @@ import delProductoModal from '../components/modalsProducto/delProducto.vue'
 import addCategoriaModal from '../components/modalsCategoria/addCategoria.vue'
 import editCategoriaModal from '../components/modalsCategoria/editCategoria.vue'
 import delCategoriaModal from '../components/modalsCategoria/delCategoria.vue'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductos } from '../composables/useProductos'
 
 const {
 	categoriasArr,
+	subcatArr,
 	productosArr,
+	pageProducto,
+	filterCategoria,
+	filterSubcategoria,
 	listCategorias,
 	editarCategoria,
 	listProductos,
@@ -135,9 +205,38 @@ const {
 
 const route = useRoute()
 const cat_switch = ref(true)
-const switched = () => {
-	cat_switch.value = !cat_switch.value
+
+const changePage = (page) => {
+	listProductos(
+		route.params.id,
+		page,
+		filterCategoria.value,
+		filterSubcategoria.value
+	)
 }
+
+const filter = () => {
+	listProductos(
+		route.params.id,
+		1,
+		filterCategoria.value,
+		filterSubcategoria.value
+	)
+}
+
+watch(filterCategoria, () => {
+	if (filterCategoria.value) {
+		const filter = categoriasArr.value.filter(
+			(el) => el.name === filterCategoria.value
+		)
+		subcatArr.value = filter[0].etiquetas
+		filterSubcategoria.value = ''
+	} else {
+		subcatArr.value = null
+		filterSubcategoria.value = ''
+	}
+})
+
 listCategorias(route.params.id)
 listProductos(route.params.id)
 </script>
