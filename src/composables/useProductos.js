@@ -16,10 +16,9 @@ export const useProductos = () => {
 	const productosStore = useProductosStore()
 
 	const {
-		categoriasArr,
 		subcatArr,
+		categoriasArr,
 		categoriaForm,
-		categoriaEdit,
 		productosArr,
 		productoForm,
 		pageProducto,
@@ -27,6 +26,7 @@ export const useProductos = () => {
 		filterSubcategoria,
 		previewUrl,
 		actionState,
+		errorApi,
 	} = storeToRefs(productosStore)
 
 	// Metodos para Categorias
@@ -37,8 +37,6 @@ export const useProductos = () => {
 	const newCategoria = async (id) => {
 		actionState.value = true
 		productosStore.addCategoria(await postCategoria(categoriaForm.value, id))
-		categoriaForm.value = {}
-		previewUrl.value = ''
 		actionState.value = false
 	}
 
@@ -48,7 +46,7 @@ export const useProductos = () => {
 
 	const updateCategoria = async (id) => {
 		actionState.value = true
-		productosStore.updtCategoria(await putCategoria(categoriaEdit.value, id))
+		productosStore.updtCategoria(await putCategoria(categoriaForm.value, id))
 		actionState.value = false
 	}
 
@@ -61,21 +59,16 @@ export const useProductos = () => {
 
 	// Metodos para Productos
 	const listProductos = async (id, page = '1', cat = '', sub = '') => {
-		const productos = await getProductos(id, page, cat, sub)
-		const { docs, ...options } = productos
+		const { success, data } = await getProductos(id, page, cat, sub)
+		const { docs, ...options } = data
 		pageProducto.value = { ...options }
-		productosStore.loadProductos(productos.docs)
+		productosStore.loadProductos({ success, data: docs })
 	}
 
 	const newProducto = async (id) => {
-		try {
-			actionState.value = true
-			productosStore.addProducto(await postProducto(productoForm.value, id))
-			productoForm.value = {}
-			actionState.value = false
-		} catch (error) {
-			console.log(error)
-		}
+		actionState.value = true
+		productosStore.addProducto(await postProducto(productoForm.value, id))
+		actionState.value = false
 	}
 
 	const editarProducto = (id) => {
@@ -98,16 +91,18 @@ export const useProductos = () => {
 	// Metodos globales
 	const etiquetasArray = computed(() => {
 		if (productoForm.value.categoria) {
-			const filter = categoriasArr.value.filter(
+			const filter = categoriasArr.value.find(
 				(el) => el.name === productoForm.value.categoria
 			)
-			return filter[0].etiquetas
+			return filter.etiquetas
 		}
 		return null
 	})
 
 	const clearForm = () => {
+		categoriaForm.value = {}
 		productoForm.value = {}
+		errorApi.value = {}
 		previewUrl.value = ''
 	}
 
@@ -118,10 +113,9 @@ export const useProductos = () => {
 
 	return {
 		//! propiedades
-		categoriasArr,
 		subcatArr,
+		categoriasArr,
 		categoriaForm,
-		categoriaEdit,
 		productosArr,
 		productoForm,
 		pageProducto,
@@ -129,6 +123,7 @@ export const useProductos = () => {
 		filterSubcategoria,
 		previewUrl,
 		actionState,
+		errorApi,
 
 		// !Computed
 		etiquetasArray,

@@ -3,7 +3,7 @@
 		class="btn-modal btn-modal-right btn-modal-danger col-6 fw-bold m-0"
 		:data-bs-target="`#${target}`"
 		data-bs-toggle="modal"
-		@click="$emit('actionDelete')"
+		@click="actionDelete"
 	>
 		Eliminar
 	</button>
@@ -12,4 +12,7 @@
 defineProps({
 	target: String,
 })
+
+const emit = defineEmits(['actionDelete'])
+const actionDelete = () => emit('actionDelete')
 </script>

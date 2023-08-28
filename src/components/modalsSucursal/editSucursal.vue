@@ -60,9 +60,9 @@
 					>
 						<span
 							role="button"
-							class="fs-5 ms-1 material-icons-round"
+							class="fs-6 ms-1 material-icons-round"
 							@click="removeMetodo(index)"
-							>clear</span
+							>remove_circle</span
 						>
 					</BoxBadge>
 				</div>

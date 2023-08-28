@@ -35,7 +35,7 @@
 					<button
 						class="tarjeta__button tarjeta__button--edit link-secondary material-icons-round"
 						data-bs-toggle="modal"
-						data-bs-target="#editCategoria"
+						data-bs-target="#editarCategoria"
 						@click="editarCategoria(categoria._id)"
 					>
 						edit
@@ -113,7 +113,7 @@
 					<td class="align-middle text-end">
 						<span
 							class="tarjeta__link text-secondary material-icons-round me-md-2"
-							data-bs-target="#editProducto"
+							data-bs-target="#editarProducto"
 							data-bs-toggle="modal"
 							@click="editarProducto(producto._id)"
 							>edit</span
