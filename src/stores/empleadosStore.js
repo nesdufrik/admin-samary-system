@@ -19,6 +19,8 @@ export const useEmpleadosStore = defineStore('empleados', {
 				this.errorApi.message = data.data.message
 				return
 			}
+			this.errorApi.show = false
+			this.errorApi.message = 'Se creo exitosamente el usuario'
 			this.empleadosArr.push({
 				...data.data,
 			})
@@ -32,6 +34,13 @@ export const useEmpleadosStore = defineStore('empleados', {
 			}
 		},
 		updtEmpleado(data) {
+			if (!data.success) {
+				this.errorApi.show = true
+				this.errorApi.message = data.data.message
+				return
+			}
+			this.errorApi.show = false
+			this.errorApi.message = 'Los datos se actualizaron ¡Correctamente!'
 			const indiceEl = this.empleadosArr.findIndex(
 				(el) => el._id === data.data._id
 			)
