@@ -42,10 +42,11 @@
 			</BoxUser>
 		</div>
 	</div>
-
-	<addEmpleadoModal />
-	<editEmpleadoModal />
-	<delEmpleadoModal />
+	<Teleport to="#modal">
+		<addEmpleadoModal />
+		<editEmpleadoModal />
+		<delEmpleadoModal />
+	</Teleport>
 </template>
 
 <script setup>

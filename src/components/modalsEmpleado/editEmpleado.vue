@@ -29,10 +29,10 @@
 						:value="empleadoForm.avatar"
 						type="text"
 						class="form-control"
-						id="floatingAvatarEmpleado"
+						id="floatingAvatarEmpleadoUPDATE"
 						disabled
 					/>
-					<label for="floatingAvatarEmpleado">Elegir avatar</label>
+					<label for="floatingAvatarEmpleadoUPDATE">Elegir avatar</label>
 				</div>
 				<div class="dropstart ms-auto">
 					<button

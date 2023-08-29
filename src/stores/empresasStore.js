@@ -8,6 +8,7 @@ export const useEmpresasStore = defineStore('empresas', {
 			empresaForm: {},
 			loadedEmpresas: false,
 			actionState: false,
+			errorApi: {},
 		}
 	},
 	actions: {

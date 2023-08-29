@@ -51,9 +51,11 @@
 			</div>
 		</div>
 	</div>
-	<addSucursalModal />
-	<editEmpresaModal />
-	<delEmpresaModal />
+	<Teleport to="#modal">
+		<addSucursalModal />
+		<editEmpresaModal />
+		<delEmpresaModal />
+	</Teleport>
 </template>
 
 <script setup>

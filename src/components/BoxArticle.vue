@@ -1,5 +1,5 @@
 <template>
-	<div class="card tarjeta h-100">
+	<div class="card text-bg-light tarjeta h-100">
 		<div class="card-body">
 			<div>
 				<h4 class="fw-semibold">

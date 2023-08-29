@@ -91,11 +91,11 @@ import { useCaja } from '../composables/useCaja'
 const router = useRoute()
 const {
 	cajasArr,
-	loadCajas,
-	loadCajasDate,
 	totalCajasDates,
 	totalCajasDatesMetodos,
 	dateFormated,
+	loadCajas,
+	loadCajasDate,
 } = useCaja()
 
 const fecha = new Date()

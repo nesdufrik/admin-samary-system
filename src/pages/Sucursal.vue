@@ -27,7 +27,7 @@
 	</div>
 
 	<RouterView />
-	<Teleport to="#app">
+	<Teleport to="#modal">
 		<delSucursalModal />
 		<editSucursalModal />
 	</Teleport>

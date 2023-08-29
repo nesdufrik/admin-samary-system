@@ -63,38 +63,40 @@
 			<thead>
 				<tr>
 					<th class="align-middle fs-4">Productos</th>
-					<th class="align-middle fs-6">
-						<div class="d-flex w-100 align-items-center">
-							<span class="material-icons-round fs-5">filter_list</span>
-							<select
-								v-model="filterCategoria"
-								class="form-select border-0 fw-bold bg-light fs-6 ps-2 py-0"
-								@change="filter"
-							>
-								<option value="" selected>Todos...</option>
-								<option v-for="cat in categoriasArr" :value="cat.name">
-									{{ cat.name }}
-								</option>
-							</select>
-						</div>
-					</th>
-					<th class="align-middle fs-6">
-						<div class="d-flex w-100 align-items-center">
-							<span class="material-icons-round fs-5">filter_list</span>
-							<select
-								v-model="filterSubcategoria"
-								class="form-select border-0 fw-bold fs-6 ps-2 py-0"
-								@change="filter"
-								:class="[
-									subcatArr
-										? 'bg-light '
-										: 'bg-secondary-subtle text-secondary',
-								]"
-								:disabled="!subcatArr"
-							>
-								<option value="">Todos...</option>
-								<option v-for="sub in subcatArr" :value="sub">{{ sub }}</option>
-							</select>
+					<th colspan="2" class="align-middle fs-6">
+						<div class="d-flex flex-wrap flex-md-nowrap">
+							<div class="d-flex w-100 align-items-center">
+								<span class="material-icons-round fs-5">filter_list</span>
+								<select
+									v-model="filterCategoria"
+									class="form-select border-0 fw-bold bg-light fs-6 ps-2 py-0"
+									@change="filter"
+								>
+									<option value="" selected>Todos...</option>
+									<option v-for="cat in categoriasArr" :value="cat.name">
+										{{ cat.name }}
+									</option>
+								</select>
+							</div>
+							<div class="d-flex w-100 align-items-center">
+								<span class="material-icons-round fs-5">filter_list</span>
+								<select
+									v-model="filterSubcategoria"
+									class="form-select border-0 fw-bold fs-6 ps-2 py-0"
+									@change="filter"
+									:class="[
+										subcatArr
+											? 'bg-light '
+											: 'bg-secondary-subtle text-secondary',
+									]"
+									:disabled="!subcatArr"
+								>
+									<option value="">Todos...</option>
+									<option v-for="sub in subcatArr" :value="sub">
+										{{ sub }}
+									</option>
+								</select>
+							</div>
 						</div>
 					</th>
 					<th colspan="2" class="align-middle">Precio Bs.</th>
@@ -165,7 +167,7 @@
 			</ul>
 		</nav>
 	</div>
-	<Teleport to="#app">
+	<Teleport to="#modal">
 		<addCategoriaModal />
 		<editCategoriaModal />
 		<delCategoriaModal />

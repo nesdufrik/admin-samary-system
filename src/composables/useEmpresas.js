@@ -10,8 +10,14 @@ import { useEmpresasStore } from '../stores/empresasStore'
 
 export const useEmpresas = () => {
 	const empresasStore = useEmpresasStore()
-	const { empresaData, empresasArr, empresaForm, actionState, loadedEmpresas } =
-		storeToRefs(empresasStore)
+	const {
+		empresaData,
+		empresasArr,
+		empresaForm,
+		actionState,
+		loadedEmpresas,
+		errorApi,
+	} = storeToRefs(empresasStore)
 
 	const listEmpresas = async () => {
 		empresasStore.loadEmpresas(await getEmpresas())
@@ -56,6 +62,8 @@ export const useEmpresas = () => {
 	}
 
 	const cleanAndRedirect = () => {
+		empresaForm.value = {}
+		errorApi.value = {}
 		empresasStore.redirect()
 	}
 
@@ -65,6 +73,7 @@ export const useEmpresas = () => {
 		empresasArr,
 		empresaForm,
 		actionState,
+		errorApi,
 
 		//! metodos
 		listEmpresas,
