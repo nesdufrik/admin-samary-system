@@ -47,9 +47,6 @@ const options = computed(() => {
 			show: false,
 			position: 'bottom',
 		},
-		chart: {
-			fontFamily: 'Nunito',
-		},
 		labels: Object.keys(props.chartItemArray),
 	}
 })

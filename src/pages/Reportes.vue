@@ -47,15 +47,19 @@
 									}}</small>
 									<br />
 									<div
-										class="d-inline-flex mb-1 px-1 py-1 fw-bold bg-secondary bg-opacity-10 border border-dark border-opacity-10 rounded-2 me-1"
+										class="d-inline-flex mb-1 px-1 py-1 fw-bold bg-secondary bg-opacity-10 border border-dark border-opacity-10 rounded-2 me-1 fs-6"
 										v-for="metodo in caja.reporte"
 									>
-										{{ metodo.payMetodo }}:&nbsp;
-										<span class="text-success">{{ metodo.total }} Bs.</span>
+										<span
+											>{{ metodo.payMetodo }}:
+											<span class="text-success"
+												>{{ metodo.total }} Bs.</span
+											></span
+										>
 									</div>
 								</td>
-								<td class="align-middle text-end fs-5">
-									<span v-if="caja.total === 0"> Vacío </span>
+								<td class="align-middle text-end fs-6">
+									<span v-if="caja.total === 0"> Sin actividad </span>
 									<span v-else class="fw-bold"> {{ caja.total }} Bs. </span>
 								</td>
 								<td class="align-middle text-end">

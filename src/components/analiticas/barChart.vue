@@ -33,7 +33,7 @@ const options = computed(() => {
 		},
 		yaxis: {
 			title: {
-				text: 'Ganado (en BO)',
+				text: 'Ganado (en Bs.)',
 			},
 		},
 		fill: {
@@ -49,7 +49,6 @@ const options = computed(() => {
 		chart: {
 			type: 'bar',
 			id: 'vuechart-example',
-			fontFamily: 'Nunito',
 		},
 		dataLabels: {
 			enabled: false,
