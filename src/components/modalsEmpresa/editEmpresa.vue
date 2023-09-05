@@ -10,9 +10,9 @@
 					v-model="empresaForm.name"
 					type="text"
 					class="form-control"
-					id="floatingName"
+					id="floatingNameEmpresaEdit"
 				/>
-				<label for="floatingName">Nombre de Empresa</label>
+				<label for="floatingNameEmpresaEdit">Nombre de Empresa</label>
 			</div>
 		</form>
 		<template #footer>

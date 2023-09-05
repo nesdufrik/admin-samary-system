@@ -10,27 +10,27 @@
 					v-model="sucursalForm.name"
 					type="text"
 					class="form-control"
-					id="floatingName"
+					id="floatingNameSucursalEdit"
 				/>
-				<label for="floatingName">Nombre de la sucursal</label>
+				<label for="floatingNameSucursalEdit">Nombre de la sucursal</label>
 			</div>
 			<div class="form-floating">
 				<input
 					v-model="sucursalForm.direccion"
 					type="text"
 					class="form-control"
-					id="floatingDireccion"
+					id="floatingDireccionEdit"
 				/>
-				<label for="floatingDireccion">Dirección</label>
+				<label for="floatingDireccionEdit">Dirección</label>
 			</div>
 			<div class="form-floating">
 				<input
 					v-model="sucursalForm.telefono"
 					type="tel"
 					class="form-control"
-					id="floatingTelefono"
+					id="floatingTelefonoEdit"
 				/>
-				<label for="floatingTelefono">Teléfono</label>
+				<label for="floatingTelefonoEdit">Teléfono</label>
 			</div>
 			<div class="input-group">
 				<div class="form-floating">
@@ -38,10 +38,10 @@
 						v-model="metodo"
 						type="text"
 						class="form-control"
-						id="categoriaEtiqueta"
+						id="metodoEdit"
 						@keydown.enter.prevent="addMetodo"
 					/>
-					<label for="categoriaEtiqueta">Metodo de Pago</label>
+					<label for="metodoEdit">Metodo de Pago</label>
 				</div>
 				<button
 					type="button"

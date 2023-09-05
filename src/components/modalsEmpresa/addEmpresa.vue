@@ -6,9 +6,9 @@
 					v-model="empresaForm.name"
 					type="text"
 					class="form-control"
-					id="floatingName"
+					id="floatingNameEmpresaCreate"
 				/>
-				<label for="floatingName">Nombre de Empresa</label>
+				<label for="floatingNameEmpresaCreate">Nombre de Empresa</label>
 			</div>
 		</form>
 		<template #footer>

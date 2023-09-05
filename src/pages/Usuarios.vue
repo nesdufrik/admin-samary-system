@@ -50,12 +50,12 @@
 </template>
 
 <script setup>
-import BoxTitle from '../components/BoxTitle.vue'
-import BoxUser from '../components/BoxUser.vue'
-import addEmpleadoModal from '../components/modalsEmpleado/addEmpleado.vue'
-import editEmpleadoModal from '../components/modalsEmpleado/editEmpleado.vue'
-import delEmpleadoModal from '../components/modalsEmpleado/delEmpleado.vue'
-import { useEmpleados } from '../composables/useEmpleados'
+import BoxTitle from '@/components/BoxTitle.vue'
+import BoxUser from '@/components/BoxUser.vue'
+import addEmpleadoModal from '@/components/modalsEmpleado/addEmpleado.vue'
+import editEmpleadoModal from '@/components/modalsEmpleado/editEmpleado.vue'
+import delEmpleadoModal from '@/components/modalsEmpleado/delEmpleado.vue'
+import { useEmpleados } from '@/composables/useEmpleados'
 import { useSucursales } from '@/composables/useSucursales'
 
 const { empleadosArr, listEmpleados, editarEmpleado, defaulAvatar } =

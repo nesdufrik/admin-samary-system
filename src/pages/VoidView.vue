@@ -31,12 +31,15 @@
 <script setup>
 import BtnSelector from '@/components/buttons/BtnSelector.vue'
 import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useNavBar } from '@/composables/useNavBar'
 import { useEmpresas } from '@/composables/useEmpresas'
 import { useSucursales } from '@/composables/useSucursales'
 const { empresasArr, empresaData, editarEmpresa } = useEmpresas()
 const { sucursalesArr, sucursalData, editarSucursal } = useSucursales()
 const { showNavBar } = useNavBar()
+
+const router = useRouter()
 
 const sucursales = computed(() => {
 	if (sucursalesArr.value.length === 0 && !empresaData.value.name) return null
@@ -56,6 +59,7 @@ const selectSucursal = (id) => {
 	)
 	localStorage.setItem('office', JSON.stringify(sucursalData.value))
 	showNavBar.value = true
+	router.push('dashboard')
 }
 </script>
 <style scoped>

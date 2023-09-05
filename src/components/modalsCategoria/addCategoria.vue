@@ -23,10 +23,10 @@
 						v-model="etiqueta"
 						type="text"
 						class="form-control"
-						id="categoriaEtiqueta"
+						id="categoriaTagCreate"
 						@keydown.enter.prevent="addEtiqueta"
 					/>
-					<label for="categoriaEtiqueta">Etiquetas</label>
+					<label for="categoriaTagCreate">Etiquetas</label>
 				</div>
 				<button
 					type="button"
