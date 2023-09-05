@@ -3,7 +3,7 @@
 		<form
 			id="createEmpleadoForm"
 			class="row g-2"
-			@submit.prevent="newEmpleado($route.params.id)"
+			@submit.prevent="newEmpleado(sucursalData._id)"
 		>
 			<div class="form-floating">
 				<input

@@ -1,52 +1,68 @@
 <template>
-	<div
-		class="text-success bg-success-subtle border-end border-success-subtle border-5 rounded-3 text-end p-3 my-3"
-	>
-		<h1 class="fw-bold">Administrar Empresas</h1>
-		<p>Sección de acceso a las diferentes empresas creadas del usuario</p>
-	</div>
-	<div class="row row-cols-2 row-cols-md-4 g-2 text-center">
-		<div class="col empresa__box" v-for="item in empresasArr">
-			<RouterLink
-				:to="`/empresa/${item._id}`"
-				class="card h-100 rounded-3 shadow-sm"
+	<Layout>
+		<template #header>
+			<NavBar />
+		</template>
+		<template #main>
+			<RouterView />
+		</template>
+		<template #footer>
+			<small class="text-secondary">
+				powered by
+				<a
+					class="fw-bold text-decoration-none text-success"
+					href="https://friktek.com"
+					>FrikTek</a
+				></small
 			>
-				<div
-					class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
-				>
-					<h2>{{ item.name }}</h2>
-				</div>
-			</RouterLink>
-		</div>
-		<div
-			class="col empresa__box"
-			data-bs-toggle="modal"
-			data-bs-target="#createEmpresa"
-		>
-			<div class="card h-100 rounded-3 shadow-sm">
-				<div
-					class="card-body p-0 py-3 d-flex align-items-center justify-content-center"
-				>
-					<span class="material-icons-round fs-1"> add_home </span>
-				</div>
-			</div>
-		</div>
-	</div>
-	<addEmpresaModal />
+		</template>
+	</Layout>
+	<Teleport to="#modal">
+		<addEmpresa />
+		<editEmpresa />
+		<delEmpresa />
+		<addSucursal />
+		<editSucursal />
+		<delSucursal />
+	</Teleport>
 </template>
 
 <script setup>
-import addEmpresaModal from '../components/modalsEmpresa/addEmpresa.vue'
-import { useEmpresas } from '../composables/useEmpresas'
+import Layout from '@/components/Layout.vue'
+import NavBar from '@/components/NavBar.vue'
+import addEmpresa from '@/components/modalsEmpresa/addEmpresa.vue'
+import editEmpresa from '@/components/modalsEmpresa/editEmpresa.vue'
+import delEmpresa from '@/components/modalsEmpresa/delEmpresa.vue'
+import addSucursal from '@/components/modalsSucursal/addSucursal.vue'
+import editSucursal from '@/components/modalsSucursal/editSucursal.vue'
+import delSucursal from '@/components/modalsSucursal/delSucursal.vue'
 import { useNavBar } from '../composables/useNavBar'
+import { useEmpresas } from '@/composables/useEmpresas'
+import { useSucursales } from '@/composables/useSucursales'
+
+import { watch } from 'vue'
 
 const { showNavBar, contentNavBar } = useNavBar()
-showNavBar.value = false
+const { empresaData, listEmpresas } = useEmpresas()
+const { sucursalData, listSucursales } = useSucursales()
 
-const { empresasArr, listEmpresas } = useEmpresas()
+if (localStorage.getItem('company') && localStorage.getItem('office')) {
+	empresaData.value = JSON.parse(localStorage.getItem('company'))
+	sucursalData.value = JSON.parse(localStorage.getItem('office'))
+	showNavBar.value = true
+	await listSucursales(empresaData.value.id)
+}
 
-listEmpresas()
+watch(empresaData, async () => {
+	await listSucursales(empresaData.value.id)
+})
+
+watch(sucursalData, async (newVal, oldVal) => {
+	console.log(newVal, oldVal)
+})
+
 contentNavBar()
+await listEmpresas()
 </script>
 
 <style scoped></style>

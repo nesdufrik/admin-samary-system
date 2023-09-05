@@ -63,9 +63,6 @@ export const useSucursalesStore = defineStore('sucursales', {
 				(element) => element._id === id
 			)
 		},
-		loadSucursalData(data) {
-			this.sucursalData = data.data
-		},
 		redirect(dir) {
 			this.sucursalForm = {}
 			this.sucursalesArr = []

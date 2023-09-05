@@ -3,7 +3,7 @@
 		<form
 			id="newCategoriaForm"
 			class="row g-2"
-			@submit.prevent="newCategoria($route.params.id)"
+			@submit.prevent="newCategoria(sucursalData._id)"
 		>
 			<div>
 				<div class="form-floating">
@@ -86,9 +86,11 @@ import BtnNext from '@/components/buttons/BtnNext.vue'
 import BtnFull from '@/components/buttons/BtnFull.vue'
 import { ref } from 'vue'
 import { useProductos } from '@/composables/useProductos'
+import { useSucursales } from '@/composables/useSucursales'
 
 const { categoriaForm, actionState, errorApi, clearForm, newCategoria } =
 	useProductos()
+const { sucursalData } = useSucursales()
 
 const etiqueta = ref('')
 const addEtiqueta = () => {

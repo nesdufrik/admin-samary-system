@@ -7,12 +7,7 @@ export const useNavBar = () => {
 	const { showNavBar, itemsNavBar, paramId } = storeToRefs(navBarStore)
 
 	const contentNavBar = () => {
-		if (!showNavBar.value) {
-			navBarStore.loadNavBar([])
-		}
-		if (showNavBar.value) {
-			navBarStore.loadNavBar(getNavBar())
-		}
+		navBarStore.loadNavBar(getNavBar())
 	}
 
 	return {

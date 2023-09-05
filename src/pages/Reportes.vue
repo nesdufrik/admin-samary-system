@@ -4,18 +4,18 @@
 		<input
 			type="date"
 			class="form-control border-0 bg-light fw-bold fs-6 me-2"
-			v-model="fechaFormateadaDesde"
+			v-model="dateFrom"
 			name=""
 			id=""
-			@change="loadCajasDate($route.params.id, fechaDesdeSend, fechaHastaSend)"
+			@change="loadCajasDate(sucursalData._id, fetchDateFrom, fetchDateTo)"
 		/>
 		<input
 			type="date"
 			class="form-control border-0 bg-light fw-bold fs-6"
-			v-model="fechaFormateadaHasta"
+			v-model="dateTo"
 			name=""
 			id=""
-			@change="loadCajasDate($route.params.id, fechaDesdeSend, fechaHastaSend)"
+			@change="loadCajasDate(sucursalData._id, fetchDateFrom, fetchDateTo)"
 		/>
 	</BoxTitle>
 
@@ -42,135 +42,84 @@
 									<strong>{{ index + 1 }}</strong>
 								</td>
 								<td class="align-middle">
-									<small class="text-secondary">{{
+									<small class="text-secondary fw-light">{{
 										dateFormated(caja.createdAt)
 									}}</small>
 									<br />
 									<div
-										class="d-inline-flex mb-1 px-1 py-1 fw-bold bg-secondary bg-opacity-10 border border-dark border-opacity-10 rounded-2 me-1 fs-6"
+										class="d-inline-flex p-0 mb-1 mb-md-0 border-bottom border-3 border-success-subtle me-2"
 										v-for="metodo in caja.reporte"
 									>
 										<span
 											>{{ metodo.payMetodo }}:
-											<span class="text-success"
-												>{{ metodo.total }} Bs.</span
+											<span class="text-success">
+												{{ currencyFormat(metodo.total) }}</span
 											></span
 										>
 									</div>
 								</td>
-								<td class="align-middle text-end fs-6">
+								<td class="align-middle fw-bold text-end fs-6">
 									<span v-if="caja.total === 0"> Sin actividad </span>
-									<span v-else class="fw-bold"> {{ caja.total }} Bs. </span>
+									<span v-else> {{ currencyFormat(caja.total) }}</span>
 								</td>
 								<td class="align-middle text-end">
 									<span
 										v-if="caja.total !== 0"
+										role="button"
 										class="material-icons-round text-secondary"
 										>search</span
 									>
-									<span v-else class="material-icons-round text-danger"
-										>delete</span
-									>
+									<span v-else></span>
 								</td>
 							</tr>
 						</template>
 					</tbody>
 				</table>
 			</div>
-			<div class="mt-3 fs-4 fw-bold">Total: {{ totalCajasDates }} Bs.</div>
+			<div class="mt-3 fs-4 fw-bold">
+				Total:
+				{{ currencyFormat(totalCajasDates) }}
+			</div>
 			<div class="fs-5" v-for="(total, name) in totalCajasDatesMetodos">
 				Total de
 				<span class="fw-bold text-success">"{{ name }}"</span>:
-				<span class="fw-bold">{{ total }}</span> Bs.
+				<span class="fw-bold">{{ currencyFormat(total) }}</span>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script setup>
-import BoxTitle from '../components/BoxTitle.vue'
+import BoxTitle from '@/components/BoxTitle.vue'
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useCaja } from '../composables/useCaja'
-const router = useRoute()
+import { useCaja } from '@/composables/useCaja'
+import { useSucursales } from '@/composables/useSucursales'
+const { sucursalData } = useSucursales()
 const {
 	cajasArr,
 	totalCajasDates,
 	totalCajasDatesMetodos,
 	dateFormated,
-	loadCajas,
 	loadCajasDate,
 } = useCaja()
 
-const fecha = new Date()
+const actualDate = new Date()
+const actualYear = actualDate.toLocaleString('default', { year: 'numeric' })
+const actualMonth = actualDate.toLocaleString('default', { month: '2-digit' })
+const actualDay = actualDate.toLocaleString('default', { day: '2-digit' })
 
-const fechaFormateadaDesde = ref(
-	`${fecha.getFullYear()}-${(fecha.getMonth() + 1)
-		.toString()
-		.padStart(2, '0')}-01`
-)
-const fechaFormateadaHasta = ref(
-	`${fecha.getFullYear()}-${(fecha.getMonth() + 1)
-		.toString()
-		.padStart(2, '0')}-${fecha.getDate().toString().padStart(2, '0')}`
-)
+const dateFrom = ref(`${actualYear}-${actualMonth}-01`)
+const dateTo = ref(`${actualYear}-${actualMonth}-${actualDay}`)
 
-const fechaDesdeSend = computed(() => {
-	const fechaArray = fechaFormateadaDesde.value.split('-')
-	const fechaSend = new Date(
-		fechaArray[0],
-		fechaArray[1] - 1,
-		fechaArray[2],
-		0,
-		0,
-		0
-	)
-	return fechaSend
-})
+const fetchDateFrom = computed(() => new Date(`${dateFrom.value}T00:00:00`))
+const fetchDateTo = computed(() => new Date(`${dateTo.value}T23:59:59`))
 
-const fechaHastaSend = computed(() => {
-	const fechaArray = fechaFormateadaHasta.value.split('-')
-	const fechaSend = new Date(
-		fechaArray[0],
-		fechaArray[1] - 1,
-		fechaArray[2],
-		23,
-		59,
-		59
-	)
-	return fechaSend
-})
+function currencyFormat(mount) {
+	return new Intl.NumberFormat('es-BO', {
+		style: 'currency',
+		currency: 'BOB',
+	}).format(mount)
+}
 
-loadCajas(router.params.id)
+loadCajasDate(sucursalData.value._id, fetchDateFrom.value, fetchDateTo.value)
 </script>
-<style scoped>
-.tarjeta {
-	position: relative;
-}
-
-.tarjeta__button {
-	user-select: none;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	font-size: 1.4rem;
-	position: absolute;
-	right: 0.5rem;
-	top: 0.5rem;
-}
-
-.tarjeta__link {
-	user-select: none;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-}
-
-.tarjeta__button--edit {
-	margin-right: 2rem;
-}
-
-.tarjeta__button--edit2 {
-	margin-right: 4rem;
-}
-</style>

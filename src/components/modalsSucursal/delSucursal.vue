@@ -23,7 +23,7 @@
 			target="deleteSucursal"
 			:action="actionState"
 			:show="errorApi?.show"
-			@close="cleanAndRedirect(sucursalForm.empresa)"
+			@close="cleanForm"
 		/>
 	</ModalAlert>
 </template>
@@ -36,14 +36,8 @@ import BtnDelete from '@/components/buttons/BtnDelete.vue'
 import BtnFull from '@/components/buttons/BtnFull.vue'
 import { useSucursales } from '@/composables/useSucursales'
 
-const {
-	sucursalForm,
-	actionState,
-	errorApi,
-	delSucursal,
-	cleanForm,
-	cleanAndRedirect,
-} = useSucursales()
+const { sucursalForm, actionState, errorApi, delSucursal, cleanForm } =
+	useSucursales()
 </script>
 
 <style scoped></style>

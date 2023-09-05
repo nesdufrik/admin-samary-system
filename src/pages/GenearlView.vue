@@ -1,17 +1,17 @@
 <template>
-	<div class="d-flex flex-column h-100">
-		<div class="flex-shrink-0 mb-3">
-			<NavBar />
-			<div class="container-xl">
-				<RouterView />
-			</div>
-		</div>
-		<footer class="footer mt-auto py-1"></footer>
-	</div>
+	<Suspense>
+		<template #default>
+			<Home />
+		</template>
+		<template #fallback>
+			<LoadingPage />
+		</template>
+	</Suspense>
 </template>
 
 <script setup>
-import NavBar from '../components/NavBar.vue'
+import Home from './Home.vue'
+import LoadingPage from './LoadingPage.vue'
 </script>
 
 <style scoped></style>

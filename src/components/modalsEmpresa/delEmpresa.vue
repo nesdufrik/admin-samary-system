@@ -23,7 +23,7 @@
 			:action="actionState"
 			:show="errorApi?.show"
 			target="deleteEmpresa"
-			@close="cleanAndRedirect"
+			@close="cleanForm"
 		/>
 	</ModalAlert>
 </template>
@@ -36,12 +36,6 @@ import BtnDelete from '../buttons/BtnDelete.vue'
 import BtnFull from '../buttons/BtnFull.vue'
 import { useEmpresas } from '@/composables/useEmpresas'
 
-const {
-	empresaForm,
-	actionState,
-	errorApi,
-	delEmpresa,
-	cleanForm,
-	cleanAndRedirect,
-} = useEmpresas()
+const { empresaForm, actionState, errorApi, delEmpresa, cleanForm } =
+	useEmpresas()
 </script>

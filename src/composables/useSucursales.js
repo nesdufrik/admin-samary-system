@@ -10,18 +10,11 @@ import { useSucursalesStore } from '../stores/sucursalesStore'
 
 export const useSucursales = () => {
 	const sucursalesStore = useSucursalesStore()
-	const {
-		sucursalData,
-		sucursalesArr,
-		sucursalForm,
-		actionState,
-		loadedSucursales,
-		errorApi,
-	} = storeToRefs(sucursalesStore)
+	const { sucursalData, sucursalesArr, sucursalForm, actionState, errorApi } =
+		storeToRefs(sucursalesStore)
 
 	const listSucursales = async (id) => {
 		sucursalesStore.loadSucursales(await getSucursales(id))
-		loadedSucursales.value = true
 	}
 
 	const newSucursal = async (id) => {
@@ -30,8 +23,11 @@ export const useSucursales = () => {
 		actionState.value = false
 	}
 
-	const editarSucursal = () => {
-		sucursalesStore.editSucursal()
+	const editarSucursal = (id) => {
+		sucursalForm.value = JSON.parse(
+			JSON.stringify(sucursalesArr.value.find((el) => el._id === id))
+		)
+		// sucursalesStore.editSucursal()
 	}
 
 	const updateSucursal = async (id) => {
@@ -48,12 +44,8 @@ export const useSucursales = () => {
 	}
 
 	const loadSucursal = async (id) => {
-		if (!loadedSucursales.value) {
-			sucursalesStore.loadSucursalData(await getSucursal(id))
-			loadedSucursales.value = true
-			return
-		}
-		sucursalesStore.findSucursalData(id)
+		const { data } = await getSucursal(id)
+		sucursalData.value = data
 	}
 
 	const cleanForm = () => {

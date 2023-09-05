@@ -99,7 +99,7 @@
 							</div>
 						</div>
 					</th>
-					<th colspan="2" class="align-middle">Precio Bs.</th>
+					<th colspan="2" class="align-middle">Precio</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -111,7 +111,14 @@
 					<td class="align-middle col-2">
 						{{ producto.etiqueta }}
 					</td>
-					<td class="align-middle">{{ producto.precio }}</td>
+					<td class="align-middle">
+						{{
+							new Intl.NumberFormat('es-BO', {
+								style: 'currency',
+								currency: 'BOB',
+							}).format(producto.precio)
+						}}
+					</td>
 					<td class="align-middle text-end">
 						<span
 							class="tarjeta__link text-secondary material-icons-round me-md-2"
@@ -189,8 +196,8 @@ import addCategoriaModal from '../components/modalsCategoria/addCategoria.vue'
 import editCategoriaModal from '../components/modalsCategoria/editCategoria.vue'
 import delCategoriaModal from '../components/modalsCategoria/delCategoria.vue'
 import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import { useProductos } from '../composables/useProductos'
+import { useProductos } from '@/composables/useProductos'
+import { useSucursales } from '@/composables/useSucursales'
 
 const {
 	categoriasArr,
@@ -205,12 +212,13 @@ const {
 	editarProducto,
 } = useProductos()
 
-const route = useRoute()
+const { sucursalData } = useSucursales()
+
 const cat_switch = ref(true)
 
 const changePage = (page) => {
 	listProductos(
-		route.params.id,
+		sucursalData.value._id,
 		page,
 		filterCategoria.value,
 		filterSubcategoria.value
@@ -219,7 +227,7 @@ const changePage = (page) => {
 
 const filter = () => {
 	listProductos(
-		route.params.id,
+		sucursalData.value._id,
 		1,
 		filterCategoria.value,
 		filterSubcategoria.value
@@ -239,8 +247,13 @@ watch(filterCategoria, () => {
 	}
 })
 
-listCategorias(route.params.id)
-listProductos(route.params.id)
+watch(sucursalData, async () => {
+	await listCategorias(sucursalData.value._id)
+	await listProductos(sucursalData.value._id)
+})
+
+await listCategorias(sucursalData.value._id)
+await listProductos(sucursalData.value._id)
 </script>
 <style scoped>
 .tarjeta {

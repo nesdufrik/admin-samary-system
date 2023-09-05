@@ -31,8 +31,9 @@ export const useEmpresas = () => {
 		actionState.value = false
 	}
 
-	const editarEmpresa = () => {
-		empresasStore.editEmpresa()
+	const editarEmpresa = (id) => {
+		empresaForm.value = { ...empresasArr.value.find((el) => el._id === id) }
+		// empresasStore.editEmpresa()
 	}
 
 	const updateEmpresa = async (id) => {

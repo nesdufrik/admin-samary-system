@@ -9,6 +9,7 @@ export const useAuth = () => {
 		storeToRefs(authStore)
 
 	const login = async () => {
+		localStorage.clear()
 		logInData.value.show = false
 		if (!logInForm.value.email || !logInForm.value.password) {
 			logInData.value.message = 'Por favor llene todos los campos'
@@ -21,8 +22,10 @@ export const useAuth = () => {
 			if (res.success) {
 				if (res.data.logInAdmin) {
 					localStorage.setItem('token', res.data.token)
-					localStorage.setItem('name', res.data.name)
-					localStorage.setItem('avatar', res.data.avatar)
+					localStorage.setItem(
+						'person',
+						JSON.stringify({ name: res.data.name, avatar: res.data.avatar })
+					)
 					authStore.loginAuth()
 					return
 				}
@@ -36,9 +39,7 @@ export const useAuth = () => {
 	}
 
 	const logout = () => {
-		localStorage.removeItem('name')
-		localStorage.removeItem('token')
-		localStorage.removeItem('avatar')
+		localStorage.clear()
 		authStore.logoutAuth()
 	}
 

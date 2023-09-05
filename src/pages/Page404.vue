@@ -1,17 +1,11 @@
 <template>
-    <div class="d-flex flex-column text-center h-100">
-        <main class="w-100 m-auto flex-shrink-0 p-5">
-            <h1 class="display-1 fw-bold text-secondary">Error: 404</h1>
-            <h3 class="display-5 fw-bold text-secondary">
-                Página no encontrada
-            </h3>
-            <a href="/" class="fs-2 fw-bold text-decoration-none text-success">
-                Inicio
-            </a>
-        </main>
-    </div>
+	<div class="vh-100 d-flex justify-content-center align-items-center">
+		<main class="d-flex flex-column">
+			<span class="display-1 fw-bold text-danger">404 🥺</span>
+			<span class="fs-3 text-secondary">Página no encontrada</span>
+			<a href="/" class="fs-5 fw-bold text-success text-decoration-none"
+				>🏠Inicio</a
+			>
+		</main>
+	</div>
 </template>
-
-<script setup></script>
-
-<style scoped></style>

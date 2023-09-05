@@ -3,7 +3,7 @@
 		<form
 			id="newProductoForm"
 			class="row g-2"
-			@submit.prevent="newProducto($route.params.id)"
+			@submit.prevent="newProducto(sucursalData._id)"
 		>
 			<div class="form-floating">
 				<input
@@ -108,6 +108,7 @@ import BtnBack from '../buttons/BtnBack.vue'
 import BtnNext from '../buttons/BtnNext.vue'
 import BtnFull from '../buttons/BtnFull.vue'
 import { useProductos } from '@/composables/useProductos'
+import { useSucursales } from '@/composables/useSucursales'
 
 const {
 	previewUrl,
@@ -120,4 +121,6 @@ const {
 	clearForm,
 	onFileChange,
 } = useProductos()
+
+const { sucursalData } = useSucursales()
 </script>

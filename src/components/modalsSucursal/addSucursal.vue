@@ -3,7 +3,7 @@
 		<form
 			id="createSucursalForm"
 			class="row g-2"
-			@submit.prevent="newSucursal($route.params.id)"
+			@submit.prevent="newSucursal(empresaData.id)"
 		>
 			<div class="form-floating">
 				<input
@@ -109,9 +109,11 @@ import BtnFull from '@/components/buttons/BtnFull.vue'
 import BoxBadge from '@/components/BoxBadge.vue'
 import { ref } from 'vue'
 import { useSucursales } from '@/composables/useSucursales'
+import { useEmpresas } from '@/composables/useEmpresas'
 
 const { sucursalForm, actionState, errorApi, newSucursal, cleanForm } =
 	useSucursales()
+const { empresaData } = useEmpresas()
 
 const metodo = ref('')
 const addMetodo = () => {

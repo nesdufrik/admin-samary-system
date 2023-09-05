@@ -3,7 +3,7 @@
 		<select
 			class="form-select border-0 fw-bold bg-light fs-5"
 			v-model="fechaFormateada"
-			@change="loadAnaliticsSpecific($route.params.id, fechaFormateada)"
+			@change="loadAnaliticsSpecific(sucursalData._id, fechaFormateada)"
 		>
 			<option v-for="(el, index) in month" :value="index">
 				{{ el }}
@@ -68,9 +68,9 @@ import BoxDataSell from '../components/BoxDataSell.vue'
 import BoxTitle from '../components/BoxTitle.vue'
 import barChart from '../components/analiticas/barChart.vue'
 import pieChart from '../components/analiticas/pieChart.vue'
-import { useRoute } from 'vue-router'
-import { ref, computed } from 'vue'
-import { useAnalitics } from '../composables/useAnaliticas'
+import { ref, computed, watch } from 'vue'
+import { useAnalitics } from '@/composables/useAnaliticas'
+import { useSucursales } from '@/composables/useSucursales'
 
 const {
 	loadAnalitics,
@@ -80,7 +80,8 @@ const {
 	ordenesTotales,
 } = useAnalitics()
 
-const route = useRoute()
+const { sucursalData } = useSucursales()
+
 const month = [
 	'Enero',
 	'Febrero',
@@ -109,7 +110,11 @@ const totalItems = computed(() =>
 	Object.values(chartItems.value).reduce((acc, val) => acc + val, 0)
 )
 
-loadAnalitics(route.params.id)
+watch(sucursalData, async () => {
+	await loadAnalitics(sucursalData.value._id)
+})
+
+await loadAnalitics(sucursalData.value._id)
 </script>
 
 <style scoped></style>

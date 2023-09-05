@@ -55,15 +55,14 @@ import BoxUser from '../components/BoxUser.vue'
 import addEmpleadoModal from '../components/modalsEmpleado/addEmpleado.vue'
 import editEmpleadoModal from '../components/modalsEmpleado/editEmpleado.vue'
 import delEmpleadoModal from '../components/modalsEmpleado/delEmpleado.vue'
-import { useRoute } from 'vue-router'
 import { useEmpleados } from '../composables/useEmpleados'
+import { useSucursales } from '@/composables/useSucursales'
 
 const { empleadosArr, listEmpleados, editarEmpleado, defaulAvatar } =
 	useEmpleados()
+const { sucursalData } = useSucursales()
 
-const route = useRoute()
-
-listEmpleados(route.params.id)
+await listEmpleados(sucursalData.value._id)
 </script>
 <style scoped>
 .tarjeta {

@@ -1,9 +1,11 @@
 <template>
-	<div class="d-flex flex-column text-center h-100">
-		<main class="form-signin w-100 m-auto flex-shrink-0">
+	<div
+		class="vh-100 d-flex align-items-center justify-content-center text-center"
+	>
+		<main class="form-signin w-100">
 			<form @submit.prevent="login">
 				<img class="mb-4" src="../assets/login.png" alt="logo" />
-				<h1 class="h3 mb-3 fw-normal">Iniciar Sesión</h1>
+				<h1 class="h3 mb-3 fw-semibold">Inicio de Sesión</h1>
 				<div class="form-floating">
 					<input
 						type="text"
@@ -32,11 +34,11 @@
 					{{ logInData.message }}
 				</div>
 				<button
-					class="w-100 btn btn-lg btn-primary"
+					class="w-100 btn btn-lg btn-primary fw-bold"
 					type="submit"
 					v-if="!actionState"
 				>
-					Iniciar Sesión
+					Iniciar
 				</button>
 				<button
 					class="w-100 btn btn-lg btn-primary"
@@ -71,8 +73,6 @@ if (route.query.show && route.query.message) {
 	}
 }
 
-let showPassword = false
-
 function toggleShowPassword() {
 	const passwordInput = document.getElementById('Password')
 	const iconShow = document.getElementById('IconEye')
@@ -106,10 +106,6 @@ function toggleShowPassword() {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-}
-
-.clase_label_check {
-	cursor: pointer;
 }
 
 .password-container {
