@@ -57,10 +57,15 @@ import editEmpleadoModal from '@/components/modalsEmpleado/editEmpleado.vue'
 import delEmpleadoModal from '@/components/modalsEmpleado/delEmpleado.vue'
 import { useEmpleados } from '@/composables/useEmpleados'
 import { useSucursales } from '@/composables/useSucursales'
+import { watch } from 'vue'
 
 const { empleadosArr, listEmpleados, editarEmpleado, defaulAvatar } =
 	useEmpleados()
 const { sucursalData } = useSucursales()
+
+watch(sucursalData, async () => {
+	await listEmpleados(sucursalData.value._id)
+})
 
 await listEmpleados(sucursalData.value._id)
 </script>
@@ -78,13 +83,6 @@ await listEmpleados(sucursalData.value._id)
 	position: absolute;
 	right: 0.5rem;
 	top: 0.5rem;
-}
-
-.tarjeta__link {
-	user-select: none;
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
 }
 
 .tarjeta__button--edit {

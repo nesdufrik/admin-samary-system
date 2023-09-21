@@ -33,7 +33,11 @@ export const useSucursalesStore = defineStore('sucursales', {
 					(sucursal) => sucursal._id !== id
 				)
 			}
-			this.sucursalData = {}
+
+			this.sucursalData =
+				this.sucursalesArr.length > 0
+					? JSON.parse(JSON.stringify(this.sucursalesArr[0]))
+					: {}
 			this.errorApi.show = false
 			this.errorApi.message = 'Se eliminaron los elementos ¡Correctamente!'
 		},

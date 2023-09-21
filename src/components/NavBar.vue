@@ -1,6 +1,6 @@
 <template>
 	<header
-		class="navbar navbar-expand-lg bd-navbar sticky-top bg-dark navbar-dark"
+		class="navbar navbar-expand-lg bd-navbar bg-dark navbar-dark fixed-top"
 	>
 		<nav
 			class="container-xl bd-gutter flex-wrap flex-lg-nowrap"

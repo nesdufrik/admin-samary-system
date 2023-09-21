@@ -91,7 +91,7 @@
 
 <script setup>
 import BoxTitle from '@/components/BoxTitle.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useCaja } from '@/composables/useCaja'
 import { useSucursales } from '@/composables/useSucursales'
 const { sucursalData } = useSucursales()
@@ -121,5 +121,17 @@ function currencyFormat(mount) {
 	}).format(mount)
 }
 
-loadCajasDate(sucursalData.value._id, fetchDateFrom.value, fetchDateTo.value)
+watch(sucursalData, async () => {
+	await loadCajasDate(
+		sucursalData.value._id,
+		fetchDateFrom.value,
+		fetchDateTo.value
+	)
+})
+
+await loadCajasDate(
+	sucursalData.value._id,
+	fetchDateFrom.value,
+	fetchDateTo.value
+)
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<header class="headerView sticky-top">
+	<header class="headerView">
 		<slot name="header"></slot>
 	</header>
 	<div class="contenedor d-flex align-items-start flex-column">
