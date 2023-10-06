@@ -4,7 +4,13 @@
 			<NavBar />
 		</template>
 		<template #main>
-			<RouterView />
+			<router-view v-slot="{ Component, route }">
+				<Transition name="fade" mode="out-in">
+					<div :key="route.name">
+						<component :is="Component"></component>
+					</div>
+				</Transition>
+			</router-view>
 		</template>
 		<template #footer>
 			<small class="text-secondary">

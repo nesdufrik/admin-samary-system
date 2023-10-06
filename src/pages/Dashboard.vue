@@ -2,6 +2,7 @@
 	<BoxTitle :titulo="monthYear">
 		<select
 			class="form-select border-0 fw-bold bg-light fs-5"
+			name="selectMonth"
 			v-model="fechaFormateada"
 			@change="loadAnaliticsSpecific(sucursalData._id, fechaFormateada)"
 		>

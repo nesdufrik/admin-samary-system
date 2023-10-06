@@ -69,6 +69,7 @@
 								<span class="material-icons-round fs-5">filter_list</span>
 								<select
 									v-model="filterCategoria"
+									name="filterCategoriaSelect"
 									class="form-select border-0 fw-bold bg-light fs-6 ps-2 py-0"
 									@change="filter"
 								>
@@ -82,6 +83,7 @@
 								<span class="material-icons-round fs-5">filter_list</span>
 								<select
 									v-model="filterSubcategoria"
+									name="filterSubCategoriaSelect"
 									class="form-select border-0 fw-bold fs-6 ps-2 py-0"
 									@change="filter"
 									:class="[
