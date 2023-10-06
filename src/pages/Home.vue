@@ -7,7 +7,17 @@
 			<router-view v-slot="{ Component, route }">
 				<Transition name="fade" mode="out-in">
 					<div :key="route.name">
-						<component :is="Component"></component>
+						<Suspense>
+							<component :is="Component"></component>
+							<template #fallback>
+								<div
+									class="d-flex align-items-center justify-content-center"
+									style="height: 80vh"
+								>
+									<span class="loader"></span>
+								</div>
+							</template>
+						</Suspense>
 					</div>
 				</Transition>
 			</router-view>
@@ -70,5 +80,39 @@ watch(sucursalData, async (newVal, oldVal) => {
 contentNavBar()
 await listEmpresas()
 </script>
+<style scoped>
+.loader {
+	position: relative;
+	width: 48px;
+	height: 48px;
+	background: #198754;
+	transform: rotateX(65deg) rotate(45deg);
+	color: #20c997;
+	animation: layers1 1s linear infinite alternate;
+}
+.loader:after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: rgba(255, 255, 255, 0.7);
+	animation: layerTr 1s linear infinite alternate;
+}
 
-<style scoped></style>
+@keyframes layers1 {
+	0% {
+		box-shadow: 0px 0px 0 0px;
+	}
+	90%,
+	100% {
+		box-shadow: 20px 20px 0 -4px;
+	}
+}
+@keyframes layerTr {
+	0% {
+		transform: translate(0, 0) scale(1);
+	}
+	100% {
+		transform: translate(-25px, -25px) scale(1);
+	}
+}
+</style>
