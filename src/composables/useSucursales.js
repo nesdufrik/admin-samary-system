@@ -1,87 +1,78 @@
 import { storeToRefs } from 'pinia'
 import {
-    deleteSucursal,
-    getSucursal,
-    getSucursales,
-    postSucursal,
-    putSucursal,
+	deleteSucursal,
+	getSucursal,
+	getSucursales,
+	postSucursal,
+	putSucursal,
 } from '../helpers/helpSucursales'
 import { useSucursalesStore } from '../stores/sucursalesStore'
 
 export const useSucursales = () => {
-    const sucursalesStore = useSucursalesStore()
-    const {
-        sucursalData,
-        sucursalesArr,
-        sucursalForm,
-        actionSucursal,
-        loadedSucursales,
-        errorApi,
-    } = storeToRefs(sucursalesStore)
+	const sucursalesStore = useSucursalesStore()
+	const { sucursalData, sucursalesArr, sucursalForm, actionState, errorApi } =
+		storeToRefs(sucursalesStore)
 
-    const listSucursales = async id => {
-        sucursalesStore.loadSucursales(await getSucursales(id))
-        loadedSucursales.value = true
-    }
+	const listSucursales = async (id) => {
+		sucursalesStore.loadSucursales(await getSucursales(id))
+	}
 
-    const newSucursal = async id => {
-        actionSucursal.value = true
-        errorApi.value.show = false
-        sucursalesStore.addSucursal(await postSucursal(sucursalForm.value, id))
-        actionSucursal.value = false
-    }
+	const newSucursal = async (id) => {
+		actionState.value = true
+		sucursalesStore.addSucursal(await postSucursal(sucursalForm.value, id))
+		actionState.value = false
+	}
 
-    const editarSucursal = () => {
-        sucursalesStore.editSucursal()
-    }
+	const editarSucursal = (id) => {
+		sucursalForm.value = JSON.parse(
+			JSON.stringify(sucursalesArr.value.find((el) => el._id === id))
+		)
+		// sucursalesStore.editSucursal()
+	}
 
-    const updateSucursal = async id => {
-        actionSucursal.value = true
-        sucursalesStore.updtSucursal(await putSucursal(sucursalForm.value, id))
-        actionSucursal.value = false
-    }
+	const updateSucursal = async (id) => {
+		actionState.value = true
+		sucursalesStore.updtSucursal(await putSucursal(sucursalForm.value, id))
+		actionState.value = false
+	}
 
-    const delSucursal = async id => {
-        actionSucursal.value = true
-        await deleteSucursal(id)
-        sucursalesStore.deleleSucursal(id)
-        actionSucursal.value = false
-    }
+	const delSucursal = async (id) => {
+		actionState.value = true
+		await deleteSucursal(id)
+		sucursalesStore.deleleSucursal(id)
+		actionState.value = false
+	}
 
-    const loadSucursal = async id => {
-        if (!loadedSucursales.value) {
-            sucursalesStore.loadSucursalData(await getSucursal(id))
-            loadedSucursales.value = true
-            return
-        }
-        sucursalesStore.findSucursalData(id)
-    }
+	const loadSucursal = async (id) => {
+		const { data } = await getSucursal(id)
+		sucursalData.value = data
+	}
 
-    const cleanForm = () => {
-        sucursalForm.value = {}
-        errorApi.value = {}
-    }
+	const cleanForm = () => {
+		sucursalForm.value = {}
+		errorApi.value = {}
+	}
 
-    const cleanAndRedirect = dir => {
-        sucursalesStore.redirect(dir)
-    }
+	const cleanAndRedirect = (empresaId) => {
+		sucursalesStore.redirect(empresaId)
+	}
 
-    return {
-        //! propiedades
-        sucursalData,
-        sucursalesArr,
-        sucursalForm,
-        actionSucursal,
-        errorApi,
+	return {
+		//! propiedades
+		sucursalData,
+		sucursalesArr,
+		sucursalForm,
+		actionState,
+		errorApi,
 
-        //! metodos
-        listSucursales,
-        newSucursal,
-        editarSucursal,
-        updateSucursal,
-        delSucursal,
-        loadSucursal,
-        cleanForm,
-        cleanAndRedirect,
-    }
+		//! metodos
+		listSucursales,
+		newSucursal,
+		editarSucursal,
+		updateSucursal,
+		delSucursal,
+		loadSucursal,
+		cleanForm,
+		cleanAndRedirect,
+	}
 }

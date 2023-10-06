@@ -1,168 +1,137 @@
 <template>
-    <!-- #Titulo -->
-    <div
-        class="tarjeta rounded-2 bd-callout bd-callout-left bd-callout-secondary p-2"
-    >
-        <div class="d-flex flex-column flex-sm-row">
-            <h2 class="fw-bold m-0 d-flex align-items-center ms-2">Fechas:</h2>
-            <div class="ms-2 mt-2">
-                <input
-                    type="date"
-                    class="form-control border-0 bg-light fw-bold fs-5"
-                    v-model="fechaFormateadaDesde"
-                    name=""
-                    id=""
-                    @change="
-                        loadCajasDate(
-                            $route.params.id,
-                            fechaDesdeSend,
-                            fechaHastaSend
-                        )
-                    "
-                />
-            </div>
-            <div class="ms-2 mt-2">
-                <input
-                    type="date"
-                    class="form-control border-0 bg-light fw-bold fs-5"
-                    v-model="fechaFormateadaHasta"
-                    name=""
-                    id=""
-                    @change="
-                        loadCajasDate(
-                            $route.params.id,
-                            fechaDesdeSend,
-                            fechaHastaSend
-                        )
-                    "
-                />
-            </div>
-        </div>
-    </div>
+	<!-- #Titulo -->
+	<BoxTitle titulo="Fechas:">
+		<input
+			type="date"
+			class="form-control border-0 bg-light fw-bold fs-6 me-2"
+			v-model="dateFrom"
+			name=""
+			id=""
+			@change="loadCajasDate(sucursalData._id, fetchDateFrom, fetchDateTo)"
+		/>
+		<input
+			type="date"
+			class="form-control border-0 bg-light fw-bold fs-6"
+			v-model="dateTo"
+			name=""
+			id=""
+			@change="loadCajasDate(sucursalData._id, fetchDateFrom, fetchDateTo)"
+		/>
+	</BoxTitle>
 
-    <!-- ##Contenido -->
-    <div id="reporteDiaParaImprimir" class="bg-light rounded-3 p-2">
-        <div class="p-3">
-            <div class="text-center mb-4">
-                <h2 class="fw-bold">Reporte de Cajas</h2>
-            </div>
-            <div class="row row-cols-1 row-cols-md-4 g-3">
-                <div class="col" v-for="caja in cajasArr">
-                    <div class="border border-4 rounded p-2 h-100">
-                        <div class="fw-bold">
-                            {{ dateFormated(caja.createdAt) }}
-                        </div>
-                        <div class="fw-bold fs-5 mt-2">
-                            Total: {{ caja.total }} Bs.
-                        </div>
-                        <div class="fw-bold mt-1 row row-cols-2 row-cols-md-1">
-                            <div class="col" v-for="metodo in caja.reporte">
-                                <div class="ms-2">
-                                    {{ metodo.payMetodo }}:
-                                    <span class="text-success">{{
-                                        metodo.total
-                                    }}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-3 fs-4 fw-bold">
-                Total: {{ totalCajasDates }} Bs.
-            </div>
-            <div class="fs-5" v-for="(total, name) in totalCajasDatesMetodos">
-                Total de
-                <span class="fw-bold text-success">"{{ name }}"</span>:
-                <span class="fw-bold">{{ total }}</span> Bs.
-            </div>
-        </div>
-    </div>
+	<!-- ##Contenido -->
+	<div id="reporteDiaParaImprimir" class="bg-light rounded-3 p-2">
+		<div class="p-3">
+			<div class="text-center">
+				<h2 class="fw-bold">Reporte de Cajas</h2>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-light table-hover">
+					<thead>
+						<tr>
+							<th class="text-center">Nº</th>
+							<th>Detalle</th>
+							<th class="text-end">Total</th>
+							<th class="text-end"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<template v-for="(caja, index) in cajasArr" :key="caja._id">
+							<tr>
+								<td class="align-middle text-center">
+									<strong>{{ index + 1 }}</strong>
+								</td>
+								<td class="align-middle">
+									<small class="text-secondary fw-light">{{
+										dateFormated(caja.createdAt)
+									}}</small>
+									<br />
+									<div
+										class="d-inline-flex p-0 mb-1 mb-md-0 border-bottom border-3 border-success-subtle me-2"
+										v-for="metodo in caja.reporte"
+									>
+										<span
+											>{{ metodo.payMetodo }}:
+											<span class="text-success">
+												{{ currencyFormat(metodo.total) }}</span
+											></span
+										>
+									</div>
+								</td>
+								<td class="align-middle fw-bold text-end fs-6">
+									<span v-if="caja.total === 0"> Sin actividad </span>
+									<span v-else> {{ currencyFormat(caja.total) }}</span>
+								</td>
+								<td class="align-middle text-end">
+									<span
+										v-if="caja.total !== 0"
+										role="button"
+										class="material-icons-round text-secondary"
+										>search</span
+									>
+									<span v-else></span>
+								</td>
+							</tr>
+						</template>
+					</tbody>
+				</table>
+			</div>
+			<div class="mt-3 fs-4 fw-bold">
+				Total:
+				{{ currencyFormat(totalCajasDates) }}
+			</div>
+			<div class="fs-5" v-for="(total, name) in totalCajasDatesMetodos">
+				Total de
+				<span class="fw-bold text-success">"{{ name }}"</span>:
+				<span class="fw-bold">{{ currencyFormat(total) }}</span>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useCaja } from '../composables/useCaja'
-const router = useRoute()
+import BoxTitle from '@/components/BoxTitle.vue'
+import { ref, computed, watch } from 'vue'
+import { useCaja } from '@/composables/useCaja'
+import { useSucursales } from '@/composables/useSucursales'
+const { sucursalData } = useSucursales()
 const {
-    cajasArr,
-    loadCajas,
-    loadCajasDate,
-    totalCajasDates,
-    totalCajasDatesMetodos,
-    dateFormated,
+	cajasArr,
+	totalCajasDates,
+	totalCajasDatesMetodos,
+	dateFormated,
+	loadCajasDate,
 } = useCaja()
 
-const fecha = new Date()
+const actualDate = new Date()
+const actualYear = actualDate.toLocaleString('default', { year: 'numeric' })
+const actualMonth = actualDate.toLocaleString('default', { month: '2-digit' })
+const actualDay = actualDate.toLocaleString('default', { day: '2-digit' })
 
-const fechaFormateadaDesde = ref(
-    `${fecha.getFullYear()}-${(fecha.getMonth() + 1)
-        .toString()
-        .padStart(2, '0')}-01`
-)
-const fechaFormateadaHasta = ref(
-    `${fecha.getFullYear()}-${(fecha.getMonth() + 1)
-        .toString()
-        .padStart(2, '0')}-${fecha.getDate().toString().padStart(2, '0')}`
-)
+const dateFrom = ref(`${actualYear}-${actualMonth}-01`)
+const dateTo = ref(`${actualYear}-${actualMonth}-${actualDay}`)
 
-const fechaDesdeSend = computed(() => {
-    const fechaArray = fechaFormateadaDesde.value.split('-')
-    const fechaSend = new Date(
-        fechaArray[0],
-        fechaArray[1] - 1,
-        fechaArray[2],
-        0,
-        0,
-        0
-    )
-    return fechaSend
+const fetchDateFrom = computed(() => new Date(`${dateFrom.value}T00:00:00`))
+const fetchDateTo = computed(() => new Date(`${dateTo.value}T23:59:59`))
+
+function currencyFormat(mount) {
+	return new Intl.NumberFormat('es-BO', {
+		style: 'currency',
+		currency: 'BOB',
+	}).format(mount)
+}
+
+watch(sucursalData, async () => {
+	await loadCajasDate(
+		sucursalData.value._id,
+		fetchDateFrom.value,
+		fetchDateTo.value
+	)
 })
 
-const fechaHastaSend = computed(() => {
-    const fechaArray = fechaFormateadaHasta.value.split('-')
-    const fechaSend = new Date(
-        fechaArray[0],
-        fechaArray[1] - 1,
-        fechaArray[2],
-        23,
-        59,
-        59
-    )
-    return fechaSend
-})
-
-loadCajas(router.params.id)
+await loadCajasDate(
+	sucursalData.value._id,
+	fetchDateFrom.value,
+	fetchDateTo.value
+)
 </script>
-<style scoped>
-.tarjeta {
-    position: relative;
-}
-
-.tarjeta__button {
-    user-select: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 1.4rem;
-    position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
-}
-
-.tarjeta__link {
-    user-select: none;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.tarjeta__button--edit {
-    margin-right: 2rem;
-}
-
-.tarjeta__button--edit2 {
-    margin-right: 4rem;
-}
-</style>
