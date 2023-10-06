@@ -22,12 +22,14 @@
 						class="form-control"
 						id="Password"
 					/>
-					<span
+					<button
 						id="IconEye"
+						type="button"
 						class="material-icons-round"
 						@click="toggleShowPassword"
-						>visibility_off</span
 					>
+						visibility_off
+					</button>
 					<label for="Password">Contraseña</label>
 				</div>
 				<div class="alert alert-warning" role="alert" v-if="logInData.show">
@@ -112,12 +114,14 @@ function toggleShowPassword() {
 	position: relative;
 }
 
-span {
+#IconEye {
 	position: absolute;
 	top: 28%;
 	right: 4%;
 	cursor: pointer;
 	color: lightgray;
 	user-select: none;
+	background-color: transparent;
+	border: 0;
 }
 </style>

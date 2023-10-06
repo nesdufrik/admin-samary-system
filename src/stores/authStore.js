@@ -30,7 +30,7 @@ export const useAuthStore = defineStore('auth', {
 				username: '',
 				password: '',
 			}
-			this.router.push('/login')
+			window.location.replace('/login')
 		},
 		async verifyJwt() {
 			this.appLoading = true

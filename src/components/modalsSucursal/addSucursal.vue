@@ -41,6 +41,15 @@
 				/>
 				<label for="floatingTelefonoCreate">Teléfono</label>
 			</div>
+			<div class="form-floating">
+				<input
+					v-model="sucursalForm.mesas"
+					type="number"
+					class="form-control"
+					id="floatingMesasCreate"
+				/>
+				<label for="floatingMesasCreate">Mesas</label>
+			</div>
 			<div class="input-group">
 				<div class="form-floating">
 					<input
