@@ -73,10 +73,6 @@ watch(empresaData, async () => {
 	await listSucursales(empresaData.value.id)
 })
 
-watch(sucursalData, async (newVal, oldVal) => {
-	console.log(newVal, oldVal)
-})
-
 contentNavBar()
 await listEmpresas()
 </script>

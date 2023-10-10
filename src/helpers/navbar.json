@@ -1,27 +1,22 @@
 [
 	{
 		"title": "Estadísticas",
-		"link": "dashboard",
+		"link": "/dashboard",
 		"icon": "dashboard"
 	},
 	{
 		"title": "Productos",
-		"link": "productos",
+		"link": "/productos",
 		"icon": "restaurant"
 	},
 	{
-		"title": "Ordenes",
-		"link": "ordenes",
-		"icon": "inventory_2"
+		"title": "Usuarios",
+		"link": "/users",
+		"icon": "group"
 	},
 	{
 		"title": "Reportes",
-		"link": "reportes",
+		"link": "/reportes",
 		"icon": "task"
-	},
-	{
-		"title": "Usuarios",
-		"link": "users",
-		"icon": "group"
 	}
 ]

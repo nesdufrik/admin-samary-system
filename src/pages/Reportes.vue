@@ -58,18 +58,28 @@
 										>
 									</div>
 								</td>
-								<td class="align-middle fw-bold text-end fs-6">
-									<span v-if="caja.total === 0"> Sin actividad </span>
-									<span v-else> {{ currencyFormat(caja.total) }}</span>
+								<td class="align-middle fw-bold text-end">
+									<span>{{ dataText(caja.total) }}</span>
 								</td>
 								<td class="align-middle text-end">
 									<span
-										v-if="caja.total !== 0"
 										role="button"
-										class="material-icons-round text-secondary"
-										>search</span
+										@click="
+											selectCaja(caja._id), $router.push(`/caja/${caja._id}`)
+										"
 									>
-									<span v-else></span>
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											height="24"
+											viewBox="0 -960 960 960"
+											width="24"
+											:style="[caja.active ? 'fill: #20c997' : 'fill: #495057']"
+										>
+											<path
+												d="M680-320q25 0 42.5-17t17.5-43q0-25-17.5-42.5T680-440q-26 0-43 17.5T620-380q0 26 17 43t43 17ZM80-600l136-136q11-11 25.5-17.5T273-760h413q17 0 31.5 6.5T743-736l137 136H80Zm80 400q-34 0-57-23t-23-57v-240h800v240q0 34-23.5 57T800-200H160Z"
+											/>
+										</svg>
+									</span>
 								</td>
 							</tr>
 						</template>
@@ -101,6 +111,7 @@ const {
 	totalCajasDatesMetodos,
 	dateFormated,
 	loadCajasDate,
+	selectCaja,
 } = useCaja()
 
 const actualDate = new Date()
@@ -128,6 +139,13 @@ watch(sucursalData, async () => {
 		fetchDateTo.value
 	)
 })
+
+function dataText(data) {
+	if (data !== undefined) {
+		return data === 0 ? '💤 Sin actividad' : `💲 ${currencyFormat(data)}`
+	}
+	return '🟢 Caja activa'
+}
 
 await loadCajasDate(
 	sucursalData.value._id,

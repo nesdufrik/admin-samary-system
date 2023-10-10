@@ -70,6 +70,16 @@ body {
 	color: var(--bs-dark-text);
 	background-color: var(--bs-dark-border-subtle);
 }
+
+.btn-modal-success {
+	color: var(--bs-success-text);
+	background-color: var(--bs-success-bg-subtle);
+}
+
+.btn-modal-success:hover {
+	color: var(--bs-success-text);
+	background-color: var(--bs-success-border-subtle);
+}
 .btn-modal-disabled {
 	color: var(--bs-gray-600);
 	background-color: var(--bs-gray-200);

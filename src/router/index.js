@@ -46,6 +46,17 @@ const routes = [
 				component: () => import('../pages/Reportes.vue'),
 			},
 			{
+				path: 'caja/:id',
+				name: 'Caja abierta',
+				component: () => import('../pages/Caja.vue'),
+				beforeEnter: (to, from, next) => {
+					const id = to.params.id
+					const isValidMongoId = /^[0-9a-fA-F]{24}$/.test(id)
+					if (!isValidMongoId) return next('/404')
+					next()
+				},
+			},
+			{
 				path: ':(.*)',
 				component: () => import('../pages/VoidView.vue'),
 			},
